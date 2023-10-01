@@ -1,0 +1,148 @@
+:root{
+    --rosa-Barbie : #FF69B4;
+    --rosa-Claro  : #FFB6C1;
+    --rosa-Suave  : #FFC0CB;
+    --rojo-Oscruo : #B22222;
+}
+
+::placeholder {
+    color: white !important;
+}
+
+.container-page{
+    height: 90vh;
+    width: 100vh;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rm;
+    transition: 0.5s;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+    backdrop-filter: blur(10px);
+    
+    -webkit-box-shadow: 0px 11px 16px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 11px 16px 5px rgba(0,0,0,0.75);
+    box-shadow: 0px 11px 16px 5px rgba(0,0,0,0.75);
+}
+
+.registro-container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+}
+
+form{
+    width: 80%;
+    margin: auto;
+}
+
+
+.input-line-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 0px;
+    margin-right: 50px;
+
+}
+
+.name-input{
+    font-size: 15px;
+}
+
+.input-line{
+    background-color: transparent;
+    border: 2px solid #cbcbcb;
+    outline: none;
+    color: white;    
+
+    -webkit-box-shadow: 0px 19px 16px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 19px 16px -7px rgba(0,0,0,0.75);
+    box-shadow: 0px 19px 16px -7px rgba(0,0,0,0.75);
+
+}
+
+span, label{
+    background: var(--rosa-Suave);
+    -webkit-box-shadow: 0px 19px 16px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 19px 16px -7px rgba(0,0,0,0.75);
+    box-shadow: 0px 19px 16px -7px rgba(0,0,0,0.75);
+}
+
+.button-registro{
+    width: 100%;
+    height: 45px;
+    border-radius: 55px;
+    background: rgba(255, 255, 255, 0.14);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 1rem;
+    cursor: progress;
+    transition: 0.5s;
+    -webkit-box-shadow: 0px 12px 16px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 12px 16px -2px rgba(0,0,0,0.75);
+box-shadow: 0px 12px 16px -2px rgba(0,0,0,0.75);
+}
+
+.button-second{
+    width: 100%;
+    height: 45px;
+    border-radius: 55px;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 2px solid white;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+    opacity: 0.6 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.button-registro:hover{
+    box-shadow: 0px 0px 8px #ffffffa4;
+}
+
+.button-second:hover{
+    opacity: 1;
+}
+
+
+
+.registro-cebecera{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.footer-Reg{
+    margin-top: 10px;
+    display: flex;
+    
+}
+
+select {
+    background: rgba(178, 34, 34, 0.3);
+  }
+  select:hover {
+    background: rgba(178, 34, 34, 0.3);
+  }

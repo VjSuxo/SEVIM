@@ -18,9 +18,21 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombreusuario',
         'email',
+        'role',
         'password',
+        'nombre',
+        'apePaterno',
+        'apeMaterno',
+        'genero',
+        'fechaNac',
+        'estCivil',
+        'numeroCel',
+        'ciudad',
+        'calle',
+        'zona',
+        'numeroCasa',
     ];
 
     /**
@@ -42,4 +54,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * configuracion de los roles
+     */
+
+    protected function role(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) =>  ["user", "editor", "admin"][$value],
+        );
+    }
+
+
 }

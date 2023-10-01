@@ -1,0 +1,101 @@
+:root{
+    --rosa-Barbie : #FF69B4;
+    --rosa-Claro  : #FFB6C1;
+    --rosa-Suave  : #FFC0CB;
+    --rojo-Oscruo : #B22222;
+}
+
+
+.caracteristicasCard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    background: var(--rosa-Claro);
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 9px 9px 3px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 9px 9px 3px rgba(0,0,0,0.75);
+box-shadow: 0px 9px 9px 3px rgba(0,0,0,0.75);
+}
+
+
+.cardCar {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    margin: 20px;
+}
+
+.cardCar .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.cardCar .front {
+    transform: perspective(600px) rotateY(0deg);
+    box-shadow: 0 5px 10px #000;
+}
+
+.cardCar .front img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardCar .front h3 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    background: rgba(0,0,0,.4);
+    text-align: center;
+}
+
+.cardCar .back {
+    transform: perspective(600px) rotateY(180deg);
+    background: var(--rojo-Oscruo);
+    padding: 15px;
+    color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    box-shadow: 0 5px 10px #000;
+}
+
+.cardCar .back .link {
+    border-top: solid 1px #f3f3f3;
+    height: 50px;
+    line-height: 50px;
+}
+
+.cardCar .back .link a {
+    color: #f3f3f3;
+}
+
+.cardCar .back h3 {
+    font-size: 30px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+.cardCar .back p {
+    letter-spacing: 1px;
+} 
+
+.cardCar:hover .front {
+    transform: perspective(600px) rotateY(180deg);
+}
+
+.cardCar:hover .back {
+    transform: perspective(600px) rotateY(360deg);
+}
