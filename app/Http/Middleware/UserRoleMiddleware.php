@@ -1,24 +1,20 @@
 <?php
 namespace App\Http\Middleware;
+
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Auth;
-
 class UserRoleMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  \Integer  role
-     * @return mixed
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-
-    // Add custom parameter $role which pass from Route.php
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next,$role): Response
     {
-        // Check & verify with route, you will more understand
+        return response()->json([Auth::user()->role,$role]);
         if(Auth::check() && Auth::user()->role == $role)
         {
             return $next($request);
@@ -27,3 +23,4 @@ class UserRoleMiddleware
         return response()->json(['You do not have permission to access for this page.']);
     }
 }
+

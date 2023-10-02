@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +22,7 @@ Auth::routes();
 // Route User
 Route::middleware(['auth','user-role:user'])->group(function()
 {
-    Route::get("/home",[HomeController::class, 'userHome'])->name("home");
+    Route::get("/user/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Editor
 Route::middleware(['auth','user-role:editor'])->group(function()
