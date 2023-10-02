@@ -18,21 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nombreusuario',
+        'username',
+        'password',
         'email',
         'role',
-        'password',
-        'nombre',
-        'apePaterno',
-        'apeMaterno',
-        'genero',
-        'fechaNac',
-        'estCivil',
-        'numeroCel',
-        'ciudad',
-        'calle',
-        'zona',
-        'numeroCasa',
+        'email_verified_at',
+        'persona_id',
     ];
 
     /**
@@ -64,6 +55,11 @@ class User extends Authenticatable
         return new Attribute(
             get: fn ($value) =>  ["user", "editor", "admin"][$value],
         );
+    }
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 
 

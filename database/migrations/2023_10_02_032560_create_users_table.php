@@ -13,23 +13,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id(); // Campo autoincremental para el ID
-            $table->string('nombreusuario')->unique();
+            $table->string('username')->unique();
+            $table->string('password');
             //0 = User, 1 = Editor, 2 = Admin
             $table->string('email')->unique();
             $table->tinyInteger('role')->default(0);
-            $table->string('password');
-            $table->string('nombre');
-            $table->string('apePaterno');
-            $table->string('apeMaterno');
-            $table->string('genero');
-            $table->date('fechaNac');
-            $table->enum('estCivil', ['soltero', 'casado', 'divorciado', 'viudo']);
-            $table->string('numeroCel');
-            $table->string('ciudad');
-            $table->string('calle');
-            $table->string('zona');
-            $table->string('numeroCasa');
             $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedBigInteger('persona_id')->unique();
+            $table->foreign('persona_id')->references('id')->on('personas');
             $table->rememberToken();
             $table->timestamps();
         });
