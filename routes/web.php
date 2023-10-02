@@ -20,17 +20,17 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route User
-Route::middleware(['auth','user-role:user'])->group(function()
+Route::middleware(['auth','user-role:0'])->group(function()
 {
     Route::get("/user/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Editor
-Route::middleware(['auth','user-role:editor'])->group(function()
+Route::middleware(['auth','user-role:1'])->group(function()
 {
     Route::get("/editor/home",[HomeController::class, 'editorHome'])->name("editor.home");
 });
 // Route Admin
-Route::middleware(['auth','user-role:admin'])->group(function()
+Route::middleware(['auth','user-role:2'])->group(function()
 {
     Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
 });
