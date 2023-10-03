@@ -1,3 +1,10 @@
+:root{
+    --rosa-Barbie : #FF69B4;
+    --rosa-Claro  : #FFB6C1;
+    --rosa-Suave  : #FFC0CB;
+    --rojo-Oscruo : #B22222;
+    --rojo-Carmesi: #DC143C;
+}
 .container-page{
     height: 70vh;
     width: 55vh;
@@ -10,7 +17,7 @@
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid white;
     backdrop-filter: blur(10px);
-    
+
     -webkit-box-shadow: 0px 11px 16px 5px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 11px 16px 5px rgba(0,0,0,0.75);
     box-shadow: 0px 11px 16px 5px rgba(0,0,0,0.75);
@@ -23,7 +30,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: rgb(255, 255, 255);
+    color: var(--rojo-Carmesi);
 
 }
 
@@ -98,7 +105,8 @@ form{
 }
 
 .button-login:hover{
-    box-shadow: 0px 0px 8px #ffffffa4;
+    background: var(--rosa-Claro);
+    box-shadow: 0px 0px 8px var(--rosa-Barbie);
 }
 
 .button-second:hover{
@@ -111,11 +119,11 @@ form{
 }
 .login-footer a{
     text-decoration: none;
-    color: white;
+    color: var(--rojo-Carmesi);
 }
 
 .login-footer a:hover{
-    color: var(--rojo-Oscruo);
+    color: var(--rosa-Barbie);
     transition: 0.5s;
 }
 

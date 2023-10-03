@@ -6,7 +6,7 @@
             SEVIM
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="d-inline-block align-text-center"><img src="/icon_plus.png" width="30" height="30" alt=""></span>
+            <span class="d-inline-block align-text-center"><img src="/img/icon/icon_plus.png" width="30" height="30" alt=""></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
