@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); // Campo autoincremental para el ID
             $table->string('username')->unique();
             $table->string('password');
+            $table->integer('intentos_fallidos')->default(0);
             //0 = User, 1 = Editor, 2 = Admin
             $table->string('email')->unique();
             $table->tinyInteger('role')->default(0);

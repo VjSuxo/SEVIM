@@ -65,9 +65,16 @@ class LoginController extends Controller
         }
         else
         {
+            $user = User::where('email', $request->email)->first();
+            if ($user) {
+                $user->increment('intentos_fallidos');
+                if ($user->intentos_fallidos >= 3) {
+                    $user->update(['bloqueado' => true]);
+                }
+            }
             return redirect()
             ->route('login')
-            ->with('error','Incorrect email or password!.');
+            ->with('error', 'Credenciales incorrectas.');
         }
     }
 }
