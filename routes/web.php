@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\ConfirmarCodigo;
+use App\Http\Controllers\Auth\Recuperar;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +36,13 @@ Route::middleware(['auth','checkAccountStatus','user-role:2'])->group(function()
 {
     Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
 });
+
+//Especiales
+Route::view('recuperarCuenta',"/recuperarCuenta")->name('recuperar');
+Route::view('codigoConfirmacion',"/codigoConfirmacion")->name('codigo');
+
+//Verificacion
+Route::get('/verificar-codigo',[HomeController::class, 'showVerificationForm'] )->name('verification.show');
+Route::post('/verificar-codigo',[ConfirmarCodigo::class,'verifyCode'])->name('verification.verify');
+//Recuperacion
+Route::post('/recuperar-codigo',[Recuperar::class,'EnviarCodigoRecu'])->name('recobery');

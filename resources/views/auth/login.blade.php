@@ -42,14 +42,7 @@
                 </div>
                 @if (session('bloqueo'))
                     <div class="alert alert-danger">
-                        {{ session('bloqueo') }}
-                        @if (auth()->check() && auth()->user()->bloqueado)
-                            <br>
-                            <form method="POST" action="{{ route('account.recovery') }}">
-                                @csrf
-                                <button type="submit" class="btn btn-link">Recuperar cuenta</button>
-                            </form>
-                        @endif
+                       <a href="{{route('recuperar')}}">Recuperar Cuenta</a>
                     </div>
                 @endif
 

@@ -74,21 +74,30 @@ class LoginController extends Controller
             if ($user) {
                 $user->increment('intentos_fallidos');
                 $this->validarBloqueo($request);
+                //return response()->json([$user]);
+                return redirect()
+                ->route('login')
+                ->with('error', 'Credenciales incorrectas, intentos fallidos ' . $user->intentos_fallidos . ' de 3');
             }
+            //return response()->json([$user]);
             return redirect()
             ->route('login')
-            ->with('error', 'Credenciales incorrectas, intentos fallidos ' . $user->intentos_fallidos . ' de 3');
+            ->with('error', 'Credenciales incorrectas');
+
         }
     }
 
     private function validarBloqueo(Request $request){
             $user = User::where('email', $request->email)->first();
-            if ($user->intentos_fallidos >= 3) {
-                $user->update(['bloqueado' => 1]);
-                return redirect()
-                ->route('login')
-                ->with('bloqueo', 'Su cuenta fue bloqueada por demasiados intentos ');
+         //   return response()->json([$user]);
+            if($user){
+                if ($user->intentos_fallidos >= 3) {
+                    $user->update(['bloqueo' => 1]);
+                    return redirect()
+                    ->route('login')
+                    ->with('bloqueo', 'Su cuenta fue bloqueada por demasiados intentos ');
 
+                }
             }
     }
 }
