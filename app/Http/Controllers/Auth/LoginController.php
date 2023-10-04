@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Auth;
 class LoginController extends Controller
 {
     /*
@@ -49,10 +49,12 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
+        $this->validarBloqueo($request);
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            return response()->json([auth()->user()->intentos_fallidos]);
-            auth()->user()->intentos_fallidos = 0;
+
+            $user = Auth::user();
+            $user->update(['intentos_fallidos' => 0]);
             if (auth()->user()->role == 'admin')
             {
               return redirect()->route('admin.home');
@@ -71,13 +73,22 @@ class LoginController extends Controller
             $user = User::where('email', $request->email)->first();
             if ($user) {
                 $user->increment('intentos_fallidos');
-                if ($user->intentos_fallidos >= 3) {
-                    $user->update(['bloqueado' => true]);
-                }
+                $this->validarBloqueo($request);
             }
             return redirect()
             ->route('login')
             ->with('error', 'Credenciales incorrectas, intentos fallidos ' . $user->intentos_fallidos . ' de 3');
         }
+    }
+
+    private function validarBloqueo(Request $request){
+            $user = User::where('email', $request->email)->first();
+            if ($user->intentos_fallidos >= 3) {
+                $user->update(['bloqueado' => 1]);
+                return redirect()
+                ->route('login')
+                ->with('bloqueo', 'Su cuenta fue bloqueada por demasiados intentos ');
+
+            }
     }
 }

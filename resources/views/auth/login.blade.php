@@ -40,6 +40,19 @@
                         </div>
                     </div>
                 </div>
+                @if (session('bloqueo'))
+                    <div class="alert alert-danger">
+                        {{ session('bloqueo') }}
+                        @if (auth()->check() && auth()->user()->bloqueado)
+                            <br>
+                            <form method="POST" action="{{ route('account.recovery') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-link">Recuperar cuenta</button>
+                            </form>
+                        @endif
+                    </div>
+                @endif
+
 
                   <input type="submit" value="login" class="button-login">
               </form>
@@ -58,6 +71,9 @@
       <script>
         @if(session('error'))
             alert("{{ session('error') }}"); // Muestra la alerta con el mensaje de error
+        @endif
+        @if(session('bloqueo'))
+            alert("{{ session('bloqueo') }}"); // Muestra la alerta con el mensaje de error
         @endif
     </script>
 
