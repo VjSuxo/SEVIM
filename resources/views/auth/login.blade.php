@@ -41,7 +41,7 @@
                     </div>
                 </div>
 
-                  <input type="button" value="login" class="button-login">
+                  <input type="submit" value="login" class="button-login">
               </form>
               <div class="login-footer">
                 @if (Route::has('password.request'))
@@ -54,6 +54,12 @@
           </div>
         </div>
       </div>
+
+      <script>
+        @if(session('error'))
+            alert("{{ session('error') }}"); // Muestra la alerta con el mensaje de error
+        @endif
+    </script>
 
 
 </x-layouts.app>

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'role',
         'email_verified_at',
         'persona_id',
+        'intentos_fallidos',
     ];
 
     /**

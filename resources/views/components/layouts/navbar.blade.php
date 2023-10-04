@@ -58,7 +58,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Login</a> <!-- Enlace "Login" cuando el usuario no está autenticado -->
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Registrate</a>
+                </li>
             @endif
         </ul>
     </div>
 </nav>
+
+

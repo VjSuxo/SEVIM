@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -50,6 +51,8 @@ class LoginController extends Controller
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
+            return response()->json([auth()->user()->intentos_fallidos]);
+            auth()->user()->intentos_fallidos = 0;
             if (auth()->user()->role == 'admin')
             {
               return redirect()->route('admin.home');
@@ -74,7 +77,7 @@ class LoginController extends Controller
             }
             return redirect()
             ->route('login')
-            ->with('error', 'Credenciales incorrectas.');
+            ->with('error', 'Credenciales incorrectas, intentos fallidos ' . $user->intentos_fallidos . ' de 3');
         }
     }
 }
