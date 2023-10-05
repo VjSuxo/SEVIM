@@ -40,12 +40,16 @@
                         </div>
                     </div>
                 </div>
-                @if (session('bloqueo'))
+
+                  @if (session('bloqueo'))
+                  {{session('bloqueo')}}
+                    <!--
                     <div class="alert alert-danger">
                        <a href="{{route('recuperar')}}">Recuperar Cuenta</a>
                     </div>
-                @endif
+                    -->
 
+                    @endif
 
                   <input type="submit" value="login" class="button-login">
               </form>

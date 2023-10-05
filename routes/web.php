@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\ConfirmarCodigo;
 use App\Http\Controllers\Auth\Recuperar;
+use App\Http\Controllers\DenunciaController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +19,7 @@ use App\Http\Controllers\Auth\Recuperar;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
@@ -35,14 +37,28 @@ Route::middleware(['auth','checkAccountStatus','user-role:1'])->group(function()
 Route::middleware(['auth','checkAccountStatus','user-role:2'])->group(function()
 {
     Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
+    Route::get("/admin/denuncias",[AdminController::class,'index'])->name("admin.denuncias");
+
+});
+
+
+Route::controller(DenunciaController::class)->group(function () {
+    Route::get('/formulario','index')->name('formulario');
+    Route::post('/formularioPost','createDH')->name('formularioPDH');
+    Route::get('/forumularioVictima/{denuncia}','indexVic')->name('formularioVic');
+    Route::post('/formularioVictimaPost/{denuncia}','createDV')->name('formularioPDV');
+    Route::get('/formularioDenunciado/{tiene}','indexDen')->name('formularioDen');
+    Route::post('/formDenunciadoPost/{tiene}','createDD')->name('formularioPDen');
 });
 
 //Especiales
 Route::view('recuperarCuenta',"/recuperarCuenta")->name('recuperar');
 Route::view('codigoConfirmacion',"/codigoConfirmacion")->name('codigo');
 
+
 //Verificacion
 Route::get('/verificar-codigo',[HomeController::class, 'showVerificationForm'] )->name('verification.show');
 Route::post('/verificar-codigo',[ConfirmarCodigo::class,'verifyCode'])->name('verification.verify');
 //Recuperacion
 Route::post('/recuperar-codigo',[Recuperar::class,'EnviarCodigoRecu'])->name('recobery');
+

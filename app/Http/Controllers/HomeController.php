@@ -45,6 +45,6 @@ class HomeController extends Controller
      */
     public function adminHome()
     {
-        return view('home',["msg"=>"Hello! I am admin"]);
+        return view('/admin/home',["msg"=>"Hello! I am admin"]);
     }
 }

@@ -10,7 +10,9 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/css/style.css',
+                'resources/css/style_tabla.css',
                 'resources/css/style_index.css',
+                'resources/css/style_form.css',
                 'resources/css/style_about.css',
                 'resources/css/style_detalles.css',
                 'resources/css/style_flipCard.css',

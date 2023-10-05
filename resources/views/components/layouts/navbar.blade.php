@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{route('welcome')}}">
             <img src="/img/log2.png" alt="" width="50" height="50" class="d-inline-block align-text-center">
             SEVIM
         </a>
@@ -12,23 +12,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('welcome')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown link
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    <a class="nav-link" href="{{route('formulario')}}">Denunciar</a>
                 </li>
             </ul>
         </div>
@@ -41,7 +28,11 @@
                         {{ auth()->user()->username }} <!-- Muestra el nombre del usuario autenticado -->
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
+                        <li>
+                            @if(Auth::user()->role == '2')
+                                <a class="dropdown-item" href="{{  route('admin.denuncias') }}">Denuncias</a>
+                            @endif
+                        </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

@@ -23,7 +23,7 @@ class CreatePersonaSeeder extends Seeder
                 'fechaNac'=>Carbon::parse('2000-06-15'),
                 'sexo' => 'femenino',
                 'celular' => 7896512,
-                'email' => 'usuario1@gmail.com',
+                'email' => 'eljudionaci234@gmail.com',
                 'idEstado' => 1,
             ],
             [
@@ -34,7 +34,7 @@ class CreatePersonaSeeder extends Seeder
                 'fechaNac'=>Carbon::parse('2000-06-15'),
                 'sexo' => 'femenino',
                 'celular' => 7896522,
-                'email' => 'usuario2@gmail.com',
+                'email' => 'editor@cambotutorial.com',
                 'idEstado' => 3,
             ],
             [
@@ -45,7 +45,7 @@ class CreatePersonaSeeder extends Seeder
                 'fechaNac'=>Carbon::parse('2000-06-15'),
                 'sexo' => 'femenino',
                 'celular' => 7896552,
-                'email' => 'usuario3@gmail.com',
+                'email' => 'admin@cambotutorial.com',
                 'idEstado' => 2,
             ],
 

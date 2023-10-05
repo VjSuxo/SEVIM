@@ -55,9 +55,9 @@ class LoginController extends Controller
 
             $user = Auth::user();
             $user->update(['intentos_fallidos' => 0]);
-            if (auth()->user()->role == 'admin')
+            if (auth()->user()->role == '2')
             {
-              return redirect()->route('admin.home');
+              return redirect()->route('admin.denuncias');
             }
             else if (auth()->user()->role == 'editor')
             {
