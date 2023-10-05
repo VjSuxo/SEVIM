@@ -115,7 +115,7 @@ class DenunciaController extends Controller
                 'sexo' => $userData['sexo'],
                 'celular' => $userData['celular'],
                 'email' => $userData['email'],
-                'idEstado' => $userData['idEstado'],
+                'idEstado' => $userData['estadoCivil'],
             ]);
 
             $persona->save();
