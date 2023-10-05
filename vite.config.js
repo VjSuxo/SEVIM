@@ -2,14 +2,15 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    server:{
-        host: '0.0.0.0'
-    },
+  //  server:{
+  ////      host: '0.0.0.0'
+ //   },
     plugins: [
         laravel({
             input: [
                 'resources/sass/app.scss',
                 'resources/css/style.css',
+                'resources/css/style_adminIndex.css',
                 'resources/css/style_tabla.css',
                 'resources/css/style_index.css',
                 'resources/css/style_form.css',

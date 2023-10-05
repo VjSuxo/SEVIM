@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Correo de recuperación de código</title>
-</head>
-<body>
-    <p>Tu código de recuperación es: {{ $codigo }}</p>
-</body>
-</html>
+@component('mail::message')
+    @component('mail::button',['url'=>''])
+        Ver
+    @endcomponent
+    {{config('app.name')}}
+@endcomponent

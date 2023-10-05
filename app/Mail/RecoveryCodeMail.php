@@ -16,14 +16,18 @@ class RecoveryCodeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($codigo)
+    public function __construct()
 {
-    $this->codigo = $codigo;
 }
 
+    public fuction build(){
+        return $this->subject("hola")
+                    ->markdown('recovery_code');
+    }
+/**
     /**
      * Get the message envelope.
-     */
+
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -33,7 +37,7 @@ class RecoveryCodeMail extends Mailable
 
     /**
      * Get the message content definition.
-     */
+
     public function content()
     {
         return (new Content)
@@ -45,9 +49,10 @@ class RecoveryCodeMail extends Mailable
      * Get the attachments for the message.
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
+
     public function attachments(): array
     {
         return [];
     }
+    */
 }

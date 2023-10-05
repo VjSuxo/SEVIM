@@ -13,10 +13,10 @@ class CreatePersonasTable extends Migration
             $table->string('nombre');
             $table->string('apPat');
             $table->string('apMat');
-            $table->date('fechaNac');
+            $table->date('fechaNac')->nullable();
             $table->string('sexo');
             $table->bigInteger('celular');
-            $table->string('email');
+            $table->string('email')->nullable();
 
             // Clave foránea para la relación con estados_civiles
             $table->unsignedBigInteger('idEstado');

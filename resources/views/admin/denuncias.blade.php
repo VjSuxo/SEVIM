@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-layouts.adminApp>
     @vite(['resources/css/style_tabla.css'])
 <div class="cuerpoT">
     <table class="table">
@@ -24,4 +24,4 @@
         </tbody>
     </table>
 </div>
-</x-layouts.app>
+</x-layouts.adminApp>

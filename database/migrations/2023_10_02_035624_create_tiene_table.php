@@ -10,9 +10,9 @@ class CreateTieneTable extends Migration
     {
         Schema::create('tiene', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('denunciante_id'); // Clave foránea para denunciante (PERSONA)
-            $table->unsignedBigInteger('denunciado_id'); // Clave foránea para denunciado (PERSONA)
-            $table->unsignedBigInteger('violencia_id'); // Clave foránea para denuncia de violencia (DENUNCIAVIOLENCIA)
+            $table->unsignedBigInteger('denunciante_id')->nullable(); // Clave foránea para denunciante (PERSONA)
+            $table->unsignedBigInteger('denunciado_id')->nullable(); // Clave foránea para denunciado (PERSONA)
+            $table->unsignedBigInteger('violencia_id')->nullable(); // Clave foránea para denuncia de violencia (DENUNCIAVIOLENCIA)
             $table->date('fechaDenuncia');
 
             $table->timestamps();

@@ -13,4 +13,9 @@ class AdminController extends Controller
         //return $tienes;
         return view('/admin/denuncias',['tienes'=>$tienes]);
     }
+
+    public function editIndex() {
+
+    }
+
 }

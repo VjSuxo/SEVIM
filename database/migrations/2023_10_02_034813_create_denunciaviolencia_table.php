@@ -10,11 +10,11 @@ class CreateDenunciaViolenciaTable extends Migration
     {
         Schema::create('denunciaviolencia', function (Blueprint $table) {
             $table->id();
-            $table->date('fechaHechoDenuncia');
-            $table->text('relato');
+            $table->date('fechaHechoDenuncia')->nullable();
+            $table->text('relato')->nullable();
             $table->string('urlArchivoPruebas')->nullable();
-            $table->unsignedBigInteger('tipo_violencia_id'); // Clave foránea para TIPOVIOLENCIA
-            $table->unsignedBigInteger('tipo_denuncia_id'); // Clave foránea para TIPODENUNCIA
+            $table->unsignedBigInteger('tipo_violencia_id')->nullable(); // Clave foránea para TIPOVIOLENCIA
+            $table->unsignedBigInteger('tipo_denuncia_id')->nullable(); // Clave foránea para TIPODENUNCIA
             $table->foreign('tipo_violencia_id')->references('id')->on('tipoviolencia');
             $table->foreign('tipo_denuncia_id')->references('id')->on('tipodenuncia');
             $table->timestamps();
