@@ -10,8 +10,8 @@ class CreateLeyTable extends Migration
     {
         Schema::create('ley', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->text('descripcion');
+            $table->string('nombre')->nullable();;
+            $table->text('descripcion')->nullable();;
             $table->timestamps();
         });
     }

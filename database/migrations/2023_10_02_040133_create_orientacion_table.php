@@ -10,9 +10,9 @@ class CreateOrientacionTable extends Migration
     {
         Schema::create('orientacion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->text('resumen');
-            $table->text('relleno');
+            $table->string('nombre')->nullable();
+            $table->text('resumen')->nullable();;
+            $table->text('relleno')->nullable();
             $table->string('urlFondo')->nullable();
             $table->timestamps();
         });

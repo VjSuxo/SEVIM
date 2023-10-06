@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\ConfirmarCodigo;
 use App\Http\Controllers\Auth\Recuperar;
 use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminEditarController;
+use App\Http\Controllers\OrientacionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +41,14 @@ Route::middleware(['auth','checkAccountStatus','user-role:2'])->group(function()
     Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
     Route::get("/admin/denuncias",[AdminController::class,'index'])->name("admin.denuncias");
     Route::get("/admin/editIndex",[AdminController::class,'editIndex'])->name('admin.editIndex');
+    // Editar index
+    Route::controller(AdminEditarController::class)->group(function(){
+        Route::get("/edit/seccion_1",'seccion_1Index')->name('admin.Eseccion1');
+    });
 
+    Route::controller(OrientacionController::class)->group(function(){
+        Route::post("/store/seccion",'store')->name('orientacion.store');
+    });
 
 });
 
