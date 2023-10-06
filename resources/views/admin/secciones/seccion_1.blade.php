@@ -31,9 +31,15 @@
                 </div>
                 <div class="face back">
                     <h3>{{$orientacion->nombre}}</h3>
+                    <p>{{ $orientacion->id }}</p>
                     <p>{{$orientacion->resumen}}</p>
+                    <form action="{{route('orientacion.delete',$orientacion->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                    </form>
                     <div class="link">
-                        <a class="editar-link" data-nombre="{{$orientacion->nombre}}" data-resumen="{{$orientacion->resumen}}" href="detallesInformacion.html">Details</a>
+                        <a class="editar-link" data-id="{{$orientacion->id}}" data-nombre="{{$orientacion->nombre}}" data-resumen="{{$orientacion->resumen}}" data-relleno="{{$orientacion->relleno}}"  href="detallesInformacion.html">Details</a>
                     </div>
                 </div>
             </div>
@@ -47,23 +53,24 @@
                 @csrf <!-- Agrega el token CSRF para protección -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Nombre</span>
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
                     @error('nombre')
                         <small class="text-danger">{{$message}}</small>
                     @enderror
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Resumen</span>
-                    <input type="text" class="form-control" name="resumen" placeholder="Resumen" aria-label="Resumen" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="resumen" name="resumen" placeholder="Resumen" aria-label="Resumen" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Relleno</span>
-                    <input type="text" class="form-control" name="relleno" placeholder="Relleno" aria-label="Relleno" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="relleno" name="relleno" placeholder="Relleno" aria-label="Relleno" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" name="urlFondo" id="inputGroupFile02">
+                    <input type="file" class="form-control" id="urlFondo" name="urlFondo">
                     <label class="input-group-text" for="inputGroupFile02">Subir</label>
                 </div>
+                <input  type="text" style="display: none" id="idV" name="idV">
                 <button type="submit">Enviar</button>
             </form>
         </div>
@@ -89,15 +96,20 @@ $(document).ready(function() {
         e.preventDefault(); // Evita que el enlace navegue a la página
 
         // Obtiene los datos del atributo "data" del enlace
+        var id = $(this).data("id");
         var nombre = $(this).data("nombre");
         var resumen = $(this).data("resumen");
+        var relleno = $(this).data("relleno");
 
         // Llena el formulario con los datos obtenidos
         $("#nombre").val(nombre);
         $("#resumen").val(resumen);
+        $("#relleno").val(relleno);
+        $("#idV").val(id);
 
         // Puedes redirigir al usuario al formulario de edición aquí
         // window.location.href = "URL_DEL_FORMULARIO_DE_EDICIÓN";
+
     });
 });
 </script>

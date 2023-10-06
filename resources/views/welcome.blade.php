@@ -5,87 +5,22 @@
             <div class="inicio">
               <h1 class="align-text-center">Estamos Aqui Para Ti</h1>
               <div class="caracteristicasCard">
-                <div class="cardCar">
-                    <div class="face front">
-                        <img src="/img/imgs/img_Orientacion.jpg" alt="">
-                        <h3>Albergues</h3>
-                    </div>
-                    <div class="face back">
-                        <h3>Albergues</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius harum molestiae iste, nihil doloribus fugiat distinctio ducimus maxime totam nulla fuga odio non aperiam eos?</p>
-                        <div class="link">
-                            <a href="detallesInformacion.html">Details</a>
+                @foreach ( $orientaciones as $orientacion )
+                    <div class="cardCar">
+                        <div class="face front">
+                            <img src="{{$orientacion->urlFondo}}" alt="">
+                            <h3>{{$orientacion->nombre}}s</h3>
+                        </div>
+                        <div class="face back">
+                            <h3>{{$orientacion->nombre}}</h3>
+                            <p>{{ $orientacion->id }}</p>
+                            <p>{{$orientacion->resumen}}</p>
+                            <div class="link">
+                                <a class="editar-link"  href="detallesInformacion.html">Details</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="cardCar">
-                    <div class="face front">
-                        <img src="/img/imgs/img_OrientacionConsejeria.jpg" alt="">
-                        <h3>Consejeria</h3>
-                    </div>
-                    <div class="face back">
-                        <h3>Spain</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius harum molestiae iste, nihil doloribus fugiat distinctio ducimus maxime totam nulla fuga odio non aperiam eos?</p>
-                        <div class="link">
-                            <a href="#">Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cardCar">
-                    <div class="face front">
-                        <img src="/img/imgs/img_OrientacionJusticia.jpg" alt="">
-                        <h3>Centro de Justicia</h3>
-                    </div>
-                    <div class="face back">
-                        <h3>Centro de Justicia</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius harum molestiae iste, nihil doloribus fugiat distinctio ducimus maxime totam nulla fuga odio non aperiam eos?</p>
-                        <div class="link">
-                            <a href="#">Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="cardCar">
-                  <div class="face front">
-                      <img src="/img/imgs/img_OrientacionJusticia.jpg" alt="">
-                      <h3>Centro de Justicia</h3>
-                  </div>
-                  <div class="face back">
-                      <h3>Centro de Justicia</h3>
-                      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius harum molestiae iste, nihil doloribus fugiat distinctio ducimus maxime totam nulla fuga odio non aperiam eos?</p>
-                      <div class="link">
-                          <a href="#">Details</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="cardCar">
-                <div class="face front">
-                    <img src="/img/imgs/img_OrientacionJusticia.jpg" alt="">
-                    <h3>Centro de Justicia</h3>
-                </div>
-                <div class="face back">
-                    <h3>Centro de Justicia</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius harum molestiae iste, nihil doloribus fugiat distinctio ducimus maxime totam nulla fuga odio non aperiam eos?</p>
-                    <div class="link">
-                        <a href="#">Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="cardCar">
-              <div class="face front">
-                  <img src="/img/imgs/img_OrientacionJusticia.jpg" alt="">
-                  <h3>Centro de Justicia</h3>
-              </div>
-              <div class="face back">
-                  <h3>Centro de Justicia</h3>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius harum molestiae iste, nihil doloribus fugiat distinctio ducimus maxime totam nulla fuga odio non aperiam eos?</p>
-                  <div class="link">
-                      <a href="#">Details</a>
-                  </div>
-              </div>
-          </div>
-
+                @endforeach
             </div>
             </div>
           </section>

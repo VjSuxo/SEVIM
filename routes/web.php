@@ -8,6 +8,9 @@ use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminEditarController;
 use App\Http\Controllers\OrientacionController;
+
+use App\Models\Orientacion;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +23,8 @@ use App\Http\Controllers\OrientacionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $orientacion = Orientacion::get();
+    return view('welcome',['orientaciones'=>$orientacion]);
 })->name('welcome');
 
 Auth::routes();
@@ -44,10 +48,13 @@ Route::middleware(['auth','checkAccountStatus','user-role:2'])->group(function()
     // Editar index
     Route::controller(AdminEditarController::class)->group(function(){
         Route::get("/edit/seccion_1",'seccion_1Index')->name('admin.Eseccion1');
+        Route::get("/edit/seccion_2",'seccion_2Index')->name('admin.Eseccion2');
+        Route::get("/edit/seccion_3",'seccion_3Index')->name('admin.Eseccion3');
     });
 
     Route::controller(OrientacionController::class)->group(function(){
         Route::post("/store/seccion",'store')->name('orientacion.store');
+        Route::delete('/store/seccion/delete/{orientacion}','Destroy')->name('orientacion.delete');
     });
 
 });

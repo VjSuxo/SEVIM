@@ -11,4 +11,14 @@ class AdminEditarController extends Controller
         $orientaciones = Orientacion::get();
         return view('/admin/secciones/seccion_1',['orientaciones'=>$orientaciones]);
     }
+
+    public function seccion_2Index(){
+        $orientaciones = Orientacion::get();
+        return view('/admin/secciones/seccion_1',['orientaciones'=>$orientaciones]);
+    }
+
+    public function seccion_3Index(){
+        $orientaciones = Orientacion::get();
+        return view('/admin/secciones/seccion_1',['orientaciones'=>$orientaciones]);
+    }
 }

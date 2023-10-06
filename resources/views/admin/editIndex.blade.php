@@ -13,13 +13,13 @@
             <div class="card-header">
               <ul class="nav nav-pills card-header-pills">
                 <li class="nav-item">
-                  <a class="nav-link active" href="{{route('admin.Eseccion1')}}" target="iframeEdit">Active</a>
+                  <a class="nav-link " href="{{route('admin.Eseccion1')}}" target="iframeEdit">Orientacion</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+                  <a class="nav-link" href="{{route('admin.Eseccion2')}}">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                  <a class="nav-link" href="{{route('admin.Eseccion3')}}" aria-disabled="true">Noticias</a>
                 </li>
               </ul>
             </div>

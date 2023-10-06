@@ -9,6 +9,7 @@ class Orientacion extends Model
     protected $table = 'orientacion';
 
     protected $fillable = [
+        'id',
         'nombre',
         'resumen',
         'relleno',
