@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top"
+style="
+ background: rgba(255, 182, 192, 0.8);
+">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{route('welcome')}}">
             <img src="/img/log2.png" alt="" width="50" height="50" class="d-inline-block align-text-center">
@@ -11,10 +14,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('welcome')}}">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('welcome')}}">Editar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('formulario')}}">Denunciar</a>
+                    <a class="nav-link" href="{{route('admin.denuncias')}}">Denuncias</a>
                 </li>
             </ul>
         </div>

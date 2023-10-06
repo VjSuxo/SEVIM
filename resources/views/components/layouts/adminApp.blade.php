@@ -19,7 +19,7 @@
         background-attachment: fixed;
         ">
 
-  <x-layouts.navbar/>
+  <x-layouts.adminNab/>
     <div>
         {{ $slot }}
 

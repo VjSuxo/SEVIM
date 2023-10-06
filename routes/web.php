@@ -40,6 +40,7 @@ Route::middleware(['auth','checkAccountStatus','user-role:2'])->group(function()
     Route::get("/admin/denuncias",[AdminController::class,'index'])->name("admin.denuncias");
     Route::get("/admin/editIndex",[AdminController::class,'editIndex'])->name('admin.editIndex');
 
+
 });
 
 
