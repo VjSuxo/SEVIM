@@ -10,8 +10,8 @@ class CreateNoticiaTable extends Migration
     {
         Schema::create('noticia', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo')->nullable();;
-            $table->string('enlace')->nullable();;
+            $table->string('tipo')->nullable();
+            $table->string('enlace')->nullable();
             $table->timestamps();
         });
     }

@@ -8,9 +8,11 @@ use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminEditarController;
 use App\Http\Controllers\OrientacionController;
+use App\Http\Controllers\NosotrosEditController;
+use App\Http\Controllers\NosotrosController;
 
 use App\Models\Orientacion;
-
+use App\Models\Nosotros;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,8 +26,24 @@ use App\Models\Orientacion;
 
 Route::get('/', function () {
     $orientacion = Orientacion::get();
-    return view('welcome',['orientaciones'=>$orientacion]);
+    $nosotros = Nosotros::get();
+    return view('welcome',['orientaciones'=>$orientacion,'nosotros'=>$nosotros]);
 })->name('welcome');
+
+Route::get('/quienesSomos', function () {
+    $nosotros = Nosotros::get();
+    return view('quienesSomos',['nosotros'=>$nosotros]);
+})->name('quienesSomos');
+
+Route::get('/queHacemos', function () {
+    $nosotros = Nosotros::get();
+    return view('queHacemos',['nosotros'=>$nosotros]);
+})->name('queHacemos');
+
+Route::get('/participa', function () {
+    $nosotros = Nosotros::get();
+    return view('participa',['nosotros'=>$nosotros]);
+})->name('participa');
 
 Auth::routes();
 
@@ -55,6 +73,17 @@ Route::middleware(['auth','checkAccountStatus','user-role:2'])->group(function()
     Route::controller(OrientacionController::class)->group(function(){
         Route::post("/store/seccion",'store')->name('orientacion.store');
         Route::delete('/store/seccion/delete/{orientacion}','Destroy')->name('orientacion.delete');
+    });
+
+    Route::controller(NosotrosController::class)->group(function(){
+        Route::post("/store/seccion/nosotrosQuienes",'storeQ')->name('nosotrosQ.store');
+        Route::delete('/store/seccion/nosotrosQuienes/delete/{nosotros}','Destroy')->name('nosotrosQ.delete');
+    });
+
+    Route::controller(NosotrosEditController::class)->group(function () {
+        Route::get('/edit/seccion_2/quienesSomos','indexQuienes')->name('admin.edit.QuienesSomos');
+        Route::get('/edit/seccion_2/queHacemos','indexHacemos')->name('admin.edit.QueHacemos');
+        Route::get('/edit/seccion_2/participa','indexParticipa')->name('admin.edit.Participa');
     });
 
 });

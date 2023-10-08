@@ -9,6 +9,7 @@ class Nosotros extends Model
     protected $table = 'nosotros';
 
     protected $fillable = [
+        'id',
         'titulo',
         'resumen',
         'urlImagen',

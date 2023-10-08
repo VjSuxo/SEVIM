@@ -11,7 +11,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/css/style.css',
                 'resources/css/style_Edicion.css',
-                'resources/css/style_adminIndex.css',
+                'resources/css/style_adminInex.css',
                 'resources/css/style_tabla.css',
                 'resources/css/style_index.css',
                 'resources/css/style_form.css',

@@ -17,8 +17,7 @@
         background-position: center;
         background-size: cover;
         background-attachment: fixed;
-        ">
-@vite(['resources/css/style_adminIndex.css'])
+@vite(['resources/css/style_adminInex.css'])
   <x-layouts.adminNab/>
     <div>
         {{ $slot }}

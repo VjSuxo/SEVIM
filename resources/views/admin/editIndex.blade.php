@@ -16,10 +16,10 @@
                   <a class="nav-link " href="{{route('admin.Eseccion1')}}" target="iframeEdit">Orientacion</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('admin.Eseccion2')}}">Nosotros</a>
+                  <a class="nav-link" href="{{route('admin.Eseccion2')}}" target="iframeEdit">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('admin.Eseccion3')}}" aria-disabled="true">Noticias</a>
+                  <a class="nav-link" href="{{route('admin.Eseccion3')}}" target="iframeEdit">Noticias</a>
                 </li>
               </ul>
             </div>

@@ -33,8 +33,12 @@
                       <img src="/img/icon/icon_personas.png" class="card-img-top" alt="...">
                       <div class="card-body text-center d-flex flex-column"> <!-- Agregamos "text-center" aquí -->
                         <h2 class="card-title">Quienes Somos</h2>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <a href="quienessomos.html" class="btn formatoBtn mt-auto">Go somewhere</a>
+                        @foreach ( $nosotros as $nos )
+                        @if ($nos->tipo == 'qs_Pp')
+                        <p class="card-text">{{ $nos->resumen }}</p>
+                        @endif
+                     @endforeach
+                        <a href="{{route("quienesSomos")}}" class="btn formatoBtn mt-auto">mas informacion</a>
                       </div>
                     </div>
                   </div>
@@ -44,7 +48,7 @@
                       <div class="card-body text-center d-flex flex-column">
                         <h2 class="card-title">Que Hacemos</h2>
                         <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <a href="quehacemos.html" class="btn formatoBtn mt-auto">Go somewhere</a>
+                        <a href="{{route('queHacemos')}}" class="btn formatoBtn mt-auto">Go somewhere</a>
                       </div>
                     </div>
                   </div>
@@ -54,7 +58,7 @@
                       <div class="card-body text-center d-flex flex-column"> <!-- Agregamos "d-flex flex-column" aquí -->
                         <h2 class="card-title">Participa</h2>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <a href="participa.html" class="btn formatoBtn mt-auto">Go somewhere</a> <!-- Agregamos "mt-auto" aquí -->
+                        <a href="{{route('participa')}}" class="btn formatoBtn mt-auto">Go somewhere</a> <!-- Agregamos "mt-auto" aquí -->
                       </div>
                     </div>
                   </div>

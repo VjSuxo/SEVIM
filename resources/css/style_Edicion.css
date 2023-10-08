@@ -1,5 +1,11 @@
 
-
+:root{
+    --rosa-Barbie : #FF69B4;
+    --rosa-Claro  : #FFB6C1;
+    --rosa-Suave  : #FFC0CB;
+    --rojo-Oscruo : #B22222;
+    --rojo-Carmesi: #DC143C;
+}
 .grid-container {
 
     display: grid;
@@ -17,6 +23,28 @@
     overflow-y: auto; /* Agregar barra de desplazamiento vertical si es necesario */
 
 
+}
+#div3 {
+    max-height: 80vh;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#div3 a{
+    background-color: var(--rosa-Claro);
+}
+
+#div3 a:hover{
+    background-color: var(--rojo-Oscruo);
+}
+
+#div4 {
+    min-width: 100vh;
+    max-height: 80vh;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #div2 {
@@ -44,4 +72,67 @@ button{
 button:hover{
     background: var(--rosa-Claro);
     box-shadow: 0px 0px 8px var(--rosa-Barbie);
+}
+
+
+.fondoCard img{
+    margin-top: 20px;
+    width: 30vh;
+}
+.fondoCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 20vh;
+    min-height: 70vh;
+    background: transparent;
+    -webkit-box-shadow: 0px 9px 9px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 9px 9px 3px rgba(0,0,0,0.75);
+    box-shadow: 0px 9px 9px 3px rgba(0,0,0,0.75);
+}
+
+.buttonQ {
+    background-color: var(--rosa-Claro);
+}
+
+.buttonQ:hover{
+    background-color: var(--rojo-Oscruo);
+}
+
+.L2 .enlaceE{
+
+    width: 10%;
+    height: 20px;
+    border-radius: 40px;
+    background: var(--rosa-Barbie);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 1rem;
+    cursor: progress;
+    transition: 0.5s;
+
+}
+
+.L2 .enlaceE a{
+    text-decoration: none;
+    color: white;
+    margin: auto;
+}
+
+.L2 .enlaceE:hover{
+    background: var(--rosa-Claro);
+    box-shadow: 0px 0px 8px var(--rosa-Barbie);
+}
+
+.acciones{
+    display: flex;
+}
+
+.acciones a{
+    margin-right: 5px;
 }
