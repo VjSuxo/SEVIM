@@ -74,12 +74,12 @@
                   <div class="parent">
                     <div class="div1">
                       <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/photo/?fbid=685101670309412&set=pcb.685102363642676&show_text=true&width=500" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <iframe src="https://www.instagram.com/p/CWUejO1I6jN/" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                       </div>
                     </div>
                     <div class="div2">
                       <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/fam.org.bo/posts/1506554889681446/?locale=hi_IN&show_text=true&width=500" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.instagram.com/p/CWUejO1I6jN//?locale=hi_IN&show_text=true&width=500" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                       </div>
                     </div>
                     <div class="div3">

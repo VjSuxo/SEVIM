@@ -9,6 +9,7 @@ class Noticia extends Model
     protected $table = 'noticia';
 
     protected $fillable = [
+        'id',
         'tipo',
         'enlace',
     ];

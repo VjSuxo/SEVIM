@@ -2,7 +2,7 @@
     @vite(['resources/css/style_index.css','resources/css/style_about.css','resources/css/style_detalles.css'])
     @foreach ( $nosotros as $nos )
 
-    @if ($nos->tipo == 'qH_PF')
+    @if ($nos->tipo == 'qp_PF')
     <div class="inicio" style=" background: url({{$nos->urlFondo}}) ;">
         <h1>Quienes Hacemos</h1>
     </div>
