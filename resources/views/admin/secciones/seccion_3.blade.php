@@ -61,25 +61,6 @@
                                             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                           </div>
                                     @endif
-                                    <!--YOUTUBE-->
-                                    @if ($nos->tipo == 'youtube')
-                                        <div id="yotube" style="height: 100%; width: 100%; overflow: auto;">
-                                            <iframe width="560" height="250"
-                                                src="https://www.youtube.com/embed/{{$nos->enlace}}"
-                                                frameborder="0"
-                                                allowfullscreen>
-                                            </iframe>
-                                        </div>
-                                    @endif
-                                    <!--INSTAGRAM-->
-                                    @if ($nos->tipo == 'instagram')
-                                        <div style="min-height: 250px; overflow: auto;">
-                                            <blockquote class="instagram-media" data-instgrm-version="12">
-                                                <a href="{{ $nos->enlace }}" target="_blank"></a>
-                                              </blockquote>
-                                              <script async src="//www.instagram.com/embed.js"></script>
-                                        </div>
-                                    @endif
                                     <!--OTRO-->
                                     @if ($nos->tipo == 'otro')
                                         <iframe
@@ -97,7 +78,9 @@
                                                 ></iframe>
                                     @endif
                                     <div class="card-body">
-                                        <form action="">
+                                        <form action="{{route('noticia.Delete',$nos->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                             <button type="submit">Eliminar</button>
                                         </form>
                                     </div>
@@ -113,78 +96,31 @@
     <div id="div2">
 
         <div class="bottons">
-            <form method="POST" action="{{ route('nosotrosQ.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('noticia.Store') }}" enctype="multipart/form-data">
                 @csrf <!-- Agrega el token CSRF para protección -->
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="enlace">Enlace</span>
-                    <input type="text" class="form-control" id="enlace" name="enlace" placeholder="enlace" aria-label="enlace" aria-describedby="basic-addon1">
+                    <span class="input-group-text enlace" id="enlace">Enlace</span>
+                    <input type="text" class="form-control" name="enlace" id="enlace" placeholder="enlace" aria-label="enlace" aria-describedby="basic-addon1">
                     @error('enlace')
                         <small class="text-danger">{{$message}}</small>
                     @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Seleccciones Tipo de enlace" aria-label="Text input with dropdown button">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a class="dropdown-item" href="#">Seleccione</a></li>
-                      <li><a class="dropdown-item" href="#">Youtube</a></li>
-                      <li><a class="dropdown-item" href="#">Twiter</a></li>
-                      <li><a class="dropdown-item" href="#">Facebook</a></li>
-                      <li><a class="dropdown-item" href="#">Instagram</a></li>
-                      <li><a class="dropdown-item" href="#">Otro</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Separated link</a></li>
-                    </ul>
+                    <span class="input-group-text enlace" id="enlace">Tipo Red</span>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Seleccione RED</option>
+                        <option value="1">Facebook</option>
+                        <option value="2">Twitter</option>
+                        <option value="3">Noticia</option>
+                      </select>
                   </div>
                 <input  type="text" style="display: none" id="idV" name="idV">
                 <button type="submit">Enviar</button>
             </form>
-            <input type="text" id="youtubeLink" placeholder="Inserta el enlace de YouTube">
-            <button onclick="obtenerID()">Obtener ID</button>
-    <p>ID del Video: <span id="videoID"></span></p>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-
-      <!-- Optional JavaScript; choose one of the two! -->
-<!-- Agrega jQuery a tu página si aún no está incluido -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-$(document).ready(function() {
-    // Captura el clic en el enlace "Editar"
-    $(".editar-link").click(function(e) {
-        e.preventDefault(); // Evita que el enlace navegue a la página
-
-        // Obtiene los datos del atributo "data" del enlace
-        var id = $(this).data("id");
-        var nombre = $(this).data("nombre");
-        var resumen = $(this).data("resumen");
-        var relleno = $(this).data("relleno");
-
-        // Llena el formulario con los datos obtenidos
-        $("#nombre").val(nombre);
-        $("#resumen").val(resumen);
-        $("#relleno").val(relleno);
-        $("#idV").val(id);
-
-        // Puedes redirigir al usuario al formulario de edición aquí
-        // window.location.href = "URL_DEL_FORMULARIO_DE_EDICIÓN";
-
-    });
-
-
-
-});
-
-</script>
 
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

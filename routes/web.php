@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminEditarController;
 use App\Http\Controllers\OrientacionController;
 use App\Http\Controllers\NosotrosEditController;
 use App\Http\Controllers\NosotrosController;
+use App\Http\Controllers\NoticiaController;
 
 use App\Models\Orientacion;
 use App\Models\Nosotros;
@@ -84,6 +85,11 @@ Route::middleware(['auth','checkAccountStatus','user-role:2'])->group(function()
         Route::get('/edit/seccion_2/quienesSomos','indexQuienes')->name('admin.edit.QuienesSomos');
         Route::get('/edit/seccion_2/queHacemos','indexHacemos')->name('admin.edit.QueHacemos');
         Route::get('/edit/seccion_2/participa','indexParticipa')->name('admin.edit.Participa');
+    });
+
+    Route::controller(NoticiaController::class)->group(function(){
+        Route::post('/store/seccion_3/Noticia','store')->name('noticia.Store');
+        Route::delete('/store/seccion_3/Noticia/{noticia}/Destroy','destroy')->name('noticia.Delete');
     });
 
 });
