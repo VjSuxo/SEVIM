@@ -9,7 +9,7 @@ class NoticiaController extends Controller
 {
     function index(){
         $noticias = Noticia::get();
-        return redirect()->back()->with(['noticias'=>$noticias]);
+        return redirect()->route('admin.Eseccion3',['noticias'=>$noticias]);
     }
 
     function store(Request $request){

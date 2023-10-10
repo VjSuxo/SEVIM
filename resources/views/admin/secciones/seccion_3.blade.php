@@ -62,7 +62,7 @@
                                           </div>
                                     @endif
                                     <!--OTRO-->
-                                    @if ($nos->tipo == 'otro')
+                                    @if ($nos->tipo == 'noticia')
                                         <iframe
                                                 src="{{$nos->enlace}}"
                                                 width="500"
@@ -107,11 +107,11 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text enlace" id="enlace">Tipo Red</span>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" id="tipo" name="tipo">
                         <option selected>Seleccione RED</option>
-                        <option value="1">Facebook</option>
-                        <option value="2">Twitter</option>
-                        <option value="3">Noticia</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="twitter">Twitter</option>
+                        <option value="noticia">Noticia</option>
                       </select>
                   </div>
                 <input  type="text" style="display: none" id="idV" name="idV">
