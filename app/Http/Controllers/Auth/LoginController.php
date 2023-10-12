@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use Auth;
 class LoginController extends Controller
@@ -42,15 +44,27 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
+        $email = $request->email;
+        $asunto = "asunt";
+        Mail::send('correo.prueba',$request->all(),function ($msg) use($email) {
+            $msg->from($email,"puto");
+            $msg->subject("esto");
+            $msg->from($email);
+        });
+        return view('welcome');
+
+
         $input = $request->all();
 
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
+            'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
         ]);
 
         $this->validarBloqueo($request);
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
+        if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
 
             $user = Auth::user();

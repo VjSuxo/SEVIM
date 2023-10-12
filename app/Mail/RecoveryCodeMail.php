@@ -8,51 +8,18 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Suppert\Facades\Mail;
 
 class RecoveryCodeMail extends Mailable
 {
-    use Queueable, SerializesModels;
-    public $codigo;
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
-{
-}
-
-    public fuction build(){
-        return $this->subject("hola")
-                    ->markdown('recovery_code');
-    }
-/**
-    /**
-     * Get the message envelope.
-
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Recovery Code Mail',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-
-    public function content()
-    {
-        return (new Content)
-            ->view('recovery_code'); // Reemplaza 'emails.recovery_code' con la vista correcta
-
-        }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-
-    public function attachments(): array
-    {
-        return [];
-    }
-    */
+   public function enviar(Request $request) {
+        $email = $request->email;
+        $asunto = "asunt";
+        Mail::send('correo.prueba',$request->all(),function ($msg) use($email) {
+            $msg->from($email,$nombre);
+            $msg->subject("esto");
+            $msg->from($email);
+        });
+        return view('welcome');
+   }
 }

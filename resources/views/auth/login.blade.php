@@ -1,4 +1,5 @@
 <x-layouts.app >
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @vite(['resources/css/style_login.css'])
     <div class="container-body">
         <div class="container-page" id="container">
@@ -50,7 +51,8 @@
                     -->
 
                     @endif
-
+                    <div class="g-recaptcha" data-sitekey="6LfoQZQoAAAAAAxAAZWLCyeIpDMsoWOw5rwH-djF"></div>
+                    <br/>
                   <input type="submit" value="login" class="button-login">
               </form>
               <div class="login-footer">
