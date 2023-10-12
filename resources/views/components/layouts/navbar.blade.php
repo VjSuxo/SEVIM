@@ -14,9 +14,13 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('welcome')}}">Home</a>
                 </li>
+                @if(auth()->check())
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('formulario')}}">Denunciar</a>
+                    @if(Auth::user()->role == '0')
+                        <a class="nav-link" href="{{route('formulario')}}">Denunciar</a>
+                    @endif
                 </li>
+                @endif
             </ul>
         </div>
 

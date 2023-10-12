@@ -1,3 +1,2 @@
-<h1>PRueba</h1>
-<h2>Asunto correo</h2>
-<h3></h3>
+<h1>Prueba de código</h1>
+<h3>{{ $codigo }}</h3>

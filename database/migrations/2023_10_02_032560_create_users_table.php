@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); // Campo autoincremental para el ID
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('codigo')->nullable();
             $table->integer('intentos_fallidos')->default(0);
             $table->integer('bloqueo')->default(0);
             $table->string('email')->unique();

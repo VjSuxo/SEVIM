@@ -42,19 +42,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
+
     public function login(Request $request)
     {
-
-        $email = $request->email;
-        $asunto = "asunt";
-        Mail::send('correo.prueba',$request->all(),function ($msg) use($email) {
-            $msg->from($email,"puto");
-            $msg->subject("esto");
-            $msg->from($email);
-        });
-        return view('welcome');
-
-
         $input = $request->all();
 
         $this->validate($request, [
@@ -66,6 +57,8 @@ class LoginController extends Controller
         $this->validarBloqueo($request);
         if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
+           // $user = User::where('email', $request->email)->first();
+          //  return redirect()->route('confirmacion',$user->id);
 
             $user = Auth::user();
             $user->update(['intentos_fallidos' => 0]);

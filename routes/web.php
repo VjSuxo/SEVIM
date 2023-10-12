@@ -14,6 +14,7 @@ use App\Http\Controllers\NoticiaController;
 
 use App\Models\Orientacion;
 use App\Models\Nosotros;
+use App\Mail\RecoveryCodeMail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,9 +107,9 @@ Route::controller(DenunciaController::class)->group(function () {
 
 //Especiales
 Route::view('recuperarCuenta',"/recuperarCuenta")->name('recuperar');
-Route::view('codigoConfirmacion',"/codigoConfirmacion")->name('codigo');
-
-
+Route::view('/codigoConfirmacion/{user}',"/codigoConfirmacion")->name('codigo');
+Route::get('/confirmacionCodigo/{user}',[RecoveryCodeMail::class,'index'])->name('confirmacion');
+Route::post('/confirmarcodigo/{user}',[RecoveryCodeMail::class,'confirm'])->name('confirmarCodigo');
 //Verificacion
 Route::get('/verificar-codigo',[HomeController::class, 'showVerificationForm'] )->name('verification.show');
 Route::post('/verificar-codigo',[ConfirmarCodigo::class,'verifyCode'])->name('verification.verify');
