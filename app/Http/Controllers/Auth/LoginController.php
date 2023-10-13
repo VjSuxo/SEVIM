@@ -94,7 +94,7 @@ class LoginController extends Controller
         }
     }
 
-    private function validarBloqueo(Request $request){
+    public function validarBloqueo(Request $request){
             $user = User::where('email', $request->email)->first();
          //   return response()->json([$user]);
             if($user){

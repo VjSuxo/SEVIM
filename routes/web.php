@@ -107,6 +107,9 @@ Route::controller(DenunciaController::class)->group(function () {
 
 //Especiales
 //Verificacion
+Route::post('/validacion',[RecoveryCodeMail::class,'enviar'])->name('enviarCodigo');
+Route::get('/validacionCodigo/{request}',[RecoveryCodeMail::class,'validar'])->name('validarCodigo');
+
 //Recuperacion
 Route::post('/recuperar-codigo',[Recuperar::class,'EnviarCodigoRecu'])->name('recobery');
 

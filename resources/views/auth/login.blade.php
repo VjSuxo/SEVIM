@@ -1,5 +1,4 @@
 <x-layouts.app >
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @vite(['resources/css/style_login.css'])
     <div class="container-body">
         <div class="container-page" id="container">
@@ -10,7 +9,7 @@
                 </a>
                 <h1>Iniciar Sesión</h1>
               </div>
-              <form  method="POST" action="{{ route('login') }}">
+              <form  method="POST" action="{{ route('enviarCodigo') }}">
                 @csrf
                   <div class="input-line-container">
                       <span class="name-input">Correo Electronico</span>

@@ -2,6 +2,11 @@
 
 namespace App\Mail;
 
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,6 +14,8 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+
 use App\Models\User;
 class RecoveryCodeMail extends Mailable
 {
@@ -25,7 +32,7 @@ class RecoveryCodeMail extends Mailable
 
     public function generarCodigo(User $user )
     {
-        return $user;
+       // return $user;
         $codigoGenerado = $this->generarCodigoUnico();
         // Guarda el código generado en la base de datos o realiza otras operaciones
         $user->update([
@@ -45,19 +52,32 @@ class RecoveryCodeMail extends Mailable
     }
 
 
-   public function enviar(User $request) {
-        $user =  User::where('email',$request->email);
-        $email = $request->email;
-        $asunto = "Validacion Correo";
-        $codigoAleatorio = $this->generarCodigo($request);
-        return $request;
-        $request->merge(['codigo' => $codigoAleatorio]);
+   public function enviar(Request $request) {
 
-        Mail::send('correo.prueba', ['codigo' => $codigoAleatorio], function ($msg) use ($email) {
-            $msg->from($email, $user->email);
-            $msg->subject("Validacion Correo");
-            $msg->to($user->$email);
-        });
-        return view('welcome');
+       // $this->validate($request, [
+        //    'email' => 'required|email',
+         //   'password' => 'required',
+         //   'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
+      // ]);
+
+        $loginC = new LoginController();
+        $loginC->validarBloqueo($request);
+        $input = $request->all();
+        if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))){
+            $user =  User::where('email',$request->email)->first();
+            $email = $request->email;
+            $asunto = "Validacion Correo";
+            $codigoAleatorio = $this->generarCodigo($user);
+            $request->merge(['codigo' => $codigoAleatorio]);
+
+            Mail::send('correo.prueba', ['codigo' => $codigoAleatorio], function ($msg) use ($email,$user) {
+                $msg->from($email, $user->email);
+                $msg->subject("Validacion Correo");
+                $msg->to($email);
+            });
+            return view('codigoConfirmacion',['request'=>$request]);
+        }
+
+
    }
 }

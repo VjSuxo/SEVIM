@@ -2,8 +2,10 @@
     --rosa-Barbie : #FF69B4;
     --rosa-Claro  : #FFB6C1;
     --rosa-Suave  : #FFC0CB;
+    --rosa-SuaveRGBA : rgba(255,192,203,0.5);
     --rojo-Oscruo : #B22222;
     --rojo-Carmesi: #DC143C;
+
 }
 .container-page{
     height: 70vh;
@@ -133,4 +135,23 @@ form{
     justify-content: center;
     align-items: center;
     margin-bottom: 40px;
+}
+
+.input-D{
+    text-align: center;
+    font-size: 5vh;
+    margin-right: 10px;
+    min-width: 6vh;
+    min-height: 6vh;
+    background-color: transparent ;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.input-D:hover{
+    background-color: var(--rosa-SuaveRGBA);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
