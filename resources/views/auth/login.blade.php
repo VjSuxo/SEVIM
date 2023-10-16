@@ -1,5 +1,6 @@
 <x-layouts.app >
     @vite(['resources/css/style_login.css'])
+   <!------ <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
     <div class="container-body">
         <div class="container-page" id="container">
           <div class="login-container" id="LoginContainer">
@@ -43,11 +44,11 @@
 
                   @if (session('bloqueo'))
                   {{session('bloqueo')}}
-                    <!--
+
                     <div class="alert alert-danger">
                        <a href="{{route('recuperar')}}">Recuperar Cuenta</a>
                     </div>
-                    -->
+
 
                     @endif
                     <div class="g-recaptcha" data-sitekey="6LfoQZQoAAAAAAxAAZWLCyeIpDMsoWOw5rwH-djF"></div>

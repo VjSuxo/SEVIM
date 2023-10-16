@@ -53,31 +53,43 @@ class RecoveryCodeMail extends Mailable
 
 
    public function enviar(Request $request) {
-
-       // $this->validate($request, [
-        //    'email' => 'required|email',
-         //   'password' => 'required',
-         //   'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
-      // ]);
-
         $loginC = new LoginController();
-        $loginC->validarBloqueo($request);
         $input = $request->all();
-        if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))){
-            $user =  User::where('email',$request->email)->first();
-            $email = $request->email;
-            $asunto = "Validacion Correo";
-            $codigoAleatorio = $this->generarCodigo($user);
-            $request->merge(['codigo' => $codigoAleatorio]);
+        if($val = $loginC->validar($request) && $loginC->validarBloqueo($request) === false){
+            return $request;
+            if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))){
+                $user =  User::where('email',$request->email)->first();
+                $email = $request->email;
+                $asunto = "Validacion Correo";
+                $codigoAleatorio = $this->generarCodigo($user);
+                $request->merge(['codigo' => $codigoAleatorio]);
 
-            Mail::send('correo.prueba', ['codigo' => $codigoAleatorio], function ($msg) use ($email,$user) {
-                $msg->from($email, $user->email);
-                $msg->subject("Validacion Correo");
-                $msg->to($email);
-            });
-            return view('codigoConfirmacion',['request'=>$request]);
+                Mail::send('correo.prueba', ['codigo' => $codigoAleatorio], function ($msg) use ($email,$user) {
+                    $msg->from($email, $user->email);
+                    $msg->subject("Validacion Correo");
+                    $msg->to($email);
+                });
+                return view('codigoConfirmacion',['request'=>$request]);
+            }
+            else
+            {
+                $user = User::where('email', $request->email)->first();
+                if ($user) {
+                    $user->increment('intentos_fallidos');
+                    $this->validarBloqueo($request);
+                    return redirect()
+                    ->route('login')
+                    ->with('error', 'Credenciales incorrectas, intentos fallidos ' . $user->intentos_fallidos . ' de 3');
+                }
+                //return response()->json([$user]);
+                return redirect()
+                ->route('login')
+                ->with('error', 'Credenciales incorrectas');
+            }
         }
-
+        return back();
 
    }
+
+
 }
