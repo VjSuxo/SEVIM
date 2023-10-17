@@ -60,7 +60,7 @@ Route::middleware(['auth','checkAccountStatus','user-role:1'])->group(function()
     Route::get("/editor/home",[HomeController::class, 'editorHome'])->name("editor.home");
 });
 // Route Admin
-Route::middleware(['auth','checkAccountStatus','user-role:2'])->group(function()
+Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])->group(function()
 {
     Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
     Route::get("/admin/denuncias",[AdminController::class,'index'])->name("admin.denuncias");

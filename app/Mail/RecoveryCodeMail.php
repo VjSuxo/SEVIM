@@ -53,11 +53,8 @@ class RecoveryCodeMail extends Mailable
 
 
    public function enviar(Request $request) {
-        $loginC = new LoginController();
         $input = $request->all();
-        if($val = $loginC->validar($request) && $loginC->validarBloqueo($request) === false){
-            return $request;
-            if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))){
+
                 $user =  User::where('email',$request->email)->first();
                 $email = $request->email;
                 $asunto = "Validacion Correo";
@@ -69,25 +66,6 @@ class RecoveryCodeMail extends Mailable
                     $msg->subject("Validacion Correo");
                     $msg->to($email);
                 });
-                return view('codigoConfirmacion',['request'=>$request]);
-            }
-            else
-            {
-                $user = User::where('email', $request->email)->first();
-                if ($user) {
-                    $user->increment('intentos_fallidos');
-                    $this->validarBloqueo($request);
-                    return redirect()
-                    ->route('login')
-                    ->with('error', 'Credenciales incorrectas, intentos fallidos ' . $user->intentos_fallidos . ' de 3');
-                }
-                //return response()->json([$user]);
-                return redirect()
-                ->route('login')
-                ->with('error', 'Credenciales incorrectas');
-            }
-        }
-        return back();
 
    }
 

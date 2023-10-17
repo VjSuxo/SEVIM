@@ -10,7 +10,7 @@
                 </a>
                 <h1>Iniciar Sesión</h1>
               </div>
-              <form  method="POST" action="{{ route('enviarCodigo') }}">
+              <form  method="POST" action="{{ route('login') }}">
                 @csrf
                   <div class="input-line-container">
                       <span class="name-input">Correo Electronico</span>
@@ -46,7 +46,7 @@
                   {{session('bloqueo')}}
 
                     <div class="alert alert-danger">
-                       <a href="{{route('recuperar')}}">Recuperar Cuenta</a>
+                       <a href="">Recuperar Cuenta</a>
                     </div>
 
 

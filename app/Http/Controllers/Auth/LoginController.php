@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Mail\RecoveryCodeMail;
 use Auth;
 class LoginController extends Controller
 {
@@ -46,34 +47,19 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+       //     'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
+        ]);
+
         $input = $request->all();
-return $input;
         if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            $user = User::where('email', $request->email)->first();
-            $digits = $request->input('digits');
-            $codigoIngresado = implode('', $digits);
-            return $codigoIngresado;
-            if($user->codigo === $codigoIngresado ){
-                $user = Auth::user();
-                $user->update(['intentos_fallidos' => 0]);
-                if (auth()->user()->role == '2')
-                {
-                    return $codigoIngresado;
-                return redirect()->route('admin.denuncias');
-                }
-                else if (auth()->user()->role == 'editor')
-                {
-                return redirect()->route('editor.home');
-                }
-                else
-                {
-                return redirect()->route('home');
-                }
-            }
-            else{
-                return view('codigoConfirmacion',['request'=>$request]);
-            }
+            $this->validarBloqueo($request);
+            $enviar = new RecoveryCodeMail();
+            $enviar->enviar($request);
+            return view('codigoConfirmacion',['request'=>$request]);
         }
         else
         {
@@ -106,12 +92,32 @@ return $input;
             return true;
     }
 
-    public function validar(Request $request) {
-        $this->validate($request, [
-           'email' => 'required|email',
-           'password' => 'required',
-      //     'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
-       ]);
-       return true;
+    protected function FunctionName() {
+ //       $user = User::where('email', $request->email)->first();
+  //          $digits = $request->input('digits');
+   //         $codigoIngresado = implode('', $digits);
+    //        return $codigoIngresado;
+     //       if($user->codigo === $codigoIngresado ){
+      //          $user = Auth::user();
+       //         $user->update(['intentos_fallidos' => 0]);
+        //        if (auth()->user()->role == '2')
+         //       {
+          //          return $codigoIngresado;
+           //     return redirect()->route('admin.denuncias');
+            //    }
+             //   else if (auth()->user()->role == 'editor')
+              //  {
+               // return redirect()->route('editor.home');
+  //              }
+   //             else
+    //            {
+     //           return redirect()->route('home');
+      //          }
+       //     }
+        //    else{
+         //       return view('codigoConfirmacion',['request'=>$request]);
+          //  }
     }
+
+
 }
