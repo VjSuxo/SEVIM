@@ -46,7 +46,7 @@
                   {{session('bloqueo')}}
 
                     <div class="alert alert-danger">
-                       <a href="">Recuperar Cuenta</a>
+                       <a href="{{route('vwRecuperar')}}">Recuperar Cuenta</a>
                     </div>
 
 

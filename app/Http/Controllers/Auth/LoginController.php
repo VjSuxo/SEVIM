@@ -57,9 +57,17 @@ class LoginController extends Controller
         if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             $this->validarBloqueo($request);
-            $enviar = new RecoveryCodeMail();
-            $enviar->enviar($request);
-            return view('codigoConfirmacion',['request'=>$request]);
+            if (Auth::user()->bloqueo == 1) {
+                Auth::logout();
+                return redirect()
+                ->route('login')
+                ->with('bloqueo', 'Su cuenta fue bloqueada por demasiados intentos ');
+            }
+            else{
+                $enviar = new RecoveryCodeMail();
+                $enviar->enviar($request);
+                return view('codigoConfirmacion',['request'=>$request]);
+            }
         }
         else
         {
@@ -82,7 +90,8 @@ class LoginController extends Controller
     public function validarBloqueo(Request $request){
             $user = User::where('email', $request->email)->first();
             if($user){
-                if ($user->intentos_fallidos >= 3 || $user->bloqueo == 1) {
+
+                if ($user->intentos_fallidos >= 3) {
                     $user->update(['bloqueo' => 1]);
                     return redirect()
                     ->route('login')

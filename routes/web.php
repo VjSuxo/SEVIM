@@ -50,12 +50,12 @@ Route::get('/participa', function () {
 Auth::routes();
 
 // Route User
-Route::middleware(['auth','checkAccountStatus','user-role:0'])->group(function()
+Route::middleware(['auth','checkAccountStatus','user-role:0',,'verificarCodigo'])->group(function()
 {
     Route::get("/user/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Editor
-Route::middleware(['auth','checkAccountStatus','user-role:1'])->group(function()
+Route::middleware(['auth','checkAccountStatus','user-role:1',,'verificarCodigo'])->group(function()
 {
     Route::get("/editor/home",[HomeController::class, 'editorHome'])->name("editor.home");
 });
@@ -95,14 +95,15 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
 
 });
 
-
-Route::controller(DenunciaController::class)->group(function () {
-    Route::get('/formulario','index')->name('formulario');
-    Route::post('/formularioPost','createDH')->name('formularioPDH');
-    Route::get('/forumularioVictima/{denuncia}','indexVic')->name('formularioVic');
-    Route::post('/formularioVictimaPost/{denuncia}','createDV')->name('formularioPDV');
-    Route::get('/formularioDenunciado/{tiene}','indexDen')->name('formularioDen');
-    Route::post('/formDenunciadoPost/{tiene}','createDD')->name('formularioPDen');
+Route::middleware(['auth', 'verificarCodigo'])->group(function () {
+    Route::controller(DenunciaController::class)->group(function () {
+        Route::get('/formulario','index')->name('formulario');
+        Route::post('/formularioPost','createDH')->name('formularioPDH');
+        Route::get('/forumularioVictima/{denuncia}','indexVic')->name('formularioVic');
+        Route::post('/formularioVictimaPost/{denuncia}','createDV')->name('formularioPDV');
+        Route::get('/formularioDenunciado/{tiene}','indexDen')->name('formularioDen');
+        Route::post('/formDenunciadoPost/{tiene}','createDD')->name('formularioPDen');
+    });
 });
 
 //Especiales
@@ -112,6 +113,9 @@ Route::post('/validarCodigo',[CorreoController::class,'verificarCodigo'])->name(
 Route::post('/validacion',[RecoveryCodeMail::class,'enviar'])->name('enviarCodigo');
 Route::get('/validacionCodigo/{request}',[RecoveryCodeMail::class,'validar'])->name('validarCodigo');
 
+Route::get('/recuperacion',[CorreoController::class,'recuperarCuenta'])->name('vwRecuperar');
+Route::post('/recuperar',[RecoveryCodeMail::class,'recuperar'])->name('enviarRecu');
+Route::post('/validarCodigoRec',[CorreoController::class,'verificarCodigoR'])->name('verificarR');
 //Recuperacion
 Route::post('/recuperar-codigo',[Recuperar::class,'EnviarCodigoRecu'])->name('recobery');
 

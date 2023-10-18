@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
+
 class CorreoController extends Controller
 {
     public function validarCodigo(){
@@ -35,5 +37,25 @@ class CorreoController extends Controller
             else{
                 return view('codigoConfirmacion',['request'=>$request]);
             }
+    }
+
+    public function verificarCodigoR(Request $request){
+        $digits = $request->input('digits');
+        $codigoIngresado = implode('', $digits);
+        $user =  User::where('email',$request->email)->first();
+        if($user->codigo == $codigoIngresado ){
+            $user->update([
+                'bloqueo'=>0,
+                'intentos_fallidos' => 0,
+            ]);
+            return redirect()->route('login');
+        }
+        else{
+            return view('codigoRecuperacion');
+        }
+}
+
+    public function recuperarCuenta(){
+        return view('recuperarCuenta');
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Auth;
 class CheckAccountStatus
 {
     /**
@@ -16,9 +16,10 @@ class CheckAccountStatus
     public function handle(Request $request, Closure $next): Response
     {
         // Verificar si el usuario está autenticado y si su cuenta está bloqueada
-        if (auth()->check() && auth()->user()->bloqueado == 1) {
-            auth()->logout(); // Cerrar sesión si la cuenta está bloqueada
-            return redirect()->route('login')->with('error', 'Su cuenta ha sido bloqueada.');
+        if (Auth::check() && Auth::user()->bloqueo == 1) {
+
+            Auth::logout(); // Cerrar sesión si la cuenta está bloqueada
+            return redirect()->route('login')->with('bloqueo', 'Su cuenta ha sido bloqueada.');
         }
 
         return $next($request);

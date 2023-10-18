@@ -71,5 +71,26 @@ class RecoveryCodeMail extends Mailable
                 });
    }
 
+   public function recuperar(Request $request) {
+    $input = $request->all();
+
+            $user =  User::where('email',$request->email)->first();
+            $user->update([
+                'verificado'=>'false',
+            ]);
+            $email = $request->email;
+            $asunto = " Validacion Correo";
+            $codigoAleatorio = $this->generarCodigo($user);
+            $request->merge(['codigo' => $codigoAleatorio]);
+
+            Mail::send('correo.prueba', ['codigo' => $codigoAleatorio], function ($msg) use ($email,$user) {
+                $msg->from($email, $user->email);
+                $msg->subject("Validacion Correo");
+                $msg->to($email);
+            });
+            return view('codigoRecuperacion',['request'=>$request]);
+}
+
+
 
 }
