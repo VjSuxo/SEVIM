@@ -82,7 +82,7 @@ class LoginController extends Controller
     public function validarBloqueo(Request $request){
             $user = User::where('email', $request->email)->first();
             if($user){
-                if ($user->intentos_fallidos >= 3) {
+                if ($user->intentos_fallidos >= 3 || $user->bloqueo == 1) {
                     $user->update(['bloqueo' => 1]);
                     return redirect()
                     ->route('login')
@@ -92,32 +92,7 @@ class LoginController extends Controller
             return true;
     }
 
-    protected function FunctionName() {
- //       $user = User::where('email', $request->email)->first();
-  //          $digits = $request->input('digits');
-   //         $codigoIngresado = implode('', $digits);
-    //        return $codigoIngresado;
-     //       if($user->codigo === $codigoIngresado ){
-      //          $user = Auth::user();
-       //         $user->update(['intentos_fallidos' => 0]);
-        //        if (auth()->user()->role == '2')
-         //       {
-          //          return $codigoIngresado;
-           //     return redirect()->route('admin.denuncias');
-            //    }
-             //   else if (auth()->user()->role == 'editor')
-              //  {
-               // return redirect()->route('editor.home');
-  //              }
-   //             else
-    //            {
-     //           return redirect()->route('home');
-      //          }
-       //     }
-        //    else{
-         //       return view('codigoConfirmacion',['request'=>$request]);
-          //  }
-    }
+
 
 
 }

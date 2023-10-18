@@ -11,7 +11,7 @@ use App\Http\Controllers\OrientacionController;
 use App\Http\Controllers\NosotrosEditController;
 use App\Http\Controllers\NosotrosController;
 use App\Http\Controllers\NoticiaController;
-
+use App\Http\Controllers\CorreoController;
 use App\Models\Orientacion;
 use App\Models\Nosotros;
 use App\Mail\RecoveryCodeMail;
@@ -107,6 +107,8 @@ Route::controller(DenunciaController::class)->group(function () {
 
 //Especiales
 //Verificacion
+Route::get('/ingresarCodigo',[CorreoController::class,'validarCodigo'])->name('vwCodigo');
+Route::post('/validarCodigo',[CorreoController::class,'verificarCodigo'])->name('verificar');
 Route::post('/validacion',[RecoveryCodeMail::class,'enviar'])->name('enviarCodigo');
 Route::get('/validacionCodigo/{request}',[RecoveryCodeMail::class,'validar'])->name('validarCodigo');
 

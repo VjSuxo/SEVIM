@@ -22,6 +22,7 @@ class User extends Authenticatable
         'username',
         'password',
         'codigo',
+        'verificado',
         'intentos_fallidos',
         'bloqueo',
         'email',

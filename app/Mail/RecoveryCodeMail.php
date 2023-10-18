@@ -56,8 +56,11 @@ class RecoveryCodeMail extends Mailable
         $input = $request->all();
 
                 $user =  User::where('email',$request->email)->first();
+                $user->update([
+                    'verificado'=>'false',
+                ]);
                 $email = $request->email;
-                $asunto = "Validacion Correo";
+                $asunto = " Validacion Correo";
                 $codigoAleatorio = $this->generarCodigo($user);
                 $request->merge(['codigo' => $codigoAleatorio]);
 
@@ -66,7 +69,6 @@ class RecoveryCodeMail extends Mailable
                     $msg->subject("Validacion Correo");
                     $msg->to($email);
                 });
-
    }
 
 

@@ -16,7 +16,7 @@ class CheckAccountStatus
     public function handle(Request $request, Closure $next): Response
     {
         // Verificar si el usuario está autenticado y si su cuenta está bloqueada
-        if (auth()->check() && auth()->user()->bloqueado) {
+        if (auth()->check() && auth()->user()->bloqueado == 1) {
             auth()->logout(); // Cerrar sesión si la cuenta está bloqueada
             return redirect()->route('login')->with('error', 'Su cuenta ha sido bloqueada.');
         }

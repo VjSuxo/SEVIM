@@ -9,7 +9,7 @@
                 </a>
                 <h1>INGRESE CODIGO</h1>
               </div>
-              <form  method="POST" action="{{ route('login') }}">
+              <form  method="POST" action="{{ route('verificar') }}">
                 @csrf
                         <div class="input-group mb-3">
                             <input type="text" class="form-control input-D" id="digit_1" name="digits[]" required maxlength="1">
@@ -18,8 +18,13 @@
                             <input type="text" class="form-control input-D" id="digit_4" name="digits[]" required maxlength="1">
                             <input type="text" class="form-control input-D" id="digit_5" name="digits[]" required maxlength="1">
                         </div>
-                        <input type="text" name="email" id="email"  value="{{$request->email}}" style="display: none">
-                        <input type="text" name="password" id="password" value="{{$request->password}}" style="display: none">
+                        @if (Auth::check())
+                        <input type="text" name="email" id="email"  value="{{Auth::user()->email}}" style="display: none">
+                        <input type="text" name="password" id="password" value="{{Auth::user()->password}}" style="display: none">
+                        @else
+                            <input type="text" name="email" id="email"  value="{{$request->email}}" style="display: none">
+                            <input type="text" name="password" id="password" value="{{$request->password}}" style="display: none">
+                        @endif()
                   <input type="submit" value="login" class="button-login">
               </form>
           </div>

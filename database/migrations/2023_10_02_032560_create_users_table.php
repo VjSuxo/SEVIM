@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('codigo')->nullable();
+            $table->string('verificado')->default('false');
             $table->integer('intentos_fallidos')->default(0);
             $table->integer('bloqueo')->default(0);
             $table->string('email')->unique();
