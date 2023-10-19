@@ -19,6 +19,9 @@ style="
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('admin.denuncias')}}">Denuncias</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.userIndex')}}">Usuarios</a>
+                </li>
             </ul>
         </div>
 

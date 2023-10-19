@@ -50,12 +50,12 @@ Route::get('/participa', function () {
 Auth::routes();
 
 // Route User
-Route::middleware(['auth','checkAccountStatus','user-role:0',,'verificarCodigo'])->group(function()
+Route::middleware(['auth','checkAccountStatus','user-role:0','verificarCodigo'])->group(function()
 {
     Route::get("/user/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Editor
-Route::middleware(['auth','checkAccountStatus','user-role:1',,'verificarCodigo'])->group(function()
+Route::middleware(['auth','checkAccountStatus','user-role:1','verificarCodigo'])->group(function()
 {
     Route::get("/editor/home",[HomeController::class, 'editorHome'])->name("editor.home");
 });
@@ -65,6 +65,7 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
     Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
     Route::get("/admin/denuncias",[AdminController::class,'index'])->name("admin.denuncias");
     Route::get("/admin/editIndex",[AdminController::class,'editIndex'])->name('admin.editIndex');
+    Route::get("/admin/Users",[AdminController::class,'indexUser'])->name('admin.userIndex');
     // Editar index
     Route::controller(AdminEditarController::class)->group(function(){
         Route::get("/edit/seccion_1",'seccion_1Index')->name('admin.Eseccion1');

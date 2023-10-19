@@ -27,6 +27,6 @@ class Persona extends Model
 
     public function estadoCivil()
     {
-        return $this->belongsTo(EstadosCivil::class, 'idEstado');
+        return $this->belongsTo(EstadoCivil::class, 'idEstado');
     }
 }

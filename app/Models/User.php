@@ -56,13 +56,13 @@ class User extends Authenticatable
      * configuracion de los roles
 
 
-   * protected function role(): Attribute
-   * {
-   *     return new Attribute(
-   *         get: fn ($value) =>  ["user", "editor", "admin"][$value],
-   *     );
-   * }
-    */
+    protected function roles(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) =>  ["user", "editor", "admin"][$value],
+        );
+    }
+    **/
 
     public function persona()
     {
