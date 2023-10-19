@@ -39,24 +39,25 @@
                     </td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic outlined example">
-                            <button type="button" class="btn btn-outline-primary"
+                            <button type="button" class="btn  btn-outline-primary show-user-details"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                data-user-id="{{ $user->id }}" data-user-email="{{ $user->email }}" data-user-username="{{ $user->username }}"
-                                data-user-password="{{ $user->password }}" data-user-role="{{ $user->role }}"
-                                data-user-name="{{ $user->persona->nombre }}" data-user-apP="{{ $user->persona->apPat }}" data-user-apM="{{ $user->persona->apMat }}"
-                                data-user-sexo="{{ $user->persona->sexo }}" data-user-date="{{ $user->persona->fechaNac }}" data-user-cel="{{ $user->persona->celular }}"
-                                data-user-ec="{{ $user->persona->estadoCivil->tipo }}"
-                                >
+                                data-user="{{ json_encode([
+                                    'id' => $user->id,
+                                    'email' => $user->email,
+                                    'username' => $user->username,
+                                    'password' => $user->password,
+                                    'role' => $user->role,
+                                    'name' => $user->persona->nombre,
+                                    'apP' => $user->persona->apPat,
+                                    'apM' => $user->persona->apMat,
+                                    'sexo' => $user->persona->sexo,
+                                    'date' => $user->persona->fechaNac,
+                                    'cel' => $user->persona->celular,
+                                    'ec' => $user->persona->estadoCivil->tipo
+                                ]) }}">
                                 Ver
                             </button>
-                            <button type="button" class="btn btn-outline-primary"
-                                data-bs-toggle="modal" data-bs-target="#editarData"
-                                data-user-id="{{ $user->id }}" data-user-email="{{ $user->email }}" data-user-username="{{ $user->username }}"
-                                data-user-password="{{ $user->password }}" data-user-role="{{ $user->role }}"
-                                data-user-name="{{ $user->persona->nombre }}" data-user-apP="{{ $user->persona->apPat }}" data-user-apM="{{ $user->persona->apMat }}"
-                                data-user-sexo="{{ $user->persona->sexo }}" data-user-date="{{ $user->persona->fechaNac }}" data-user-cel="{{ $user->persona->celular }}"
-                                data-user-ec="{{ $user->persona->estadoCivil->tipo }}"
-                                >
+                            <button type="button" class="btn  btn-outline-primary">
                                 Editar
                             </button>
                             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  >Eliminar</button>
@@ -78,39 +79,23 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="user-id">
-                <input type="hidden" id="user-email">
-                <p>User CI          : <span id="user-id-display"></span></p>
-                <p>Email            : <span id="user-email-display"></span></p>
-                <p>Username         : <span id="user-Username-display"></span></p>
-                <p>Rol              : <span id="user-Role-display"></span></p>
-                <p>Nombre           : <span id="user-Name-display"></span></p>
-                <p>Ap. Paterno      : <span id="user-apP-display"></span></p>
-                <p>Ap. Materno      : <span id="user-apM-display"></span></p>
-                <p>Sexo             : <span id="user-Sexo-display"></span></p>
-                <p>Fecha Nacimiento : <span id="user-Date-display"></span></p>
-                <p>Celular          : <span id="user-Cel-display"></span></p>
-                <p>Estado Civil     : <span id="user-Ec-display"></span></p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        </div>
-    </div>
-
-        <!-- Modal Editar Datos-->
-        <div class="modal fade " id="editarData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">EDITAR DATA</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="inputs">
+                    <form action="">
+                        <p>User CI          : <input id="user-id-input" name="id"></p>
+                        <p>Email            : <input id="user-email-input" name="email"></p>
+                        <p>Username         : <input id="user-Username-input" name="username"></p>
+                        <p>Rol              : <input id="user-Role-input" name="role"></p>
+                        <p>Nombre           : <input id="user-Name-input" name="name"></p>
+                        <p>Ap. Paterno      : <input id="user-apP-input" name="apPat"></p>
+                        <p>Ap. Materno      : <input id="user-apM-input" name="apMat"></p>
+                        <p>Sexo             : <input id="user-Sexo-input" name="sexo"></p>
+                        <p>Fecha Nacimiento : <input id="user-Date-input" name="fechaNac"></p>
+                        <p>Celular          : <input id="user-Cel-input" name="cel"></p>
+                        <p>Estado Civil     : <input id="user-Ec-input" name="ec"></p>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </form>
                 </div>
-                <div class="modal-body">
-                    <input type="hidden" id="user-id">
-                    <input type="hidden" id="user-email">
+                <div class="Inf">
                     <p>User CI          : <span id="user-id-display"></span></p>
                     <p>Email            : <span id="user-email-display"></span></p>
                     <p>Username         : <span id="user-Username-display"></span></p>
@@ -123,13 +108,18 @@
                     <p>Celular          : <span id="user-Cel-display"></span></p>
                     <p>Estado Civil     : <span id="user-Ec-display"></span></p>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
             </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="edit-button" class="btn btn-primary">Editar</button>
             </div>
         </div>
+        </div>
+    </div>
+
+
+
+
 
 
 
@@ -145,66 +135,56 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(filtro) > -1);
             });
         });
+        //Funciones MODAl
+        $('#exampleModal').on('show.bs.modal', function() {
+            $('.Inf').show();
+            $('.inputs').hide();
+        });
+
+        // Cuando se hace clic en el botón de editar
+        $('#edit-button').click(function() {
+            // Oculta el div 'Inf' y muestra el div 'inputs'
+            $('.Inf').hide();
+            $('.inputs').show();
+        });
+
+
         // Funcion para mandar la informacion al modal = Ver todos los datos
         $('#exampleModal').on('show.bs.modal', function (event) {
+
             var button = $(event.relatedTarget); // Botón que abrió el modal
-            var userId = button.data('user-id');
-            var userEmail = button.data('user-email');
-            var userUsername = button.data('user-username');
-            var userRole = button.data('user-role');
-            var userName = button.data('user-name');
-            var userapP = button.data('user-apP');
-            var userapM = button.data('user-apM');
-            var userSexo = button.data('user-sexo');
-            var userDate = button.data('user-date');
-            var userCel = button.data('user-cel');
-            var userEc = button.data('user-ec');
+            const userData = JSON.parse(this.getAttribute('data-user'));
+            document.querySelectorAll('.show-user-details').forEach(button => {
+                button.addEventListener('click', function () {
+                    const userData = JSON.parse(this.getAttribute('data-user'));
+                    document.getElementById('user-id-display').textContent = userData.id;
+                    document.getElementById('user-email-display').textContent = userData.email;
+                    document.getElementById('user-Username-display').textContent = userData.username;
+                    document.getElementById('user-Role-display').textContent = userData.role;
+                    document.getElementById('user-Name-display').textContent = userData.name;
+                    document.getElementById('user-apP-display').textContent = userData.apP;
+                    document.getElementById('user-apM-display').textContent = userData.apM;
+                    document.getElementById('user-Sexo-display').textContent = userData.sexo;
+                    document.getElementById('user-Date-display').textContent = userData.date;
+                    document.getElementById('user-Cel-display').textContent = userData.cel;
+                    document.getElementById('user-Ec-display').textContent = userData.ec;
 
-            // Establecer los valores en los campos del modal
-            $('#user-id').val(userId);
-            $('#user-email').val(userEmail);
+                    document.getElementById('user-id-input').value = userData.id;
+                    document.getElementById('user-email-input').value = userData.email;
+                    document.getElementById('user-Username-input').value = userData.username;
+                    document.getElementById('user-Role-input').value = userData.role;
+                    document.getElementById('user-Name-input').value = userData.name;
+                    document.getElementById('user-apP-input').value = userData.apP;
+                    document.getElementById('user-apM-input').value = userData.apM;
+                    document.getElementById('user-Sexo-input').value = userData.sexo;
+                    document.getElementById('user-Date-input').value = userData.date;
+                    document.getElementById('user-Cel-input').value = userData.cel;
+                    document.getElementById('user-Ec-input').value = userData.ec;
 
-            $('#user-id-display').text(userId);
-            $('#user-email-display').text(userEmail);
-            $('#user-Username-display').text(userUsername);
-            $('#user-Role-display').text(userRole);
-            $('#user-Name-display').text(userName);
-            $('#user-apP-display').text(userapP);
-            $('#user-apM-display').text(userapM);
-            $('#user-Sexo-display').text(userSexo);
-            $('#user-Date-display').text(userDate);
-            $('#user-Cel-display').text(userCel);
-            $('#user-Ec-display').text(userEc);
+                });
+            });
         });
 
-        // Funcion para mandar la informacion al modal = Editar datos
-        $('#editarData').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Botón que abrió el modal
-            var userId = button.data('user-id');
-            var userEmail = button.data('user-email');
-            var userUsername = button.data('user-username');
-            var userRole = button.data('user-role');
-            var userName = button.data('user-name');
-            var userapP = button.data('user-apP');
-            var userapM = button.data('user-apM');
-            var userSexo = button.data('user-sexo');
-            var userDate = button.data('user-date');
-            var userCel = button.data('user-cel');
-            var userEc = button.data('user-ec');
-
-            // Establecer los valores en los campos del modal
-            $('#user-id').val(userId);
-            $('#user-email').val(userEmail);
-            $('#user-Username').val(userUsername);
-            $('#user-Role').val(userRole);
-            $('#user-Name').val(userName);
-            $('#user-apP').val(userapP);
-            $('#user-apM').val(userapM);
-            $('#user-Sexo').val(userSexo);
-            $('#user-Date').val(userDate);
-            $('#user-Cel').val(userCel);
-            $('#user-Ec').val(userEc);
-        });
 
     });
 
