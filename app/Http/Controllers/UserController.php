@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Persona;
+use App\Models\Ubicacion;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -50,21 +51,36 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request) {
+    public static function update(Request $request) {
+
         $user = User::find($request->id);
         $persona = Persona::find($request->id);
         if($user){
-            $persona->update([
-                'id' =>  $request['id']  ,
-                'nombre'=>  $request['name'] ,
-                'apPat' => $request['apPat'] ,
-                'apMat' => $request['apMat'] ,
-                'fechaNac'=>Carbon::parse( $request['fechaNac'] ),
-                'sexo' =>  $request['sexo'] ,
-                'celular' => $request['cel'] ,
-                'email' => $request['email'] ,
-                'idEstado' => $request['ec'] ,
-            ]);
+            if($request->ec == -1){
+                $persona->update([
+                    'id' =>  $request['id']  ,
+                    'nombre'=>  $request['name'] ,
+                    'apPat' => $request['apPat'] ,
+                    'apMat' => $request['apMat'] ,
+                    'fechaNac'=>Carbon::parse( $request['fechaNac'] ),
+                    'sexo' =>  $request['sexo'] ,
+                    'celular' => $request['cel'] ,
+                    'email' => $request['email'] ,
+                ]);
+            }
+            else{
+                $persona->update([
+                    'id' =>  $request['id']  ,
+                    'nombre'=>  $request['name'] ,
+                    'apPat' => $request['apPat'] ,
+                    'apMat' => $request['apMat'] ,
+                    'fechaNac'=>Carbon::parse( $request['fechaNac'] ),
+                    'sexo' =>  $request['sexo'] ,
+                    'celular' => $request['cel'] ,
+                    'email' => $request['email'] ,
+                    'idEstado' => $request['ec'] ,
+                ]);
+            }
             $user->update([
                 'id'=>  $request['id'],
                 'username'=> $request['username'] ,
@@ -73,12 +89,15 @@ class UserController extends Controller
                 'role'=>  $request['role'],
             ]);
         }
-        $this->index();
     }
 
-    public function delete(User $user){
+    public static function delete(User $user){
         $persona = Persona::find($user->id);
-        $persona->delete();
         $user->delete();
+        $ubicacion = Ubicacion::where('idPersona',$persona->id);
+        if($ubicacion){
+            $ubicacion->delete();
+        }
+        $persona->delete();
     }
 }

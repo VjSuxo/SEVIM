@@ -8,6 +8,7 @@ use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminEditarController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\OrientacionController;
 use App\Http\Controllers\NosotrosEditController;
 use App\Http\Controllers\NosotrosController;
@@ -95,9 +96,9 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
         Route::delete('/store/seccion_3/Noticia/{noticia}/Destroy','destroy')->name('noticia.Delete');
     });
 
-    Route::controller(UserController::class)->group(function(){
-        Route::post('/update/user','update')->name('admin.User.update');
-        Route::delete('/store/seccion_3/Noticia/{noticia}/Destroy','destroy')->name('noticia.Delete');
+    Route::controller(AdminUserController::class)->group(function(){
+        Route::post('/update/user','modificar')->name('admin.User.update');
+        Route::delete('/delete/user/{user}','eliminar')->name('admin.User.Delete');
     });
 
 });

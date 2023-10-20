@@ -57,10 +57,12 @@
                                 ]) }}">
                                 Ver
                             </button>
-                            <button type="button" class="btn  btn-outline-primary">
-                                Editar
-                            </button>
-                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  >Eliminar</button>
+                            <form action="{{route('admin.User.Delete',$user)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-primary" >Eliminar</button>
+                            </form>
+
                         </div>
                     </td>
                 </tr>
@@ -92,9 +94,9 @@
                         <p>Sexo             : <input id="user-Sexo-input" name="sexo"></p>
                         <p>Fecha Nacimiento : <input id="user-Date-input" name="fechaNac"></p>
                         <p>Celular          : <input id="user-Cel-input" name="cel"></p>
-                        <p>Estado Civil     : <input id="user-Ec-input" name="ec">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
+                        <p>Estado Civil     : <input id="user-Ec-input" style="display: none">
+                            <select class="form-select" aria-label="Default select example" name="ec">
+                                <option value="-1">Cambiar Estado Civil</option>
                                 @foreach ( $civil as $estado )
                                     <option value="{{$estado->id}}">{{$estado->tipo}}</option>
                                 @endforeach
