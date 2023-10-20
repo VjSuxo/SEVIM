@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DenunciaViolencia;
 use App\Models\Tiene;
 use App\Models\User;
+use App\Models\EstadoCivil;
 
 class AdminController extends Controller
 {
@@ -20,7 +21,8 @@ class AdminController extends Controller
 
     public function indexUser() {
         $users = User::get();
-        return view('/admin/listaUsuarios',['users'=>$users]);
+        $civil = EstadoCivil::get();
+        return view('/admin/listaUsuarios',['users'=>$users,'civil'=>$civil]);
     }
 
 }

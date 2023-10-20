@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\ConfirmarCodigo;
 use App\Http\Controllers\Auth\Recuperar;
 use App\Http\Controllers\DenunciaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminEditarController;
 use App\Http\Controllers\OrientacionController;
@@ -91,6 +92,11 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
 
     Route::controller(NoticiaController::class)->group(function(){
         Route::post('/store/seccion_3/Noticia','store')->name('noticia.Store');
+        Route::delete('/store/seccion_3/Noticia/{noticia}/Destroy','destroy')->name('noticia.Delete');
+    });
+
+    Route::controller(UserController::class)->group(function(){
+        Route::post('/update/user','update')->name('admin.User.update');
         Route::delete('/store/seccion_3/Noticia/{noticia}/Destroy','destroy')->name('noticia.Delete');
     });
 

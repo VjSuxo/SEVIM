@@ -80,7 +80,8 @@
             </div>
             <div class="modal-body">
                 <div class="inputs">
-                    <form action="">
+                    <form method="POST" action="{{route('admin.User.update')}}" enctype="multipart/form-data">
+                        @csrf
                         <p>User CI          : <input id="user-id-input" name="id"></p>
                         <p>Email            : <input id="user-email-input" name="email"></p>
                         <p>Username         : <input id="user-Username-input" name="username"></p>
@@ -91,8 +92,15 @@
                         <p>Sexo             : <input id="user-Sexo-input" name="sexo"></p>
                         <p>Fecha Nacimiento : <input id="user-Date-input" name="fechaNac"></p>
                         <p>Celular          : <input id="user-Cel-input" name="cel"></p>
-                        <p>Estado Civil     : <input id="user-Ec-input" name="ec"></p>
-                        <button type="button" class="btn btn-primary">Guardar</button>
+                        <p>Estado Civil     : <input id="user-Ec-input" name="ec">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                @foreach ( $civil as $estado )
+                                    <option value="{{$estado->id}}">{{$estado->tipo}}</option>
+                                @endforeach
+                              </select>
+                        </p>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
                 <div class="Inf">
