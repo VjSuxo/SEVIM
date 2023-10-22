@@ -33,7 +33,7 @@ class NoticiaController extends Controller
                 'tipo'=>$request['tipo'],
             'enlace'=>$request['enlace'],
             ]);
-            $noticia->save();
+            $noticiaUp->save();
         }
         $this->index();
     }

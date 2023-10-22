@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Persona;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\RecoveryCodeMail;
 
 class RegisterController extends Controller
 {
@@ -24,6 +26,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
 
     /**
      * Where to redirect users after registration.
@@ -99,6 +102,10 @@ class RegisterController extends Controller
             'persona_id' => $data['ci'], // Asigna el CI como ID de persona
         ]);
 
+
+
+        $enviar = new RecoveryCodeMail();
+        $enviar->enviarRe($user);
         // Retorna el usuario creado
         return $user;
     }

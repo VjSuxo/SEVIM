@@ -9,14 +9,18 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminEditarController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminUbicacionController;
 use App\Http\Controllers\OrientacionController;
 use App\Http\Controllers\NosotrosEditController;
 use App\Http\Controllers\NosotrosController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\CorreoController;
+use App\Http\Controllers\GeocodeController;
 use App\Models\Orientacion;
 use App\Models\Nosotros;
+use App\Models\Noticia;
 use App\Mail\RecoveryCodeMail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +35,8 @@ use App\Mail\RecoveryCodeMail;
 Route::get('/', function () {
     $orientacion = Orientacion::get();
     $nosotros = Nosotros::get();
-    return view('welcome',['orientaciones'=>$orientacion,'nosotros'=>$nosotros]);
+    $noticias = Noticia::get();
+    return view('welcome',['orientaciones'=>$orientacion,'nosotros'=>$nosotros,'noticias'=>$noticias]);
 })->name('welcome');
 
 Route::get('/quienesSomos', function () {
@@ -68,11 +73,18 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
     Route::get("/admin/denuncias",[AdminController::class,'index'])->name("admin.denuncias");
     Route::get("/admin/editIndex",[AdminController::class,'editIndex'])->name('admin.editIndex');
     Route::get("/admin/Users",[AdminController::class,'indexUser'])->name('admin.userIndex');
+    Route::get("/admin/denuncia/{tiene}",[AdminController::class,'indexDenuncia'])->name('admin.tieneDen');
+    Route::get("/admin/createUsr",[AdminController::class,'crearUser'])->name('admin.crearUser');
+    Route::view("/admin/crearUbicacion",'/admin/crearUbicacion')->name('admin.crearUbicacion');
+
+
     // Editar index
     Route::controller(AdminEditarController::class)->group(function(){
         Route::get("/edit/seccion_1",'seccion_1Index')->name('admin.Eseccion1');
         Route::get("/edit/seccion_2",'seccion_2Index')->name('admin.Eseccion2');
         Route::get("/edit/seccion_3",'seccion_3Index')->name('admin.Eseccion3');
+        Route::get("/edit/Ley",'leyesIndex')->name('admin.Ley');
+        Route::get("/edit/refugios",'ubiIndex')->name('admin.ubi');
     });
 
     Route::controller(OrientacionController::class)->group(function(){
@@ -99,6 +111,13 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
     Route::controller(AdminUserController::class)->group(function(){
         Route::post('/update/user','modificar')->name('admin.User.update');
         Route::delete('/delete/user/{user}','eliminar')->name('admin.User.Delete');
+        Route::post('/amindcrete/user','crearUsuario')->name('admin.crearUser');
+    });
+    //CRUD REFUGIO
+    Route::controller(AdminUbicacionController::class)->group(function(){
+        Route::post('/admin/createRef','crearRef')->name('admin.CreateRefugio');
+        Route::post('/admin/updateRef','updateRef')->name('admin.UpdateRefugio');
+        Route::delete('/admin/deleteteRef/{refugio}','deleteRef')->name('admin.DeleteRefugio');
     });
 
 });

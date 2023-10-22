@@ -10,7 +10,7 @@
                     </a>
                     <h1>Registro de Usuario</h1>
                 </div>
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('admin.crearUser') }}">
                     @csrf
                     <!-- User name-->
                     <div class="input-group flex-nowrap">
@@ -93,20 +93,23 @@
                     </div>
                     @enderror
                     <!-- Estado Civil -->
-                    <div class="input-group mt-3">
-                        <label class="input-group-text" for="estadoCi">Estado Civil</label>
-                        <select class="form-select input-line @error('estadoCi') is-invalid @enderror" id="estadoCi" name="estadoCi" required>
-                            <option selected>Elija su estado civil</option>
-                            <option value="0" {{ old('estadoCi') == 'Femenino' ? 'selected' : '' }}>Femenino</option>
-                            <option value="1" {{ old('estadoCi') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
-                            <option value="2" {{ old('estadoCi') == 'Otro' ? 'selected' : '' }}>Otro</option>
-                        </select>
-                    </div>
-                    @error('estadoCi')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+                @php
+                $estadoCivil = DB::table('ESTADOS_CIVILES')->get();
+            @endphp
+            <div class="input-group mt-3">
+                <label class="input-group-text" for="estadoCi">Estado Civil</label>
+                <select class="form-select input-line @error('estadoCi') is-invalid @enderror" id="estadoCi" name="estadoCi" required>
+                    <option selected>Elija su estado civil</option>
+                    @foreach ( $estadoCivil as $estado)
+                    <option value="{{ $estado->id }}" >{{ $estado->tipo }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('estadoCi')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
                     <!-- Celular -->
                     <div class="input-group mt-3">
                         <span class="input-group-text"><img src="/img/icon/icon_cel.png" alt="iconCel" width="20" height="20"></span>

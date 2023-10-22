@@ -25,4 +25,12 @@ class AdminController extends Controller
         return view('/admin/listaUsuarios',['users'=>$users,'civil'=>$civil]);
     }
 
+    public function indexDenuncia(Tiene $tiene) {
+        return view('/admin/verDenuncia',['tiene'=>$tiene]);
+    }
+
+    public function crearUser()  {
+        return view('/admin/edituser');
+    }
+
 }

@@ -21,6 +21,12 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{route('admin.Eseccion3')}}" target="iframeEdit">Noticias</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('admin.ubi')}}" target="iframeEdit">Refugio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('admin.Ley')}}" target="iframeEdit">Leyes</a>
+                </li>
               </ul>
             </div>
             <div class="card-body" style="min-height: 60vh">

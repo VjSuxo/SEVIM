@@ -68,52 +68,112 @@
           </section>
 
           <section class="sombra-interna">
-              <div class="contenedor reveal ">
-                  <h1 class="align-text-center" style="margin-left: 40%; ">Noticias</h1>
-
-                  <div class="parent">
+            <div class="contenedor reveal ">
+                <h1 class="align-text-center" style="margin-left: 40%; ">Noticias</h1>
+                <div class="parent">
+                    @foreach ( $noticias as $noticia )
                     <div class="div1">
-                      <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
-                        <iframe src="https://www.instagram.com/p/CWUejO1I6jN/" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                      </div>
+                        @if ($noticia->tipo == 'facebook')
+                            <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
+                                <iframe
+                                    src="https://www.facebook.com/plugins/post.php?href={{$noticia->enlace}}&set=pcb.685102363642676&show_text=true&width=500"
+                                    width="500"
+                                    height="250"
+                                    style="border:none;overflow:hidden"
+                                    scrolling="no" frameborder="0" allowfullscreen="true"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                    width="500" height="300"
+                                    style="border:none;overflow:hidden"
+                                    scrolling="no"
+                                    frameborder="0" allowfullscreen="true"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                    ></iframe>
+                            </div>
+                        @endif
                     </div>
                     <div class="div2">
-                      <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.instagram.com/p/CWUejO1I6jN//?locale=hi_IN&show_text=true&width=500" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                      </div>
+                        @if ($noticia->tipo == 'noticia')
+                            <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
+                                <iframe
+                                src="{{$noticia->enlace}}"
+                                width="500"
+                                min-height="250"
+                                style="border:none;overflow:hidden"
+                                scrolling="no" frameborder="0" allowfullscreen="true"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                width="500" height="300"
+                                style="border:none;overflow:hidden"
+                                scrolling="no"
+                                frameborder="0" allowfullscreen="true"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                ></iframe></div>
+                        @endif
+
                     </div>
                     <div class="div3">
-                      <div id="contenido-twitter" style="height: 500px; overflow: auto;">
-                        <!-- Pega el código de inserción de Twitter aquí -->
-                        <blockquote class="twitter-tweet">
-                          <p lang="en" dir="ltr">Este es un tweet incrustado de Twitter.</p>
-                          &mdash; Usuario de Twitter (@nombredeusuario) <a href="https://twitter.com/ONU_es/status/1387557244724727809?lang=es">fecha del tweet</a>
-                        </blockquote>
-                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                      </div>
+                        @if ($noticia->tipo == 'twitter')
+                        <div id="contenido-twitter" style="min-height: 250px; overflow: auto;">
+                            <!-- Pega el código de inserción de Twitter aquí -->
+                            <blockquote class="twitter-tweet">
+                              <p lang="en" dir="ltr">Este es un tweet incrustado de Twitter.</p>
+                              &mdash; Usuario de Twitter (@nombredeusuario) <a href="{{$noticia->enlace}}">fecha del tweet</a>
+                            </blockquote>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                          </div>
+                        @endif
                     </div>
                     <div class="div4">
-                      <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https://m.facebook.com/FiscaliaGeneralBolivia/videos/la-violencia-contra-la-mujer-es-un-delito-no-lo-permitasfiscal%C3%ADageneraldelestado/919566125551365/?locale=hi_IN&show_text=true&width=500" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                      </div>
+                        @if ($noticia->tipo == 'facebook')
+                            <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
+                                <iframe
+                                    src="https://www.facebook.com/plugins/post.php?href={{$noticia->enlace}}&set=pcb.685102363642676&show_text=true&width=500"
+                                    width="500"
+                                    height="250"
+                                    style="border:none;overflow:hidden"
+                                    scrolling="no" frameborder="0" allowfullscreen="true"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                    width="500" height="300"
+                                    style="border:none;overflow:hidden"
+                                    scrolling="no"
+                                    frameborder="0" allowfullscreen="true"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                    ></iframe>
+                            </div>
+                        @endif
                     </div>
                     <div class="div5">
-                      <div id="contenido-twitter" style="height: 500px; width: 500px; overflow: auto;">
-                        <!-- Pega el código de inserción de Twitter aquí -->
-                        <blockquote class="twitter-tweet">
-                          <p lang="en" dir="ltr">Este es un tweet incrustado de Twitter.</p>
-                          &mdash; Usuario de Twitter (@nombredeusuario) <a href="https://twitter.com/MujeresRed/status/1509266268741849090">fecha del tweet</a>
-                        </blockquote>
-                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        @if ($noticia->tipo == 'twitter')
+                        <div id="contenido-twitter" style="min-height: 250px; overflow: auto;">
+                            <!-- Pega el código de inserción de Twitter aquí -->
+                            <blockquote class="twitter-tweet">
+                              <p lang="en" dir="ltr">Este es un tweet incrustado de Twitter.</p>
+                              &mdash; Usuario de Twitter (@nombredeusuario) <a href="{{$noticia->enlace}}">fecha del tweet</a>
+                            </blockquote>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                          </div>
+                        @endif
                       </div>
-                    </div>
-                    <div class="div6">
-                      <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/ONUBolivia/photos/eliminemos-todas-las-formas-de-violencia-contra-las-mujeres-y-ni%C3%B1as-en-los-%C3%A1mbit/1747279335400523/?locale=es_LA&set=pcb.685102363642676&show_text=true&width=500" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                      <div class="div6">
+                        @if ($noticia->tipo == 'noticia')
+                            <div id="Facebook" style="height: 100%; width: 100%; overflow: auto;">
+                                <iframe
+                                src="{{$noticia->enlace}}"
+                                width="500"
+                                min-height="250"
+                                style="border:none;overflow:hidden"
+                                scrolling="no" frameborder="0" allowfullscreen="true"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                width="500" height="300"
+                                style="border:none;overflow:hidden"
+                                scrolling="no"
+                                frameborder="0" allowfullscreen="true"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                ></iframe></div>
+                        @endif
                       </div>
-                    </div>
-                    </div>
-                  </div>
+                @endforeach
+                </div>
+            </div>
 
 
               </div>

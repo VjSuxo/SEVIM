@@ -93,13 +93,16 @@
                 </div>
                 @enderror
                 <!-- Estado Civil -->
+                @php
+                    $estadoCivil = DB::table('ESTADOS_CIVILES')->get();
+                @endphp
                 <div class="input-group mt-3">
                     <label class="input-group-text" for="estadoCi">Estado Civil</label>
                     <select class="form-select input-line @error('estadoCi') is-invalid @enderror" id="estadoCi" name="estadoCi" required>
                         <option selected>Elija su estado civil</option>
-                        <option value="0" {{ old('estadoCi') == 'Femenino' ? 'selected' : '' }}>Femenino</option>
-                        <option value="1" {{ old('estadoCi') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
-                        <option value="2" {{ old('estadoCi') == 'Otro' ? 'selected' : '' }}>Otro</option>
+                        @foreach ( $estadoCivil as $estado)
+                        <option value="{{ $estado->id }}" >{{ $estado->tipo }}</option>
+                        @endforeach
                     </select>
                 </div>
                 @error('estadoCi')

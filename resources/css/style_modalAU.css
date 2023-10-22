@@ -1,0 +1,39 @@
+:root{
+    --rosa-Barbie : #FF69B4;
+    --rosa-Claro  : rgba(255,182,193,0.5);
+    --rosa-Suave  : rgba(255,192,203,0.4);
+    --rojo-Oscruo : #B22222;
+}
+
+.contenedor{
+    margin-top: 15vh;
+    min-height: 70vh;
+    background-color: var(--rosa-Claro) ;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.contenedor .col{
+    min-height: 70vh;
+    -webkit-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.contenedor .col ul{
+    background-color: transparent;
+}
+
+.contenedor .col li{
+    padding: 5px;
+    list-style-type: none;
+    font-size: 19px;
+    background-color: var(--rosa-Suave);
+    margin-top: 20px;
+    -webkit-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+}
+

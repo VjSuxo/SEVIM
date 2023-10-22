@@ -14,6 +14,7 @@
                 <th scope="col">Tipo Denuncia</th>
                 <th scope="col">Fecha del Hecho de Violencia</th>
                 <th scope="col">Relato</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,9 @@
                     <td> {{$tiene->denunciaViolencia->tipoDenuncia->tipoDenuncia}} </td>
                     <td>{{ $tiene->denunciaViolencia->fechaHechoDenuncia }}</td>
                     <td>{{ $tiene->denunciaViolencia->relato }}</td>
+                    <td>
+                     <a  class="btn btn-primary" href="{{ route('admin.tieneDen',$tiene->id) }}">Ver</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

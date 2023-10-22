@@ -1,9 +1,10 @@
 <x-layouts.adminApp>
-    @vite(['resources/css/style_tabla.css'])
+    @vite(['resources/css/style_tabla.css','resources/css/style_modalAU.css'])
 
 <div class="cuerpoT">
-    <div class="mb-3">
+    <div class="d-flex flex-row bd-highlight mb-3">
         <input type="text" class="form-control" id="buscar" placeholder="Buscar...">
+        <a href="{{ route('admin.crearUser') }}" class="btn btn-primary">Crear Nuevo Usuario</a>
     </div>
 
     <table class="table">
@@ -87,7 +88,14 @@
                         <p>User CI          : <input id="user-id-input" name="id"></p>
                         <p>Email            : <input id="user-email-input" name="email"></p>
                         <p>Username         : <input id="user-Username-input" name="username"></p>
-                        <p>Rol              : <input id="user-Role-input" name="role"></p>
+                        <p>Rol              :
+                            <select class="form-select" aria-label="Default select example" name="role">
+                                <option value="-1">Cambiar Rol</option>
+                                <option value="0">Usuario</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Otro</option>
+                              </select>
+                        </p>
                         <p>Nombre           : <input id="user-Name-input" name="name"></p>
                         <p>Ap. Paterno      : <input id="user-apP-input" name="apPat"></p>
                         <p>Ap. Materno      : <input id="user-apM-input" name="apMat"></p>
@@ -167,10 +175,19 @@
             document.querySelectorAll('.show-user-details').forEach(button => {
                 button.addEventListener('click', function () {
                     const userData = JSON.parse(this.getAttribute('data-user'));
+                    if(userData.role == 0){
+                        document.getElementById('user-Role-display').textContent = "Usuario";
+                    }
+                    if(userData.role == 2){
+                        document.getElementById('user-Role-display').textContent = "Administrador";
+                    }
+                    if(userData.role == 1){
+                        document.getElementById('user-Role-display').textContent = "Otro";
+                    }
                     document.getElementById('user-id-display').textContent = userData.id;
                     document.getElementById('user-email-display').textContent = userData.email;
                     document.getElementById('user-Username-display').textContent = userData.username;
-                    document.getElementById('user-Role-display').textContent = userData.role;
+
                     document.getElementById('user-Name-display').textContent = userData.name;
                     document.getElementById('user-apP-display').textContent = userData.apP;
                     document.getElementById('user-apM-display').textContent = userData.apM;
@@ -182,7 +199,7 @@
                     document.getElementById('user-id-input').value = userData.id;
                     document.getElementById('user-email-input').value = userData.email;
                     document.getElementById('user-Username-input').value = userData.username;
-                    document.getElementById('user-Role-input').value = userData.role;
+
                     document.getElementById('user-Name-input').value = userData.name;
                     document.getElementById('user-apP-input').value = userData.apP;
                     document.getElementById('user-apM-input').value = userData.apM;

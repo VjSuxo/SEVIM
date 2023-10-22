@@ -15,7 +15,7 @@ class UserController extends Controller
         return redirect()->back()->with(['users'=>$users]);
     }
 
-    public function store(){
+    public function store(Request $request){
         $validateData = $request->validate([
             'id'=>'requierd',
             'email'=>'requierd',
@@ -56,7 +56,7 @@ class UserController extends Controller
         $user = User::find($request->id);
         $persona = Persona::find($request->id);
         if($user){
-            if($request->ec == -1){
+            if($request->ec == -1 ){
                 $persona->update([
                     'id' =>  $request['id']  ,
                     'nombre'=>  $request['name'] ,
@@ -69,25 +69,36 @@ class UserController extends Controller
                 ]);
             }
             else{
-                $persona->update([
-                    'id' =>  $request['id']  ,
-                    'nombre'=>  $request['name'] ,
-                    'apPat' => $request['apPat'] ,
-                    'apMat' => $request['apMat'] ,
-                    'fechaNac'=>Carbon::parse( $request['fechaNac'] ),
-                    'sexo' =>  $request['sexo'] ,
-                    'celular' => $request['cel'] ,
-                    'email' => $request['email'] ,
-                    'idEstado' => $request['ec'] ,
+                    $persona->update([
+                        'id' =>  $request['id']  ,
+                        'nombre'=>  $request['name'] ,
+                        'apPat' => $request['apPat'] ,
+                        'apMat' => $request['apMat'] ,
+                        'fechaNac'=>Carbon::parse( $request['fechaNac'] ),
+                        'sexo' =>  $request['sexo'] ,
+                        'celular' => $request['cel'] ,
+                        'email' => $request['email'] ,
+                        'idEstado' => $request['ec'] ,
+                    ]);
+            }
+            if($request->role == -1){
+                $user->update([
+                    'id'=>  $request['id'],
+                    'username'=> $request['username'] ,
+                    'password'=> bcrypt( $request['password'] ),
+                    'email'=> $request['email'] ,
                 ]);
             }
-            $user->update([
-                'id'=>  $request['id'],
-                'username'=> $request['username'] ,
-                'password'=> bcrypt( $request['password'] ),
-                'email'=> $request['email'] ,
-                'role'=>  $request['role'],
-            ]);
+            else{
+                $user->update([
+                    'id'=>  $request['id'],
+                    'username'=> $request['username'] ,
+                    'password'=> bcrypt( $request['password'] ),
+                    'email'=> $request['email'] ,
+                    'role'=>  $request['role'],
+                ]);
+            }
+
         }
     }
 

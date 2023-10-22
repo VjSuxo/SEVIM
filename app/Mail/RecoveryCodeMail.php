@@ -19,16 +19,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class RecoveryCodeMail extends Mailable
 {
-    public function index(User $user) {
 
-        $this->enviar($user);
-        return route('codigo',$user->id);
-    }
-    public function confirm(Request $request,User $user) {
-        if($request->codigo = $user->codigo){
-
-        }
-    }
 
     public function generarCodigo(User $user )
     {
@@ -70,6 +61,22 @@ class RecoveryCodeMail extends Mailable
                     $msg->to($email);
                 });
    }
+
+
+   public function enviarRe(User $user) {
+
+            $asunto = " Validacion Correo";
+            $codigoAleatorio = $this->generarCodigo($user);
+
+            Mail::send('correo.prueba', ['codigo' => $codigoAleatorio], function ($msg) use ($user) {
+                $msg->from('sevim@sevim.com', $user->email);
+                $msg->subject("Validacion Correo");
+                $msg->to($user->email);
+            });
+}
+
+
+
 
    public function recuperar(Request $request) {
     $input = $request->all();
