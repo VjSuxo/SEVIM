@@ -24,6 +24,10 @@ use App\Models\Nosotros;
 use App\Models\Noticia;
 use App\Mail\RecoveryCodeMail;
 
+//mmov
+use App\Http\Controllers\Movil\UserMController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -167,3 +171,8 @@ Route::post('/validarCodigoRec',[CorreoController::class,'verificarCodigoR'])->n
 //Recuperacion
 Route::post('/recuperar-codigo',[Recuperar::class,'EnviarCodigoRecu'])->name('recobery');
 
+//RUTAS MOVIL
+Route::controller(UserMController::class)->group(function () {
+    Route::get('/movil/user','index');
+
+});
