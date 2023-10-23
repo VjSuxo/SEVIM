@@ -89,6 +89,7 @@ class OrientacionController extends Controller
         $urlImagenAnterior = $orientacion->urlFondo;
         $orientacion->delete();
         Storage::delete($urlImagenAnterior);
+        $orientaciones = Orientacion::get();
         return redirect()->back()->with('success', 'Registro creado con éxito')->with(['orientaciones' => $orientaciones]);
     }
 }

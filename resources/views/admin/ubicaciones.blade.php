@@ -23,10 +23,17 @@
     <div id="div1">
         <div class="col">
             @foreach ( $refugios as $refugio )
-                <div class="card">
+                <div class="card mt-1">
                     <div class="card-body">
                     <h5 class="card-title">{{ $refugio->nombre }}</h5>
-                    <p class="card-text">{{ $refugio->tipo }}</p>
+                    <p class="card-text">
+                        @if ($refugio->tipo == 0)
+                            albergue
+                        @endif
+                        @if ($refugio->tipo == 1)
+                            Casa de Seguridad
+                        @endif
+                    </p>
                    @foreach ( $ubicaciones as $ubicacion )
                        @if($ubicacion->idRefugio == $refugio->id  )
                        <p >Direccion : {{ $ubicacion->direccion }}</p>
@@ -52,7 +59,8 @@
         </div>
     </div>
     <div id="div2">
-        <div class="crear">
+        <div id="crear" class="crear">
+            <h3>AGREGAR NUEVO REFUGIO</h3>
             <form method="POST" action="{{ route('admin.CreateRefugio') }}" enctype="multipart/form-data">
                 @csrf <!-- Agrega el token CSRF para protección -->
                 <div class="input-group mb-3">
@@ -74,7 +82,8 @@
                 <button type="submit">Enviar</button>
             </form>
         </div>
-        <div class="update">
+        <div id="update" class="update" style="display: none;">
+            <h3>EDITAR REFUGIO</h3>
             <form method="POST" action="{{ route('admin.UpdateRefugio') }}" enctype="multipart/form-data">
                 @csrf <!-- Agrega el token CSRF para protección -->
                 <div class="input-group mb-3">
@@ -104,6 +113,9 @@
 
     <script>
         $(document).ready(function() {
+            // Mostrar el div "crear" por defecto
+            $("#crear").show();
+            $("#update").hide();
             // Captura el clic en el enlace "Editar"
             $(".editar-link").click(function(e) {
                 e.preventDefault(); // Evita que el enlace navegue a la página
@@ -117,8 +129,8 @@
                 $("#direccionE").val(direccion);
                 $("#idRef").val(id);
 
-                // Puedes redirigir al usuario al formulario de edición aquí
-                // window.location.href = "URL_DEL_FORMULARIO_DE_EDICIÓN";
+                $("#crear").hide();
+                $("#update").show();
 
             });
         });

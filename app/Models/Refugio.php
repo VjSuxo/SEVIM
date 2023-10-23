@@ -9,6 +9,7 @@ class Refugio extends Model
     protected $table = 'refugios';
 
     protected $fillable = [
+        'id',
         'nombre',
         'tipo',
     ];

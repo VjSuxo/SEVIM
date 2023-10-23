@@ -9,6 +9,7 @@ class Ley extends Model
     protected $table = 'ley';
 
     protected $fillable = [
+        'id',
         'nombre',
         'descripcion',
     ];

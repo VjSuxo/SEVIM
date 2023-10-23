@@ -27,8 +27,8 @@ class AdminUbicacionController extends Controller
     }
 
     public function updateRef(Request $request){
-        $refugio = Refugio::where('id',$request->idRef);
-        $ubicacion = Ubicacion::where('idRefugio',$request->id)->first();
+        $refugio = Refugio::where('id',$request->idRef)->first();
+        $ubicacion = Ubicacion::where('idRefugio',$refugio->id)->first();
         if($request['tipo']!=-1){
             $refugio->update([
                 'nombre'=> $request['nombre'],

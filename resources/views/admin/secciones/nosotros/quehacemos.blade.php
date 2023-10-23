@@ -108,7 +108,7 @@
         <div id="div2">
             <div class="bottons">
                 <button type="button" id="buttonC"  onclick="crear">Crear</button>
-                <form method="POST" action="{{ route('nosotrosQ.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.crearQS') }}" enctype="multipart/form-data">
                     @csrf <!-- Agrega el token CSRF para protección -->
                     <div class="input-group mb-3" id="resumenDiv" style="display: none">
                         <span class="input-group-text" id="basic-addon1">Resumen</span>

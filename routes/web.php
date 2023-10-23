@@ -8,7 +8,10 @@ use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminEditarController;
+use App\Http\Controllers\AdminLeyController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminQSController;
+use App\Http\Controllers\AdminQHController;
 use App\Http\Controllers\AdminUbicacionController;
 use App\Http\Controllers\OrientacionController;
 use App\Http\Controllers\NosotrosEditController;
@@ -118,6 +121,24 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
         Route::post('/admin/createRef','crearRef')->name('admin.CreateRefugio');
         Route::post('/admin/updateRef','updateRef')->name('admin.UpdateRefugio');
         Route::delete('/admin/deleteteRef/{refugio}','deleteRef')->name('admin.DeleteRefugio');
+    });
+    //CRUD Ley
+    Route::controller(AdminLeyController::class)->group(function(){
+        Route::post('/admin/crearLey','crearLey')->name('admin.crearLey');
+        Route::post('/admin/updateLey','updateLey')->name('admin.updateLey');
+        Route::delete('/admin/delete/{ley}','deleteLey')->name('admin.deleteLey');
+    });
+    //CRUD QUIENES SOMOS
+    Route::controller(AdminQSController::class)->group(function(){
+        Route::post('/admin/crearQS','crearQS')->name('admin.crearQS');
+        Route::post('/admin/updateQS','updateQS')->name('admin.updateQS');
+        Route::delete('/admin/deleteQS/{nosotros}','deleteQS')->name('admin.deleteQS');
+    });
+    //CRUD QUE HACEMOS
+    Route::controller(AdminQHController::class)->group(function(){
+        Route::post('/admin/crearHS','crearQH')->name('admin.crearQS');
+        Route::post('/admin/updateHS','updateQH')->name('admin.updateQS');
+        Route::delete('/admin/deleteHS/{nosotros}','deleteQH')->name('admin.deleteQS');
     });
 
 });
