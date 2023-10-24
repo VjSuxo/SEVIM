@@ -30,7 +30,7 @@
                                 <img src="{{$nos->urlFondo}}" style="max-height: 150px; max-width: 150px;  class="card-img" alt="...">
                                 <div class="card-img-overlay text-center">
                                     <h4 class="card-title">Fondo Pagina</h4>
-                                    <a class="editar-link btn btn-primary"
+                                    <a class="editar-F btn btn-primary"
                                     data-id="{{$nos->id}}"
                                     href="detallesInformacion.html">
                                     Editar
@@ -50,7 +50,7 @@
                                             <div class="card-body">
                                               <h5 class="card-title">Parte Vista Inicio</h5>
                                               <p class="card-text">{{$nos->resumen}}</p>
-                                                <a class="editar-link btn btn-primary"
+                                                <a class="editar-Ff btn btn-primary"
                                                 data-id="{{$nos->id}}"
                                                 data-resumen="{{$nos->resumen}}"
                                                 href="detallesInformacion.html">
@@ -77,14 +77,14 @@
                                               <h5 class="card-title">{{$nos->titulo}}</h5>
                                               <p class="card-text">{{$nos->texto}} </p>
                                                 <div class="acciones">
-                                                    <a style="max-height: 40px" class="editar-link btn btn-primary"
+                                                    <a style="max-height: 40px" class="editar-C btn btn-primary"
                                                     data-id="{{$nos->id}}"
                                                     data-titulo="{{$nos->titulo}}"
                                                     data-relleno="{{$nos->texto}}"
                                                     href="detallesInformacion.html">
                                                     Editar
                                                     </a>
-                                                    <form action="{{route('nosotrosQ.delete',$nos->id)}}" method="POST">
+                                                    <form action="{{route('admin.deleteQS',$nos->id)}}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-primary ">Eliminar</button>
@@ -107,43 +107,91 @@
         </div>
         <div id="div2">
             <div class="bottons">
-                <button type="button" id="buttonC"  onclick="crear">Crear</button>
-                <form method="POST" action="{{ route('admin.crearQS') }}" enctype="multipart/form-data">
-                    @csrf <!-- Agrega el token CSRF para protección -->
-                    <div class="input-group mb-3" id="resumenDiv" style="display: none">
-                        <span class="input-group-text" id="basic-addon1">Resumen</span>
-                        <input type="text" class="form-control" id="resumen" name="resumen" placeholder="Resumen" aria-label="Resumen" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3" id="urlFondoDiv" style="display: none">
-                        <input type="file" class="form-control" id="urlFondo" name="urlFondo">
-                        <label class="input-group-text" for="inputGroupFile02">Fondo</label>
-                    </div>
-                    <div class="input-group mb-3" id="tituloDiv" style="display: none">
-                        <span class="input-group-text" id="basic-addon1">Titulo</span>
-                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" aria-label="Nombre" aria-describedby="basic-addon1">
-                        @error('titulo')
-                            <small class="text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="input-group mb-3" id="textoDiv" style="display: none">
-                        <span class="input-group-text" id="basic-addon1">Texto</span>
-                        <input type="text" class="form-control" id="relleno" name="relleno" placeholder="Relleno" aria-label="Relleno" aria-describedby="basic-addon1">
-                    </div>
-                    <input  type="text" style="display: none" id="idV" name="idV">
-                    <input type="text" style="display: none" id="tipo" name="tipo" value="qH_PC">
-                    <button type="submit" id="button" style="display: none" >Enviar</button>
-                </form>
+                <div class="crearCard"  style="">
+                    <form method="POST" action="{{ route('admin.crearQS') }}" enctype="multipart/form-data">
+                        @csrf <!-- Agrega el token CSRF para protección -->
+                        <h3 class="titulo" >Crear Principal</h3>
+                        <div class="input-group mb-3" id="textoDiv" >
+                            <span class="input-group-text" id="basic-addon1">Resumen</span>
+                            <input type="text" class="form-control" id="resumen" name="resumen" placeholder="Resumen" aria-label="Relleno" aria-describedby="basic-addon1">
+                        </div>
+                        <h3 class="titulo" >Crear Fondo</h3>
+                        <div class="input-group mb-3" id="urlFondoDiv" >
+                            <input type="file" class="form-control" id="urlFondo" name="urlFondo">
+                            <label class="input-group-text" for="inputGroupFile02">Fondo</label>
+                        </div>
+                        <h3 class="titulo" >Crear Card</h3>
+                        <div class="input-group mb-3" id="urlFondoDiv" >
+                            <input type="file" class="form-control" id="urlImagen" name="urlmagen">
+                            <label class="input-group-text" for="inputGroupFile02">Imagen</label>
+                        </div>
+                        <div class="input-group mb-3" id="tituloDiv" >
+                            <span class="input-group-text" id="basic-addon1">Titulo</span>
+                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" aria-label="Nombre" aria-describedby="basic-addon1">
+                            @error('titulo')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3" id="textoDiv" >
+                            <span class="input-group-text" id="basic-addon1">Texto</span>
+                            <input type="text" class="form-control" id="relleno" name="relleno" placeholder="Relleno" aria-label="Relleno" aria-describedby="basic-addon1">
+                        </div>
+                        <button type="submit" id="button"  >Enviar</button>
+                    </form>
+                </div>
+                <div class="editarP" style="display: none">
+                    <h3>Editar Principal</h3>
+                    <form method="POST" action="{{ route('admin.updateQS') }}" enctype="multipart/form-data">
+                        @csrf <!-- Agrega el token CSRF para protección -->
+                        <div class="input-group mb-3" id="resumenDiv">
+                            <span class="input-group-text" id="basic-addon1">Resumen</span>
+                            <input type="text" class="form-control" id="resumenEP" name="resumen" placeholder="Resumen" aria-label="Resumen" aria-describedby="basic-addon1">
+                        </div>
+                        <input  type="text" style="display: none" id="idVP" name="idV">
+                        <button type="submit" id="button"  >Enviar</button>
+                    </form>
+                </div>
+                <div class="editarF" style="display: none">
+                    <h3>Editar Fondo</h3>
+                    <form method="POST" action="{{ route('admin.updateQS') }}" enctype="multipart/form-data">
+                        @csrf <!-- Agrega el token CSRF para protección -->
+                        <div class="input-group mb-3" id="urlFondoDiv">
+                            <input type="file" class="form-control" id="urlFondoEF" name="urlFondo">
+                            <label class="input-group-text" for="inputGroupFile02">Fondo</label>
+                        </div>
+                        <input  type="text" style="display: none" id="idVF" name="idV">
+                        <button type="submit" id="button"  >Enviar</button>
+                    </form>
+                </div>
+                <div class="editarC" style="display: none">
+                    <h3>Editar Card</h3>
+                    <form method="POST" action="{{ route('admin.updateQS') }}" enctype="multipart/form-data">
+                        @csrf <!-- Agrega el token CSRF para protección -->
+
+                        <div class="input-group mb-3" id="urlFondoDiv" >
+                            <input type="file" class="form-control" id="urlFondo" name="urlmagen">
+                            <label class="input-group-text" for="inputGroupFile02">Fondo</label>
+                        </div>
+                        <div class="input-group mb-3" id="tituloDiv" >
+                            <span class="input-group-text" id="basic-addon1">Titulo</span>
+                            <input type="text" class="form-control" id="tituloEC" name="titulo" placeholder="Titulo" aria-label="Nombre" aria-describedby="basic-addon1">
+                            @error('titulo')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3" id="textoDiv" >
+                            <span class="input-group-text" id="basic-addon1">Texto</span>
+                            <input type="text" class="form-control" id="rellenoEC" name="relleno" placeholder="Relleno" aria-label="Relleno" aria-describedby="basic-addon1">
+                        </div>
+                        <input  type="text" style="display: none" id="idVC" name="idV">
+                        <input type="text" style="display: none" id="tipo" name="tipo" value="qH_PC">
+                        <button type="submit" id="button" >Enviar</button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
       <!-- Optional JavaScript; choose one of the two! -->
 <!-- Agrega jQuery a tu página si aún no está incluido -->
@@ -152,49 +200,57 @@
 <script>
 $(document).ready(function() {
     // Captura el clic en el enlace "Editar"
-    $(".editar-link").click(function(e) {
+    $(".editar-F").click(function(e) {
+        e.preventDefault(); // Evita que el enlace navegue a la página
+        // Obtiene los datos del atributo "data" del enlace
+        var id = $(this).data("id");
+        $("#idVF").val(id);
+        $(".editarF").show();
+        $(".editarP").hide();
+            $(".editarC").hide();
+            $(".editarF").hide();
+            $(".crearCard").hide();
+    });
+
+    $(".editar-Ff").click(function(e) {
+        e.preventDefault(); // Evita que el enlace navegue a la página
+        // Obtiene los datos del atributo "data" del enlace
+        var id = $(this).data("id");
+        var resumen = $(this).data("resumen");
+            $("#resumenEP").val(resumen);
+            $("#idVP").val(id);
+            $(".editarP").show();
+            $(".editarC").hide();
+            $(".editarF").hide();
+            $(".crearCard").hide();
+    });
+
+
+    $(".editar-C").click(function(e) {
         e.preventDefault(); // Evita que el enlace navegue a la página
 
         // Obtiene los datos del atributo "data" del enlace
         var id = $(this).data("id");
         var titulo = $(this).data("titulo");
-        var resumen = $(this).data("resumen");
         var relleno = $(this).data("relleno");
-        if(resumen != null){
-            $("#resumenDiv").show();
-            $("#tituloDiv").hide();
-                $("#textoDiv").hide();
-                $("#urlFondoDiv").hide();
-            $("#resumen").val(resumen);
-            $("#button").show();
-            $("#urlFondoDiv").show();
-            $("#idV").val(id);
-        }else{
-            if(relleno != null){
-                $("#tituloDiv").show();
-                $("#textoDiv").show();
-                $("#urlFondoDiv").show();
-                $("#button").show();
-                $("#titulo").val(titulo);
-                $("#relleno").val(relleno);
-                $("#idV").val(id);
-                $("#resumenDiv").hide();
-            }
-            else{
-                $("#urlFondoDiv").show();
-                $("#idV").val(id);
-                $("#tipo").val('qH_PF');
-                $("#button").show();
-            }
-        }
+            $("#tituloEC").val(titulo);
+            $("#rellenoEC").val(relleno);
+            $("#idVC").val(id);
+            $(".editarC").show();
+            $(".editarP").hide();
+            $(".editarF").hide();
+            $(".crearCard").hide();
 
 
     });
+
     $("#buttonC").click(function(e){
         $("#tituloDiv").show();
                 $("#textoDiv").show();
                 $("#urlFondoDiv").show();
                 $("#button").show();
+                $("#resumen").show();
+
     });
 });
 

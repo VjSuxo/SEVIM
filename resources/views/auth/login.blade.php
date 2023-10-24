@@ -1,6 +1,6 @@
 <x-layouts.app >
     @vite(['resources/css/style_login.css'])
-   <!------ <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <div class="container-body">
         <div class="container-page" id="container">
           <div class="login-container" id="LoginContainer">
