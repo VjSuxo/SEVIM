@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
 use App\Mail\RecoveryCodeMail;
 use Auth;
@@ -52,7 +53,6 @@ class LoginController extends Controller
             'password' => 'required',
        //     'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
         ]);
-
         $input = $request->all();
         if( auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
