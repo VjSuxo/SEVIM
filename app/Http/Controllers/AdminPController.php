@@ -11,7 +11,7 @@ class AdminPController extends Controller
     public function crearP(Request $request){
         $imagen = $request->file('urlFondo')->store('public/Nosotros');
         $urlFondoPath = Storage::url($imagen);
-        $consulta = new Reqquest([
+        $consulta = new Request([
             'titulo' => $request['titulo'],
             'texto'  => $request['relleno'],
             'tipo'   => "qp_PC",

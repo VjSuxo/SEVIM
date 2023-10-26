@@ -155,6 +155,12 @@ Route::middleware(['auth', 'verificarCodigo'])->group(function () {
         Route::post('/formularioVictimaPost/{denuncia}','createDV')->name('formularioPDV');
         Route::get('/formularioDenunciado/{tiene}','indexDen')->name('formularioDen');
         Route::post('/formDenunciadoPost/{tiene}','createDD')->name('formularioPDen');
+
+        Route::post('/update/Formulario/{tiene}','updateDe')->name('veriForm');
+        Route::get('/upv/FormularioVictima/{tiene}','verifiForVic')->name('vFic');
+        Route::post('/update/FormularioVictm/{tiene}','updateVi')->name('veriFDEN');
+        Route::get('/upv/FormularioDen/{tiene}','verifiForDenu')->name('vDen');
+        Route::post('/upv/FoV/{tiene}','updateDen')->name('veriFVV');
     });
 });
 

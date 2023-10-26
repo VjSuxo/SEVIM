@@ -27,8 +27,6 @@
                         <div class="input-group mb-3">
                             <label for="nacionalidad" class="input-group-text">Correo</label>
                             <input type="email" class="form-control" id="email" name="email" required placeholder="Nacionalidad" value="{{ auth()->check() ? auth()->user()->persona->email : '' }}">
-                            <label for="nacionalidad" class="input-group-text">Nacionalidad</label>
-                            <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" required placeholder="Nacionalidad" value="{{ auth()->check() ? auth()->user()->persona->nacionalidad : '' }}">
                             <label for="sexo" class="input-group-text">Sexo</label>
                             <select class="form-select" id="sexo" name="sexo" required>
                                 <option value="Femenino" {{ auth()->check() && auth()->user()->persona->sexo == 'Femenino' ? 'selected' : '' }}>Femenino</option>
@@ -49,19 +47,6 @@
                             <label for="celular" class="input-group-text">Celular</label>
                             <input type="text" class="form-control" id="celular" name="celular" required placeholder="Celular" value="{{ auth()->check() ? auth()->user()->persona->celular : '' }}">
                        </div>
-                       <h1 class="titleI">3. UBICACION</h1>
-                       <div class="input-group mb-3">
-                        <label for="ciudad" class="input-group-text">Ciudad</label>
-                        <input type="text" class="form-control" id="ciudad" name="ciudad" required placeholder="Ciudad" value="">
-                        <label for="departamento" class="input-group-text">Departamento</label>
-                        <input type="text" class="form-control" id="departamento" name="departamento" required placeholder="Departamento" value="">
-                       </div>
-                       <div class="input-group mb-3">
-                        <label for="domicilio" class="input-group-text">Domicilio</label>
-                        <input type="text" class="form-control" id="domicilio" name="domicilio" required placeholder="Domicilio" value="">
-                        <label for="ubicacion" class="input-group-text">Ubicación</label>
-                        <input type="text" class="form-control" id="ubicacion"/>
-                      </div>
                       <button type="submit">Enviar</button>
                     </div>
             </form>

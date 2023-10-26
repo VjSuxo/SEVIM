@@ -7,9 +7,11 @@ use  App\Models\TipoDenuncia;
 use App\Models\TipoViolencia;
 use App\Models\EstadoCivil;
 use App\Models\Persona;
+use App\Models\Ubicacion;
 use App\Models\DenunciaViolencia;
 use App\Models\Tiene;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class DenunciaController extends Controller
 {
@@ -54,7 +56,6 @@ class DenunciaController extends Controller
         }
         // Guarda la denuncia en la base de datos
         $denuncia->save();
-
         return redirect()->route('formularioVic',['denuncia'=>$denuncia->id]);
     }
 
@@ -79,6 +80,10 @@ class DenunciaController extends Controller
             'fechaDenuncia'=> $fechaActual,
         ]);
         $tiene->save();
+        Ubicacion::create([
+            'direccion'=> 'Ciudad='+$request['ciudad']+'-Departamento='+$request['departamento']+'-Domicilio='+$request['domicilio']+'-Ubicacion='+$request['ubicacion'],
+            'idPersona'=> $personaCreada['id']
+        ]);
         return redirect()->route('formularioDen',['tiene'=>$tiene->id]);
     }
 
@@ -96,8 +101,7 @@ class DenunciaController extends Controller
         $fechaActual = Carbon::now();
         $tiene->denunciado_id  = $persona->id;
         $tiene->save();
-        return redirect()->route('welcome');
-
+        return $this->verifiFor($tiene);
     }
 
     function createOrUpdatePersona($userData) {
@@ -123,6 +127,75 @@ class DenunciaController extends Controller
 
         return $persona;
     }
+
+
+    public function verifiFor(Tiene $tiene){
+        $tipoViolencia = TipoViolencia::get();
+        return view('/frmVal/formulario',['tipoViolencias'=>$tipoViolencia,'tiene'=>$tiene,]);
+    }
+
+    public function updateDe(Request $request, Tiene $tiene){
+
+        $tiene->update([
+            'fechaDenuncia'=>$request['fechaD'],
+        ]);
+        if($request->hasFile('archivo')){
+            $archivo = $request->file('archivo')->store('public/archivoDen');;
+            $rutaArchivo = Storage::url($archivo);
+            $tiene->denunciaViolencia->update([
+                'fechaHechoDenuncia'=> $request['fechaH'],
+                'relato' => $request['relato'],
+                'urlArchivoPruebas' => $rutaArchivo,
+                'tipo_violencia_id' => $request['tipoV'],
+            ]);
+        }
+        else{
+            $tiene->denunciaViolencia->update([
+                'fechaHechoDenuncia'=> $request['fechaH'],
+                'relato' => $request['relato'],
+                'tipo_violencia_id' => $request['tipoV'],
+            ]);
+        }
+        return redirect()->route('vFic',$tiene);
+    }
+
+    public function verifiForVic(Tiene $tiene){
+        $estadoCivil = EstadoCivil::get();
+        return view('/frmVal/formulariovictima',[ 'estadosCiviles'=> $estadoCivil,'tiene' => $tiene]);
+    }
+
+    public function updateVi(Request $request,Tiene $tiene){
+        $persona = Persona::where('email', $request['email'])->first();
+        $persona->update([
+            'nombre'=>$request['nombre'],
+            'apPat'=>$request['apPat'],
+            'apMat'=>$request['apMat'],
+            'fechaNac'=>$request['fechaNac'],
+            'sexo'=>$request['sexo'],
+            'celular'=>$request['celular'],
+            'idEstado'=>$request['estadoCivil'],
+        ]);
+        return redirect()->route('vDen',$tiene);
+    }
+
+    public function verifiForDenu(Tiene $tiene){
+        $estadoCivil = EstadoCivil::get();
+        return view('/frmVal/formularioDenunciado',[ 'estadosCiviles'=> $estadoCivil,'tiene' => $tiene]);
+    }
+
+    public function updateDen(Request $request, Tiene $tiene) {
+        $tiene->denunciado->update([
+            'nombre'=>$request['nombre'],
+            'apPat'=>$request['apPat'],
+            'apMat'=>$request['apMat'],
+            'fechaNac'=>$request['fechaNac'],
+            'sexo'=>$request['sexo'],
+            'celular'=>$request['celular'],
+            'idEstado'=>$request['estadoCivil'],
+        ]);
+        return redirect()->route('welcome');
+    }
+
 
 
 
