@@ -23,8 +23,6 @@
                             <input type="number" class="form-control" id="fechaNac" name="fechaNac" required placeholder="Fecha de Nacimiento" value="">
                         </div>
                         <div class="input-group mb-3">
-                            <label for="nacionalidad" class="input-group-text">Nacionalidad</label>
-                            <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" required placeholder="Nacionalidad" value="">
                             <label for="sexo" class="input-group-text">Sexo</label>
                             <select class="form-select" id="sexo" name="sexo" required>
                                 <option value="Femenino" >Femenino</option>

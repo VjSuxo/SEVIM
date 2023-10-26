@@ -60,13 +60,13 @@ class DenunciaController extends Controller
     }
 
     public function createDV(Request $request,DenunciaViolencia $denuncia) {
+
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
             'apPat' => 'required|string|max:255',
             'apMat' => 'required|string|max:255',
             'docIdentidad' => 'required|string|max:255',
             'fechaNac' => 'required|date',
-            'nacionalidad' => 'required|string|max:255',
             'sexo' => 'required|in:Femenino,Masculino,Otro',
             'estadoCivil' => 'required|exists:estados_civiles,id', // Asegúrate de que 'estadoCivil' exista en la tabla estados_civiles
             'celular' => 'required|string|max:255',
@@ -80,10 +80,11 @@ class DenunciaController extends Controller
             'fechaDenuncia'=> $fechaActual,
         ]);
         $tiene->save();
-        Ubicacion::create([
-            'direccion'=> 'Ciudad='+$request['ciudad']+'-Departamento='+$request['departamento']+'-Domicilio='+$request['domicilio']+'-Ubicacion='+$request['ubicacion'],
-            'idPersona'=> $personaCreada['id']
-        ]);
+       // Ubicacion::create([
+        //    'direccion'=> 'Ciudad='+$request['ciudad']+'-Departamento='+$request['departamento']+'-Domicilio='+$request['domicilio']+'-Ubicacion='+$request['ubicacion'],
+         //   'idPersona'=> $personaCreada['id']
+       // ]);
+
         return redirect()->route('formularioDen',['tiene'=>$tiene->id]);
     }
 

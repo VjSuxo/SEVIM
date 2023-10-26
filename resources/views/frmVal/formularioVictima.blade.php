@@ -49,7 +49,7 @@
                                 <input type="text" class="form-control" id="celular" name="celular" required placeholder="Celular" value="{{ auth()->check() ? auth()->user()->persona->celular : '' }}">
                            </div>
 
-                          <button type="submit">Enviar</button>
+                          <button type="submit">Siguiente</button>
                         </div>
                 </form>
             </div>

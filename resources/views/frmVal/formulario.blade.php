@@ -79,7 +79,8 @@
                             <a href="{{ $tiene->denunciaViolencia->urlArchivoPruebas }}">Pruebas</a>
                         </div>
                     @endif
-                    <a href="/editar" id="editar" class="btn btn-primary">Editar</a><a href="" class="btn btn-primary">Envia</a>
+                    <a href="/editar" id="editar" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('vFic',$tiene)  }}" class="btn btn-primary">Siguiente</a>
             </div>
         </div>
         </div>
