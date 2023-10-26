@@ -11,7 +11,7 @@ class CreateTipoViolenciaSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public static function run(): void
     {
         TipoViolencia::create([
             'tipoviolencia' => 'Violencia física',

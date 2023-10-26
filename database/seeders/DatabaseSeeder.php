@@ -4,7 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Database\Seeders\CreateEstadoCivilSeeder;
+use Database\Seeders\CreatePersonaSeeder;
+use Database\Seeders\CreateUserSeeder;
+use Database\Seeders\CreateTipoDenunciaSeeder;
+use Database\Seeders\CreateTipoViolenciaSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,11 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        CreateEstadoCivilSeeder::run();
+        CreatePersonaSeeder::run();
+        CreateUserSeeder::run();
+        CreateTipoDenunciaSeeder::run();
+        CreateTipoViolenciaSeeder::run();
     }
 }
