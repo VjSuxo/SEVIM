@@ -10,6 +10,7 @@ use App\Models\Persona;
 use App\Models\Ubicacion;
 use App\Models\DenunciaViolencia;
 use App\Models\Tiene;
+use App\Models\Direccion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
@@ -80,11 +81,14 @@ class DenunciaController extends Controller
             'fechaDenuncia'=> $fechaActual,
         ]);
         $tiene->save();
-       // Ubicacion::create([
-        //    'direccion'=> 'Ciudad='+$request['ciudad']+'-Departamento='+$request['departamento']+'-Domicilio='+$request['domicilio']+'-Ubicacion='+$request['ubicacion'],
-         //   'idPersona'=> $personaCreada['id']
-       // ]);
 
+        $direccion = new Direccion([
+            'departamento'=>$request['departamento'],
+            'domicilio'=>$request['domicilio'],
+            'ubicacion'=>$request['ubicacion'],
+        ]);
+        $direccion->save();
+        $denuncia->update(['direccion_id'=>$direccion['id'],]);
         return redirect()->route('formularioDen',['tiene'=>$tiene->id]);
     }
 
@@ -176,6 +180,11 @@ class DenunciaController extends Controller
             'celular'=>$request['celular'],
             'idEstado'=>$request['estadoCivil'],
         ]);
+        $tiene->denunciaViolencia->direccion->update([
+            'departamento'=>$request['departamento'],
+            'domicilio'=>$request['domicilio'],
+            'ubicacion'=>$request['ubicacion'],
+        ]);
         return redirect()->route('vDen',$tiene);
     }
 
@@ -194,6 +203,7 @@ class DenunciaController extends Controller
             'celular'=>$request['celular'],
             'idEstado'=>$request['estadoCivil'],
         ]);
+
         return redirect()->route('welcome');
     }
 

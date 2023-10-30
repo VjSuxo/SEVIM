@@ -48,7 +48,17 @@
                                 <label for="celular" class="input-group-text">Celular</label>
                                 <input type="text" class="form-control" id="celular" name="celular" required placeholder="Celular" value="{{ auth()->check() ? auth()->user()->persona->celular : '' }}">
                            </div>
-
+                           <h1 class="titleI">3. UBICACION</h1>
+                           <div class="input-group mb-3">
+                            <label for="departamento" class="input-group-text">Departamento</label>
+                            <input type="text" class="form-control" id="departamento" name="departamento" required placeholder="Departamento" value="{{ $tiene->denunciaViolencia->direccion->departamento }}">
+                           </div>
+                           <div class="input-group mb-3">
+                            <label for="domicilio" class="input-group-text">Domicilio</label>
+                            <input type="text" class="form-control" id="domicilio" name="domicilio" required placeholder="Domicilio" value="{{ $tiene->denunciaViolencia->direccion->domicilio }}">
+                            <label for="ubicacion" class="input-group-text">Ubicación</label>
+                            <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="{{ $tiene->denunciaViolencia->direccion->ubicacion }}"/>
+                          </div>
                           <button type="submit">Siguiente</button>
                         </div>
                 </form>

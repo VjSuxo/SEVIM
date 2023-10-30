@@ -20,6 +20,7 @@ class CreateUbicacionesTable extends Migration
             $table->unsignedBigInteger('idRefugio')->nullable();
             $table->unsignedBigInteger('idEvento')->nullable();
 
+            $table->foreign('direccion_id')->references('id')->on('direcciones'); // Agregar esta línea
             $table->foreign('idPersona')->references('id')->on('personas');
             $table->foreign('idRefugio')->references('id')->on('refugios');
             $table->foreign('idEvento')->references('id')->on('eventos');

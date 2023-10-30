@@ -47,10 +47,8 @@
                             <label for="celular" class="input-group-text">Celular</label>
                             <input type="text" class="form-control" id="celular" name="celular" required placeholder="Celular" value="{{ auth()->check() ? auth()->user()->persona->celular : '' }}">
                        </div>
-                   <!--    <h1 class="titleI">3. UBICACION</h1>
+                      <h1 class="titleI">3. UBICACION</h1>
                        <div class="input-group mb-3">
-                        <label for="ciudad" class="input-group-text">Ciudad</label>
-                        <input type="text" class="form-control" id="ciudad" name="ciudad" required placeholder="Ciudad" value="">
                         <label for="departamento" class="input-group-text">Departamento</label>
                         <input type="text" class="form-control" id="departamento" name="departamento" required placeholder="Departamento" value="">
                        </div>
@@ -59,7 +57,7 @@
                         <input type="text" class="form-control" id="domicilio" name="domicilio" required placeholder="Domicilio" value="">
                         <label for="ubicacion" class="input-group-text">Ubicación</label>
                         <input type="text" class="form-control" id="ubicacion" name="ubicacion"/>
-                      </div>-->
+                      </div>
                       <button type="submit">Enviar</button>
                     </div>
             </form>
