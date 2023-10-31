@@ -108,7 +108,7 @@
         <div id="div2">
             <div class="bottons">
                 <div class="crearCard"  style="">
-                    <form method="POST" action="{{ route('admin.crearQS') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.crearQH') }}" enctype="multipart/form-data">
                         @csrf <!-- Agrega el token CSRF para protección -->
                         <h3 class="titulo" >Crear Principal</h3>
                         <div class="input-group mb-3" id="textoDiv" >
@@ -165,7 +165,7 @@
                 </div>
                 <div class="editarC" style="display: none">
                     <h3>Editar Card</h3>
-                    <form method="POST" action="{{ route('admin.updateQS') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.updateQH') }}" enctype="multipart/form-data">
                         @csrf <!-- Agrega el token CSRF para protección -->
 
                         <div class="input-group mb-3" id="urlFondoDiv" >

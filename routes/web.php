@@ -140,9 +140,9 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
     });
     //CRUD QUE HACEMOS
     Route::controller(AdminQHController::class)->group(function(){
-        Route::post('/admin/crearHS','crearQH')->name('admin.crearQS');
-        Route::post('/admin/updateHS','updateQH')->name('admin.updateQS');
-        Route::delete('/admin/deleteHS/{nosotros}','deleteQH')->name('admin.deleteQS');
+        Route::post('/admin/crearHS','crearQH')->name('admin.crearQH');
+        Route::post('/admin/updateHS','updateQH')->name('admin.updateQH');
+        Route::delete('/admin/deleteHS/{nosotros}','deleteQH')->name('admin.deleteQH');
     });
 
 });

@@ -17,11 +17,11 @@
                         @if ($nos->tipo == 'qH_PC')
                             <div class="col">
                                 <div class="card fondoCard h-100 d-flex justify-content-center align-items-center">
-                                <div class="card-body text-center">
-                                    <h2 class="card-title">{{$nos->titulo}}</h2>
                                     <img src="{{$nos->urlImagen}}" class="card-img-top" alt="...">
-                                    <p class="card-text">{{$nos->texto}}</p>
-                                </div>
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">{{$nos->titulo}}</h5>
+                                        <p class="card-text">{{$nos->texto}}</p>
+                                    </div>
                                 </div>
                             </div>
                         @endif

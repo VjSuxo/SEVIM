@@ -23,7 +23,7 @@ class AdminQHController extends Controller
             $urlFondoPath = Storage::url($imagen);
             $consulta = new Request([
                 'titulo'=>$request['titulo'],
-                'relleno'=>$request['relleno'],
+                'texto'=>$request['relleno'],
                 'urlImagen'=>$urlFondoPath,
                 'tipo'=>"qH_PC",
             ]);
@@ -81,7 +81,7 @@ class AdminQHController extends Controller
                         'urlImagen'=>$urlFondoPath,
                     ]);
                     NosotrosController::update($consulta,$nosotros);
-                    return redirect()->route('admin.edit.QuienesSomos');
+                    return redirect()->route('admin.edit.QueHacemos');
                 }
                 $consulta = new Request([
                     'titulo' => $request['titulo'],
@@ -89,12 +89,14 @@ class AdminQHController extends Controller
                     'urlFondo'=>$nosotros['urlImagen'],
                 ]);
                 NosotrosController::update($consulta,$nosotros);
-                return redirect()->route('admin.edit.QuienesSomos');
+                return redirect()->route('admin.edit.QueHacemos');
             }
             $consulta = new Request([
                 'titulo' => $request['titulo'],
                 'texto'=>$request['relleno'],
                 'resumen'=>$request['resumen'],
+                'urlImagen'=> $nosotros['urlImagen'],
+                'urlFondo'=> $request['urlFondo'],
             ]);
             NosotrosController::update($consulta,$nosotros);
             return redirect()->route('admin.edit.QueHacemos');
