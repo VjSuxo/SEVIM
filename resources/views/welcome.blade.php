@@ -15,9 +15,6 @@
                             <h3>{{$orientacion->nombre}}</h3>
                             <p>{{ $orientacion->id }}</p>
                             <p>{{$orientacion->resumen}}</p>
-                            <div class="link">
-                                <a class="editar-link"  href="detallesInformacion.html">Details</a>
-                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -34,10 +31,10 @@
                       <div class="card-body text-center d-flex flex-column"> <!-- Agregamos "text-center" aquí -->
                         <h2 class="card-title">Quienes Somos</h2>
                         @foreach ( $nosotros as $nos )
-                        @if ($nos->tipo == 'qs_Pp')
-                        <p class="card-text">{{ $nos->resumen }}</p>
-                        @endif
-                     @endforeach
+                            @if ($nos->tipo == 'qSP')
+                                <p class="card-text">{{ $nos->resumen }}</p>
+                            @endif
+                        @endforeach
                         <a href="{{route("quienesSomos")}}" class="btn formatoBtn mt-auto">mas informacion</a>
                       </div>
                     </div>
@@ -47,7 +44,11 @@
                       <img src="/img/icon/icon_carteles.png" class="card-img-top" alt="...">
                       <div class="card-body text-center d-flex flex-column">
                         <h2 class="card-title">Que Hacemos</h2>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        @foreach ( $nosotros as $nos )
+                            @if ($nos->tipo == 'qH_Pf')
+                                <p class="card-text">{{ $nos->resumen }}</p>
+                            @endif
+                        @endforeach
                         <a href="{{route('queHacemos')}}" class="btn formatoBtn mt-auto">Go somewhere</a>
                       </div>
                     </div>
@@ -57,7 +58,11 @@
                       <img src="/img/icon/icon_participa.png" class="card-img-top" alt="...">
                       <div class="card-body text-center d-flex flex-column"> <!-- Agregamos "d-flex flex-column" aquí -->
                         <h2 class="card-title">Participa</h2>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        @foreach ( $nosotros as $nos )
+                            @if ($nos->tipo == 'qPF')
+                                <p class="card-text">{{ $nos->resumen }}</p>
+                            @endif
+                        @endforeach
                         <a href="{{route('participa')}}" class="btn formatoBtn mt-auto">Go somewhere</a> <!-- Agregamos "mt-auto" aquí -->
                       </div>
                     </div>

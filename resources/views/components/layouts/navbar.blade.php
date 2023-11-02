@@ -12,7 +12,16 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('welcome')}}">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('welcome')}}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{route('leyes')}}">Leyes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{route('evento')}}">Eventos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{route('refugio')}}">Refugios</a>
                 </li>
                 @if(auth()->check())
                 <li class="nav-item">

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class AdminPController extends Controller
 {
     public function crearP(Request $request){
-        $imagen = $request->file('urlFondo')->store('public/Nosotros');
+        $imagen = $request->file('urlImagen')->store('public/Nosotros');
         $urlFondoPath = Storage::url($imagen);
         $consulta = new Request([
             'titulo' => $request['titulo'],
@@ -29,52 +29,53 @@ class AdminPController extends Controller
                 $urlFondoPath = Storage::url($imagen);
                 if($urlFondoPath != $nosotros['urlFondo']){
                     $consulta = new Request([
-                        'titulo' => $request['titulo'],
-                        'texto'=>$request['relleno'],
-                        'resumen'=>$request['resumen'],
                         'urlFondo'=>$urlFondoPath,
                     ]);
                     NosotrosController::update($consulta,$nosotros);
-                    return redirect()->route('admin.edit.QueHacemos');
+                    return redirect()->route('admin.edit.Participa');
                 }
                 $consulta = new Request([
-                    'titulo' => $request['titulo'],
-                    'texto'=>$request['texto'],
                     'urlFondo'=>$nosotros['urlFondo'],
                 ]);
                 NosotrosController::update($consulta,$nosotros);
                 return redirect()->route('admin.edit.QueHacemos');
             }
-            if($request->hasFile('urlmagen')){
-                $imagen = $request->file('urlmagen')->store('public/Nosotros');
+            if($request->hasFile('urlImagen')){
+                $imagen = $request->file('urlImagen')->store('public/Nosotros');
                 $urlFondoPath = Storage::url($imagen);
                 if($urlFondoPath != $nosotros['urlImagen']){
 
                     $consulta = new Request([
                         'titulo' => $request['titulo'],
                         'texto'=>$request['relleno'],
-                        'resumen'=>$request['resumen'],
                         'urlImagen'=>$urlFondoPath,
                     ]);
                     NosotrosController::update($consulta,$nosotros);
-                    return redirect()->route('admin.edit.QuienesSomos');
+                    return redirect()->route('admin.edit.Participa');
                 }
                 $consulta = new Request([
                     'titulo' => $request['titulo'],
                     'texto'=>$request['texto'],
-                    'urlFondo'=>$nosotros['urlImagen'],
+                    'urlImagen'=>$nosotros['urlImagen'],
                 ]);
                 NosotrosController::update($consulta,$nosotros);
-                return redirect()->route('admin.edit.QuienesSomos');
+                return redirect()->route('admin.edit.Participa');
             }
             $consulta = new Request([
                 'titulo' => $request['titulo'],
                 'texto'=>$request['relleno'],
                 'resumen'=>$request['resumen'],
+                'urlImagen'=>$nosotros['urlImagen'],
+                'urlFondo'=>$nosotros['urlFondo'],
             ]);
             NosotrosController::update($consulta,$nosotros);
-            return redirect()->route('admin.edit.QueHacemos');
+            return redirect()->route('admin.edit.Participa');
         }
-        return redirect()->route('admin.edit.QueHacemos');
+        return redirect()->route('admin.edit.Participa');
+    }
+
+    public function deleteP(Nosotros $nosotros){
+        NosotrosController::destroy($nosotros);
+        return redirect()->route('admin.edit.Participa');
     }
 }

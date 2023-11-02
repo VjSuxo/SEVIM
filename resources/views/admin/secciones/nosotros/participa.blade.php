@@ -38,14 +38,11 @@
                                 </div>
                               </div>
                             @endif
-                            @if ($nos->tipo == 'qp_Pf' )
+                            @if ($nos->tipo == 'qPF' )
                             <div class="row row-cols-1 row-cols-md-1 g-4">
                                 <div class="col">
                                     <div class="card mb-3" style="max-width: 540px;">
                                         <div class="row g-0">
-                                          <div class="col-md-4">
-                                            <img src="{{$nos->urlImagen}}" class="img-fluid rounded-start" alt="...">
-                                          </div>
                                           <div class="col-md-8">
                                             <div class="card-body">
                                               <h5 class="card-title">Parte Vista Inicio</h5>
@@ -84,10 +81,10 @@
                                                     href="detallesInformacion.html">
                                                     Editar
                                                     </a>
-                                                    <form action="{{route('nosotrosQ.delete',$nos->id)}}" method="POST">
+                                                    <form action="{{route('admin.deletP',$nos->id)}}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a type="submit" class="btn btn-primary ">Eliminar</a>
+                                                        <button type="submit" class="btn btn-primary ">Eliminar</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -108,31 +105,59 @@
         <div id="div2">
             <div class="bottons">
                 <button type="button" id="buttonC"  onclick="crear">Crear</button>
-                <form method="POST" action="{{ route('nosotrosQ.store') }}" enctype="multipart/form-data">
-                    @csrf <!-- Agrega el token CSRF para protección -->
-                    <div class="input-group mb-3" id="resumenDiv" style="display: none">
-                        <span class="input-group-text" id="basic-addon1">Resumen</span>
-                        <input type="text" class="form-control" id="resumen" name="resumen" placeholder="Resumen" aria-label="Resumen" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3" id="urlFondoDiv" style="display: none">
-                        <input type="file" class="form-control" id="urlFondo" name="urlFondo">
-                        <label class="input-group-text" for="inputGroupFile02">Fondo</label>
-                    </div>
-                    <div class="input-group mb-3" id="tituloDiv" style="display: none">
-                        <span class="input-group-text" id="basic-addon1">Titulo</span>
-                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" aria-label="Nombre" aria-describedby="basic-addon1">
-                        @error('titulo')
-                            <small class="text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="input-group mb-3" id="textoDiv" style="display: none">
-                        <span class="input-group-text" id="basic-addon1">Texto</span>
-                        <input type="text" class="form-control" id="relleno" name="relleno" placeholder="Relleno" aria-label="Relleno" aria-describedby="basic-addon1">
-                    </div>
-                    <input  type="text" style="display: none" id="idV" name="idV">
-                    <input type="text" style="display: none" id="tipo" name="tipo" value="qp_PC">
-                    <button type="submit" id="button" style="display: none" >Enviar</button>
-                </form>
+                <div class="crear" id="crear">
+                    <form method="POST" action="{{ route('admin.crearP') }}" enctype="multipart/form-data">
+                        @csrf <!-- Agrega el token CSRF para protección -->
+
+                        <div class="input-group mb-3" id="urlFondoDiv">
+                            <input type="file" class="form-control" id="urlImagen" name="urlImagen">
+                            <label class="input-group-text" for="inputGroupFile02">Imagen</label>
+                        </div>
+                        <div class="input-group mb-3" id="tituloDiv" >
+                            <span class="input-group-text" id="basic-addon1">Titulo</span>
+                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" aria-label="Nombre" aria-describedby="basic-addon1">
+                            @error('titulo')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3" id="textoDiv">
+                            <span class="input-group-text" id="basic-addon1">Texto</span>
+                            <input type="text" class="form-control" id="relleno" name="relleno" placeholder="Relleno" aria-label="Relleno" aria-describedby="basic-addon1">
+                        </div>
+                        <button type="submit" id="button">Enviar</button>
+                    </form>
+                </div>
+                <div class="editar" id="editar" >
+                    <form method="POST" action="{{ route('admin.updateP') }}" enctype="multipart/form-data">
+                        @csrf <!-- Agrega el token CSRF para protección -->
+                        <div class="input-group mb-3" id="resumenDivE" style="display: none">
+                            <span class="input-group-text" id="basic-addon1">Resumen</span>
+                            <input type="text" class="form-control" id="resumenE" name="resumen" placeholder="Resumen" aria-label="Resumen" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3" id="urlFondoDivE" style="display: none">
+                            <input type="file" class="form-control" id="urlFondoE" name="urlFondo">
+                            <label class="input-group-text" for="inputGroupFile02">Fondo</label>
+                        </div>
+                        <div class="input-group mb-3" id="urlImagenDivE" style="display: none" >
+                            <input type="file" class="form-control" id="urlImagenE" name="urlImagen">
+                            <label class="input-group-text" for="inputGroupFile02">Imagen</label>
+                        </div>
+                        <div class="input-group mb-3" id="tituloDivE"  style="display: none">
+                            <span class="input-group-text" id="basic-addon1">Titulo</span>
+                            <input type="text" class="form-control" id="tituloE" name="titulo" placeholder="Titulo" aria-label="Nombre" aria-describedby="basic-addon1">
+                            @error('titulo')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3" id="textoDivE"    style="display: none" >
+                            <span class="input-group-text" id="basic-addon1">Texto</span>
+                            <input type="text" class="form-control" id="rellenoE" name="relleno" placeholder="Relleno" aria-label="Relleno" aria-describedby="basic-addon1">
+                        </div>
+                        <input  type="text" style="display: none" id="idVE" name="idV">
+                        <input type="text" style="display: none" id="tipo" name="tipo" value="qp_PC">
+                        <button type="submit" id="buttonE">Editar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -151,52 +176,53 @@
 
 <script>
 $(document).ready(function() {
+    $("#editar").hide();
     // Captura el clic en el enlace "Editar"
     $(".editar-link").click(function(e) {
         e.preventDefault(); // Evita que el enlace navegue a la página
-
+        $("#crear").hide();
+        $("#editar").show();
         // Obtiene los datos del atributo "data" del enlace
         var id = $(this).data("id");
         var titulo = $(this).data("titulo");
         var resumen = $(this).data("resumen");
         var relleno = $(this).data("relleno");
         if(resumen != null){
-            $("#resumenDiv").show();
-            $("#tituloDiv").hide();
-                $("#textoDiv").hide();
-                $("#urlFondoDiv").hide();
-            $("#resumen").val(resumen);
-            $("#button").show();
-            $("#urlFondoDiv").show();
-            $("#tipo").val('qp_Pf');
-            $("#idV").val(id);
+            $("#resumenDivE").show();
+            $("#tituloDivE").hide();
+                $("#textoDivE").hide();
+                $("#urlFondoDivE").hide();
+            $("#resumenE").val(resumen);
+            $("#buttonE").show();
+            $("#idVE").val(id);
         }else{
             if(relleno != null){
-                $("#tituloDiv").show();
-                $("#textoDiv").show();
-                $("#urlFondoDiv").show();
-                $("#button").show();
-                $("#titulo").val(titulo);
-                $("#relleno").val(relleno);
-                $("#idV").val(id);
-                $("#tipo").val('qp_PC');
-                $("#resumenDiv").hide();
+                $("#tituloDivE").show();
+                $("#textoDivE").show();
+                $("#urlImagenDivE").show();
+                $("#buttonE").show();
+                $("#tituloE").val(titulo);
+                $("#rellenoE").val(relleno);
+                $("#idVE").val(id);
+                $("#resumenDivE").hide();
+                $("#urlFondoDivE").hide();
             }
             else{
-                $("#urlFondoDiv").show();
-                $("#idV").val(id);
-                $("#tipo").val('qp_PF');
-                $("#button").show();
+                $("#urlFondoDivE").show();
+                $("#idVE").val(id);
+                $("#buttonE").show();
+                $("#tituloDivE").hide();
+                $("#textoDivE").hide();
+                $("#urlImagenDivE").hide();
+
             }
         }
 
 
     });
     $("#buttonC").click(function(e){
-        $("#tituloDiv").show();
-                $("#textoDiv").show();
-                $("#urlFondoDiv").show();
-                $("#button").show();
+        $("#crear").show();
+        $("#editar").hide();
     });
 });
 

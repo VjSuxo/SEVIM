@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\Recuperar;
 use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminPController;
 use App\Http\Controllers\AdminEditarController;
 use App\Http\Controllers\AdminLeyController;
 use App\Http\Controllers\AdminUserController;
@@ -22,6 +23,10 @@ use App\Http\Controllers\GeocodeController;
 use App\Models\Orientacion;
 use App\Models\Nosotros;
 use App\Models\Noticia;
+use App\Models\Ley;
+use App\Models\Evento;
+use App\Models\Ubicacion;
+use App\Models\Refugio;
 use App\Mail\RecoveryCodeMail;
 
 //mmov
@@ -60,6 +65,22 @@ Route::get('/participa', function () {
     $nosotros = Nosotros::get();
     return view('participa',['nosotros'=>$nosotros]);
 })->name('participa');
+
+Route::get('/evento', function () {
+    $eventos = Evento::get();
+    return view('evento',['eventos'=>$eventos]);
+})->name('evento');
+
+Route::get('/leyes', function () {
+    $ley = Ley::get();
+    return view('leyes',['leyes'=>$ley]);
+})->name('leyes');
+
+Route::get('/refugio', function () {
+    $refugios = Refugio::get();
+    $ubicacion = Ubicacion::get();
+    return view('refugio',['refugios'=>$refugios,'ubicaciones'=>$ubicacion]);
+})->name('refugio');
 
 Auth::routes();
 
@@ -144,6 +165,20 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
         Route::post('/admin/updateHS','updateQH')->name('admin.updateQH');
         Route::delete('/admin/deleteHS/{nosotros}','deleteQH')->name('admin.deleteQH');
     });
+    //CRUD QUE PARTICIPA
+    Route::controller(AdminPController::class)->group(function(){
+        Route::post('/admin/crearP','crearP')->name('admin.crearP');
+        Route::post('/admin/updateP','updateP')->name('admin.updateP');
+        Route::delete('/admin/deleteP/{nosotros}','deleteP')->name('admin.deletP');
+    });
+
+    //CRUD QUE Ley
+    Route::controller(AdminLeyController::class)->group(function(){
+        Route::post('/admin/crearLey','crearLey')->name('admin.crearLey');
+        Route::post('/admin/updateLey','updateLey')->name('admin.updateLey');
+        Route::delete('/admin/deleteLey/{ley}','deleteLey')->name('admin.deletLey');
+    });
+
 
 });
 
