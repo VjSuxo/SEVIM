@@ -16,7 +16,6 @@ class CreateEventosTable extends Migration
             $table->date('fechaFin');
             $table->string('urlImg')->nullable();
             $table->string('urlSecion')->nullable();
-            $table->text('resumen');
             $table->string('tipo');
             $table->timestamps();
         });

@@ -16,6 +16,8 @@ class UbicacionController extends Controller
             'direccion' => $direccion,
             'tipo' => $request['tipo'],
             'idRefugio'=>$request['idRef'],
+            'idPersona'=>$request['idPer'],
+            'idEvento'=>$request['idEve'],
         ]);
         $ubicacion->save();
         return $request;

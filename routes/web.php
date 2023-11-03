@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminPController;
 use App\Http\Controllers\AdminEditarController;
 use App\Http\Controllers\AdminLeyController;
+use App\Http\Controllers\AdminEventoController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminQSController;
 use App\Http\Controllers\AdminQHController;
@@ -103,6 +104,8 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
     Route::get("/admin/Users",[AdminController::class,'indexUser'])->name('admin.userIndex');
     Route::get("/admin/denuncia/{tiene}",[AdminController::class,'indexDenuncia'])->name('admin.tieneDen');
     Route::get("/admin/createUsr",[AdminController::class,'crearUser'])->name('admin.crearUser');
+    Route::get("/admin/evento",[AdminController::class,'indexEvento'])->name('admin.indexEvento');
+
     Route::view("/admin/crearUbicacion",'/admin/crearUbicacion')->name('admin.crearUbicacion');
 
 
@@ -177,6 +180,13 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
         Route::post('/admin/crearLey','crearLey')->name('admin.crearLey');
         Route::post('/admin/updateLey','updateLey')->name('admin.updateLey');
         Route::delete('/admin/deleteLey/{ley}','deleteLey')->name('admin.deletLey');
+    });
+
+    //CRUD QUE Evento
+    Route::controller(AdminEventoController::class)->group(function(){
+        Route::post('/admin/crearEvento','crear')->name('admin.crearEvento');
+        Route::post('/admin/updateEvento','update')->name('admin.updateEvento');
+        Route::delete('/admin/deleteEventooo/{evento}','delete')->name('admin.deletEvento');
     });
 
 

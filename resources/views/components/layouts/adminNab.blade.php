@@ -22,6 +22,9 @@ style="
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('admin.userIndex')}}">Usuarios</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.indexEvento')}}">Eventos</a>
+                </li>
             </ul>
         </div>
 
