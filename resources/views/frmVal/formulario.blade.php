@@ -49,7 +49,7 @@
         </div>
         <!-- datos -->
         <div class="texto">
-            <div class="hechos ">
+            <div style="padding: 10vh">
                 <!-- Datos del hecho-->
                     <h1 class="titleI">1. DATOS DEL HECHO</h1>
                     <!-- Fecha Denuncia-->
@@ -82,6 +82,7 @@
                     <a href="/editar" id="editar" class="btn btn-primary">Editar</a>
                     <a href="{{ route('vFic',$tiene)  }}" class="btn btn-primary">Siguiente</a>
             </div>
+
         </div>
         </div>
     </div>

@@ -15,8 +15,10 @@ class CreateDenunciaViolenciaTable extends Migration
             $table->string('urlArchivoPruebas')->nullable();
             $table->unsignedBigInteger('tipo_violencia_id')->nullable(); // Clave foránea para TIPOVIOLENCIA
             $table->unsignedBigInteger('tipo_denuncia_id')->nullable(); // Clave foránea para TIPODENUNCIA
+            $table->unsignedBigInteger('direccion_id')->nullable(); // Clave foránea para DIRECION
             $table->foreign('tipo_violencia_id')->references('id')->on('tipoviolencia');
             $table->foreign('tipo_denuncia_id')->references('id')->on('tipodenuncia');
+            $table->foreign('direccion_id')->references('id')->on('direcciones');
             $table->timestamps();
         });
     }

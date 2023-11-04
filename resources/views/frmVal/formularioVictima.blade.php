@@ -63,7 +63,50 @@
                         </div>
                 </form>
             </div>
+            <div class="texto">
+                    <h1 class="titleI">2.   DATOS VICTIMA</h1>
+                    <!-- Nombre -->
+                    <div class="input-group mb-3">
+                        <label for="nombre" style="margin-right: 10px">Nombre :</label><p>{{ auth()->check() ? auth()->user()->persona->nombre : '' }} {{ auth()->check() ? auth()->user()->persona->apPat : '' }} {{ auth()->check() ? auth()->user()->persona->apMat : '' }}</p>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label for="docIdentidad" style="margin-right: 10px" >Documento de Identidad : </label><p>{{ auth()->check() ? auth()->user()->persona->id : '' }}</p>
+                        <label for="fechaNac" style="margin-left: 10px; margin-right: 10px">Fecha de Nacimiento : </label><p>{{ auth()->check() ? auth()->user()->persona->fechaNac : '' }}</p>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label for="nacionalidad" style="margin-right: 10px">Correo : </label><p>{{ auth()->check() ? auth()->user()->persona->email : '' }}</p>
+                        <label for="sexo" style="margin-left: 10px; margin-right: 10px">Sexo : </label><p>{{auth()->user()->persona->sexo }}</p>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label for="estadoCivil" style="margin-right: 10px">Estado Civil : </label><p>{{auth()->user()->persona->estadoCivil->tipo}} </p>
+
+                        <label for="celular" style="margin-left: 10px; margin-right: 10px">Celular : </label><p>{{ auth()->check() ? auth()->user()->persona->celular : '' }}</p>
+                   </div>
+                   <h1 class="titleI">3. UBICACION</h1>
+                   <div class="input-group mb-3">
+                    <label for="departamento" style="margin-right: 10px">Departamento</label><p>{{ $tiene->denunciaViolencia->direccion->departamento }}</p>
+                   </div>
+                   <div class="input-group mb-3">
+                    <label for="domicilio" style="margin-right: 10px">Domicilio</label><p>{{ $tiene->denunciaViolencia->direccion->domicilio }}</p>
+                    <label for="ubicacion" style="margin-left: 10px; margin-right: 10px">Ubicación</label><p>{{ $tiene->denunciaViolencia->direccion->ubicacion }}</p>
+                  </div>
+                  <a href="/editar" id="editar" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('vFic',$tiene)  }}" class="btn btn-primary">Siguiente</a>
+
+            </div>
         </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".texto").show();
+        $(".inpt").hide();
+        $("#editar").click(function(e){
+            e.preventDefault();
+            $(".inpt").show();
+            $(".texto").hide();
+        });
+    });
+</script>
 </x-layouts.app>

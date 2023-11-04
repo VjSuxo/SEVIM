@@ -26,7 +26,7 @@
     box-shadow: 0px 11px 16px 5px rgba(0,0,0,0.75);
 }
 .fondoForm{
-    height: 80vh;
+    height: 90vh;
     width: 100vh;
     border-radius: 20px;
     display: flex;
@@ -65,7 +65,7 @@ form{
 }
 .hechos{
     width: 60vh;
-    height: 70vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     padding: 25px;
@@ -99,7 +99,7 @@ form{
 
 button{
     width: 100%;
-    height: 45px;
+    height: 50px;
     border-radius: 55px;
     background: rgba(255, 255, 255, 0.14);
     color: white;
