@@ -27,8 +27,8 @@
                     <td>{{ $tiene->denunciaViolencia->fechaHechoDenuncia }}</td>
                     <td>{{ $tiene->denunciaViolencia->relato }}</td>
                     <td>
-                     <a  class="btn btn-primary" href="{{ route('admin.tieneDen',$tiene->id) }}">Ver</a>
-                    </td>
+                        <a  class="btn btn-primary" href="{{ route('admin.tieneDen',$tiene->id) }}">Ver</a>
+                       </td>
                 </tr>
             @endforeach
         </tbody>

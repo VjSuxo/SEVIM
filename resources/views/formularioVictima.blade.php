@@ -19,8 +19,10 @@
 
                         </div>
                         <div class="input-group mb-3">
-                            <label for="docIdentidad" class="input-group-text">Documento de Identidad</label>
-                            <input type="text" class="form-control" id="docIdentidad" name="docIdentidad" required placeholder="Documento de Identidad" value="{{ auth()->check() ? auth()->user()->persona->id : '' }}">
+                            <label for="docIdentidad" class="input-group-text">CI </label>
+                            <input type="text" class="form-control" id="docIdentidad" name="id" required placeholder="Documento de Identidad" value="{{ auth()->check() ? auth()->user()->persona->id : '' }}">
+                            <label for="nacionalidad" class="input-group-text">Nacionalidad </label>
+                            <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" required placeholder="Nacionalidad" value="{{ auth()->check() ? auth()->user()->persona->nacionalidad : '' }}">
                             <label for="fechaNac" class="input-group-text">Fecha de Nacimiento</label>
                             <input type="date" class="form-control" id="fechaNac" name="fechaNac" required placeholder="Fecha de Nacimiento" value="{{ auth()->check() ? auth()->user()->persona->fechaNac : '' }}">
                         </div>

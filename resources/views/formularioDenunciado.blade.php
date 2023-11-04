@@ -21,6 +21,8 @@
                         <div class="input-group mb-3">
                             <label for="fechaNac" class="input-group-text">Edad</label>
                             <input type="number" class="form-control" id="fechaNac" name="fechaNac" required placeholder="Fecha de Nacimiento" value="">
+                            <label for="nacionalidad" class="input-group-text">Nacionalidad </label>
+                            <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" required placeholder="Nacionalidad" value="">
                         </div>
                         <div class="input-group mb-3">
                             <label for="sexo" class="input-group-text">Sexo</label>

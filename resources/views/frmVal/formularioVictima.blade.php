@@ -34,6 +34,8 @@
                                     <option value="Masculino" {{ auth()->check() && auth()->user()->persona->sexo == 'Masculino' ? 'selected' : '' }}>Masculino</option>
                                     <option value="Otro" {{ auth()->check() && auth()->user()->persona->sexo == 'Otro' ? 'selected' : '' }}>Otro</option>
                                 </select>
+                                <label for="nacionalidad" class="input-group-text">Nacionalidad </label>
+                            <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" required placeholder="Nacionalidad" value="{{ auth()->check() ? auth()->user()->persona->nacionalidad : '' }}">
                             </div>
                             <div class="input-group mb-3">
                                 <label for="estadoCivil" class="input-group-text">Estado Civil</label>
@@ -76,7 +78,9 @@
                     <div class="input-group mb-3">
                         <label for="nacionalidad" style="margin-right: 10px">Correo : </label><p>{{ auth()->check() ? auth()->user()->persona->email : '' }}</p>
                         <label for="sexo" style="margin-left: 10px; margin-right: 10px">Sexo : </label><p>{{auth()->user()->persona->sexo }}</p>
+                        <label for="sexo" style="margin-left: 10px; margin-right: 10px">Nacionalidad : </label><p>{{auth()->user()->persona->nacionalidad }}</p>
                     </div>
+
                     <div class="input-group mb-3">
                         <label for="estadoCivil" style="margin-right: 10px">Estado Civil : </label><p>{{auth()->user()->persona->estadoCivil->tipo}} </p>
 
@@ -91,7 +95,7 @@
                     <label for="ubicacion" style="margin-left: 10px; margin-right: 10px">Ubicación</label><p>{{ $tiene->denunciaViolencia->direccion->ubicacion }}</p>
                   </div>
                   <a href="/editar" id="editar" class="btn btn-primary">Editar</a>
-                    <a href="{{ route('vFic',$tiene)  }}" class="btn btn-primary">Siguiente</a>
+                    <a href="{{ route('vDen',$tiene)  }}" class="btn btn-primary">Siguiente</a>
 
             </div>
         </div>

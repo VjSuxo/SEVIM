@@ -66,8 +66,9 @@ class DenunciaController extends Controller
             'nombre' => 'required|string|max:255',
             'apPat' => 'required|string|max:255',
             'apMat' => 'required|string|max:255',
-            'docIdentidad' => 'required|string|max:255',
+            'id' => 'required|string|max:255',
             'fechaNac' => 'required|date',
+            'nacionalidad' => 'required',
             'sexo' => 'required|in:Femenino,Masculino,Otro',
             'estadoCivil' => 'required|exists:estados_civiles,id', // Asegúrate de que 'estadoCivil' exista en la tabla estados_civiles
             'celular' => 'required|string|max:255',
@@ -93,12 +94,23 @@ class DenunciaController extends Controller
     }
 
     public function createDD(Request $request, Tiene $tiene){
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255',
+            'apPat' => 'required|string|max:255',
+            'apMat' => 'required|string|max:255',
+            'nacionalidad' => 'required',
+            'sexo' => 'required|in:Femenino,Masculino,Otro',
+            'estadoCivil' => 'required|exists:estados_civiles,id', // Asegúrate de que 'estadoCivil' exista en la tabla estados_civiles
+            'celular' => 'required|string|max:255',
+        ]);
+
         $persona = new Persona([
             'nombre' => $request['nombre'],
             'apPat' => $request['apPat'],
             'apMat' => $request['apMat'],
             'sexo' => $request['sexo'],
             'celular' => $request['celular'],
+            'nacionalidad' => $request['nacionalidad'],
             'idEstado' => $request['estadoCivil'],
         ]);
         $persona->save();
@@ -124,10 +136,25 @@ class DenunciaController extends Controller
                 'sexo' => $userData['sexo'],
                 'celular' => $userData['celular'],
                 'email' => $userData['email'],
+                'nacionalidad' => $userData['nacionalidad'],
                 'idEstado' => $userData['estadoCivil'],
             ]);
 
             $persona->save();
+        }
+        else{
+            $persona->update([
+                'id' => $userData['id'],
+                'nombre' => $userData['nombre'],
+                'apPat' => $userData['apPat'],
+                'apMat' => $userData['apMat'],
+                'fechaNac' => $userData['fechaNac'],
+                'sexo' => $userData['sexo'],
+                'celular' => $userData['celular'],
+                'email' => $userData['email'],
+                'nacionalidad' => $userData['nacionalidad'],
+                'idEstado' => $userData['estadoCivil'],
+            ]);
         }
 
         return $persona;
@@ -178,6 +205,7 @@ class DenunciaController extends Controller
             'fechaNac'=>$request['fechaNac'],
             'sexo'=>$request['sexo'],
             'celular'=>$request['celular'],
+            'nacionalidad'=>$request['nacionalidad'],
             'idEstado'=>$request['estadoCivil'],
         ]);
         $tiene->denunciaViolencia->direccion->update([
@@ -201,9 +229,9 @@ class DenunciaController extends Controller
             'fechaNac'=>$request['fechaNac'],
             'sexo'=>$request['sexo'],
             'celular'=>$request['celular'],
+            'nacionalidad'=>$request['nacionalidad'],
             'idEstado'=>$request['estadoCivil'],
         ]);
-
         return redirect()->route('welcome');
     }
 

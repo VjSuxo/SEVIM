@@ -17,6 +17,7 @@ class CreatePersonasTable extends Migration
             $table->string('sexo');
             $table->bigInteger('celular');
             $table->string('email')->nullable();
+            $table->string('nacionalidad')->nullable();
 
             // Clave foránea para la relación con estados_civiles
             $table->unsignedBigInteger('idEstado');

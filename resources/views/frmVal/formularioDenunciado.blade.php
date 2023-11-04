@@ -27,6 +27,11 @@
                                 </select>
                             </div>
                             <div class="input-group mb-3">
+                                <label for="sexo" class="input-group-text">Nacionalidad</label>
+                                <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" required placeholder="Nacionalidad" value="{{ $tiene->denunciado->nacionalidad  }}">
+
+                            </div>
+                            <div class="input-group mb-3">
                                 <label for="estadoCivil" class="input-group-text">El denunciado/a es su</label>
                                 <select class="form-select" id="estadoCivil" name="estadoCivil" required>
                                     <!-- Asegúrate de tener una forma de obtener los estados civiles disponibles -->
@@ -60,6 +65,9 @@
                 </div>
                 <div class="input-group mb-3">
                     <label for="sexo" style="margin-right: 9px" >Sexo : </label><p>{{ $tiene->denunciado->sexo }}</p>
+                </div>
+                <div class="input-group mb-3">
+                    <label for="sexo" style="margin-right: 9px" >Nacionalidad : </label><p>{{ $tiene->denunciado->nacionalidad }}</p>
                 </div>
                 <div class="input-group mb-3">
                     <label for="estadoCivil" style="margin-right: 9px" >El denunciado/a es su </label><p>{{ $tiene->denunciado->estadoCivil->tipo }}</p>

@@ -22,6 +22,7 @@ class Persona extends Model
         'sexo',
         'celular',
         'email',
+        'nacionalidad',
         'idEstado',
     ];
 
