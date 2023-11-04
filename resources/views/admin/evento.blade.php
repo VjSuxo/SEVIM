@@ -54,18 +54,33 @@
                                     <div class="card mb-3" style="max-width: 540px;">
                                         <div class="row g-0">
                                           <div class="col-md-4">
-                                            <img src="{{$evento->urlImagen}}" class="img-fluid rounded-start" alt="...">
+                                            <img src="{{$evento->urlImg}}" class="img-fluid rounded-start" alt="...">
                                           </div>
                                           <div class="col-md-8">
                                             <div class="card-body">
-                                              <h5 class="card-title">Parte Vista Inicio</h5>
-                                              <p class="card-text">{{$evento->resumen}}</p>
-                                                <a class="editar-Ff btn btn-primary"
-                                                data-id="{{$evento->id}}"
-                                                data-resumen="{{$evento->resumen}}"
-                                                href="detallesInformacion.html">
-                                                Editar
-                                                </a>
+                                              <h5 class="card-title">{{$evento->titulo}}</h5>
+                                              <p class="card-text">{{$evento->descripcion}} </p>
+                                              <p class="card-text">{{$evento->fechaIni}} </p>
+                                              <p class="card-text">{{$evento->fechaFin}} </p>
+                                              <p class="card-text">Tipo : Virtual </p>
+                                              <p class="card-text">{{$evento->urlSecion}} </p>
+                                                <div class="acciones">
+                                                    <a style="max-height: 40px" class="editar-V btn btn-primary"
+                                                    data-id="{{$evento->id}}"
+                                                    data-titulo="{{$evento->titulo}}"
+                                                    data-descripcion="{{$evento->descripcion}}"
+                                                    data-fechaIni="{{$evento->fechaIni}}"
+                                                    data-fechaFin="{{$evento->fechaFin}}"
+                                                    data-direccion="{{$evento->urlSecion}}"
+                                                    href="detallesInformacion.html">
+                                                    Editar
+                                                    </a>
+                                                    <form action="{{route('admin.deletEvento',$evento->id)}}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-primary ">Eliminar</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                           </div>
                                         </div>
@@ -165,7 +180,7 @@
                 </div>
                 <div class="editarP" style="display: none">
                     <h3>Editar Principal</h3>
-                    <form method="POST" action="{{ route('admin.updateQS') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.updateEvento') }}" enctype="multipart/form-data">
                         @csrf <!-- Agrega el token CSRF para protección -->
                         <div class="input-group mb-3" id="tituloDiv" >
                             <span class="input-group-text" id="basic-addon1">Nombre</span>
@@ -199,20 +214,20 @@
                             </select>
                         </div>
 
-                        <div id="inputVirtual" style="display: none;">
+                        <div id="inputVirtualE"  style="display: none;">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Enlace del Evento Virtual</span>
-                                <input type="text" class="form-control" name="enlaceE" id="enlace">
+                                <input type="text" class="form-control" name="enlaceE" id="enlaceE">
                             </div>
                         </div>
 
                         <div id="inputDir" style="display: none;">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Dirección del Evento Presencial</span>
-                                <input type="text" class="form-control" name="direccionE" id="direccion">
+                                <input type="text" class="form-control" name="direccionE" id="direccionE">
                             </div>
                         </div>
-                        <input type="text" style="display: none" id="idE" name="id" >
+                        <input type="text" style="display: none;"  id="idE" name="id" >
                         <button type="submit" id="button"  >Enviar</button>
                     </form>
                 </div>
@@ -239,15 +254,42 @@ $(document).ready(function() {
         var formattedFechaFin = formatDate(fechaFin);
 
 
-        $("#id").val(id);
+        $("#idE").val(id);
         $("#tituloE").val(titulo);
         $("#descripcionE").val(descripcion);
         $("#fechaIE").val(formattedFechaIni);
         $("#fechaFE").val(formattedFechaFin);
         $("#direccionE").val(direccion);
+        $("#enlaceE").val(null);
+        $("#inputVirtualE").hide();
+        $("#inputDir").show();
+        $(".editarP").show();
+        $(".crearCard").hide();
+    });
+
+    $(".editar-V").click(function(e) {
+        e.preventDefault(); // Evita que el enlace navegue a la página
+        // Obtiene los datos del atributo "data" del enlace
+        var id=$(this).data("id");
+        var titulo=$(this).data("titulo");
+        var descripcion=$(this).data("descripcion");
+        var fechaIni=$(this).data("fechaIni");
+        var fechaFin=$(this).data("fechaFin");
+        var direccion=$(this).data("direccion");
+        var formattedFechaIni = formatDate(fechaIni);
+        var formattedFechaFin = formatDate(fechaFin);
 
 
-        $(".inputDir").show();
+        $("#idE").val(id);
+        $("#tituloE").val(titulo);
+        $("#descripcionE").val(descripcion);
+        $("#fechaIE").val(formattedFechaIni);
+        $("#fechaFE").val(formattedFechaFin);
+        $("#enlaceE").val(direccion);
+        $("#direccionE").val(null);
+
+        $("#inputVirtualE").show();
+        $("#inputDir").hide();
         $(".editarP").show();
         $(".crearCard").hide();
     });

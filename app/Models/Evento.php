@@ -15,7 +15,6 @@ class Evento extends Model
         'fechaFin',
         'urlImg',
         'urlSecion',
-        'resumen',
         'tipo',
     ];
 

@@ -29,7 +29,6 @@ class EventoController extends Controller
             'fechaFin'  => $request['fechaFin']   ,
             'urlImg'  => $request['urlImg']     ,
             'urlSecion'  => $request['urlSecion']  ,
-            'resumen'  => $request['resumen']    ,
             'tipo'  => $request['tipo']       ,
         ]);
     }
