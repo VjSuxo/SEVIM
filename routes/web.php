@@ -103,7 +103,7 @@ Route::middleware(['auth','checkAccountStatus','user-role:2','verificarCodigo'])
     Route::get("/admin/editIndex",[AdminController::class,'editIndex'])->name('admin.editIndex');
     Route::get("/admin/Users",[AdminController::class,'indexUser'])->name('admin.userIndex');
     Route::get("/admin/denuncia/{tiene}",[AdminController::class,'indexDenuncia'])->name('admin.tieneDen');
-    Route::get("/admin/createUsr",[AdminController::class,'crearUser'])->name('admin.crearUser');
+    Route::get("/admin/createUsr",[AdminController::class,'crearUser'])->name('admin.crearTUser');
     Route::get("/admin/evento",[AdminController::class,'indexEvento'])->name('admin.indexEvento');
 
     Route::view("/admin/crearUbicacion",'/admin/crearUbicacion')->name('admin.crearUbicacion');

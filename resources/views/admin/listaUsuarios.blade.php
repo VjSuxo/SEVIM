@@ -4,7 +4,7 @@
 <div class="cuerpoT">
     <div class="d-flex flex-row bd-highlight mb-3">
         <input type="text" class="form-control" id="buscar" placeholder="Buscar...">
-        <a href="{{ route('admin.crearUser') }}" class="btn btn-primary">Crear Nuevo Usuario</a>
+        <a href="{{ route('admin.crearTUser') }}" class="btn btn-primary">Crear Nuevo Usuario</a>
     </div>
 
     <table class="table">

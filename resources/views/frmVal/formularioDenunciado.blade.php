@@ -76,7 +76,7 @@
                 <label for="celular" style="margin-right: 9px" >Celular : </label> <p> {{ $tiene->denunciado->celular }}</p>
            </div>
                <a href="/editar" id="editar" class="btn btn-primary">Editar</a>
-                    <a href="{{ route('vFic',$tiene)  }}" class="btn btn-primary">Siguiente</a>
+                    <a href="{{ route('welcome')  }}" class="btn btn-primary">Siguiente</a>
             </div>
         </div>
     </div>

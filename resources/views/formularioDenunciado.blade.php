@@ -33,15 +33,18 @@
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <label for="estadoCivil" class="input-group-text">El denunciado/a es su</label>
-                            <select class="form-select" id="estadoCivil" name="estadoCivil" required>
-                                <!-- Asegúrate de tener una forma de obtener los estados civiles disponibles -->
+                            <label for="estadoCivil" class="input-group-text">Parentesco del denunciado/a </label>
+                            <select id="estadoCivil" name="estadoCivil" class="form-select">
                                 @foreach ($estadosCiviles as $estadoCivil)
-                                    <option value="{{ $estadoCivil->id }}" >
+                                    <option value="{{ $estadoCivil->id }}">
                                         {{ $estadoCivil->tipo }}
                                     </option>
                                 @endforeach
+                                <option value="otro">Otro</option>
                             </select>
+                            <label for="celular" class="input-group-text" id="nuevoEEstadoCivil"  style="display: none;">Nuevo Parentesco</label>
+                            <input type="text" id="nuevoEstadoCivil" name="nuevoEstadoCivil" style="display: none;">
+                            <br>
                             <label for="celular" class="input-group-text">Celular</label>
                             <input type="text" class="form-control" id="celular" name="celular" required placeholder="Celular" value="">
                        </div>
@@ -53,4 +56,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById("estadoCivil").addEventListener("change", function () {
+            if (this.value === "otro") {
+
+                document.getElementById("nuevoEstadoCivil").style.display = "block";
+                document.getElementById("nuevoEEstadoCivil").style.display = "block";
+            } else {
+                document.getElementById("nuevoEstadoCivil").style.display = "none";
+                document.getElementById("agregarEstadoCivil").style.display = "none";
+            }
+        });
+
+        document.getElementById("agregarEstadoCivil").addEventListener("click", function () {
+            const nuevoEstadoCivil = document.getElementById("nuevoEstadoCivil").value;
+
+            if (nuevoEstadoCivil.trim() !== "") {
+                // Aquí puedes enviar el nuevo estado civil al servidor o realizar la acción deseada
+                // Por ejemplo, puedes hacer una solicitud AJAX para agregar el nuevo estado civil
+                // y luego actualizar la lista de estados civiles en el select.
+                // No se proporciona la implementación completa, ya que depende de tu lógica y backend.
+                alert("Agregando nuevo estado civil: " + nuevoEstadoCivil);
+            }
+        });
+    </script>
+
 </x-layouts.app>

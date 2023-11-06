@@ -70,9 +70,17 @@ class DenunciaController extends Controller
             'fechaNac' => 'required|date',
             'nacionalidad' => 'required',
             'sexo' => 'required|in:Femenino,Masculino,Otro',
-            'estadoCivil' => 'required|exists:estados_civiles,id', // Asegúrate de que 'estadoCivil' exista en la tabla estados_civiles
+             // Asegúrate de que 'estadoCivil' exista en la tabla estados_civiles
             'celular' => 'required|string|max:255',
         ]);
+
+        if($request['nuevoEstadoCivil'] != null){
+            $estado = new EstadoCivil([
+                'tipo' => $request['nuevoEstadoCivil'],
+            ]);
+            $estado->save();
+            $request['estadoCivil'] = $estado->id;
+        }
 
         $personaCreada = $this->createOrUpdatePersona($request);
         $fechaActual = Carbon::now();
@@ -94,15 +102,25 @@ class DenunciaController extends Controller
     }
 
     public function createDD(Request $request, Tiene $tiene){
+
+
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
             'apPat' => 'required|string|max:255',
             'apMat' => 'required|string|max:255',
             'nacionalidad' => 'required',
             'sexo' => 'required|in:Femenino,Masculino,Otro',
-            'estadoCivil' => 'required|exists:estados_civiles,id', // Asegúrate de que 'estadoCivil' exista en la tabla estados_civiles
+           // 'estadoCivil' => 'required|exists:estados_civiles,id', // Asegúrate de que 'estadoCivil' exista en la tabla estados_civiles
             'celular' => 'required|string|max:255',
         ]);
+
+        if($request['nuevoEstadoCivil'] != null){
+            $estado = new EstadoCivil([
+                'tipo' => $request['nuevoEstadoCivil'],
+            ]);
+            $estado->save();
+            $request['estadoCivil'] = $estado->id;
+        }
 
         $persona = new Persona([
             'nombre' => $request['nombre'],
